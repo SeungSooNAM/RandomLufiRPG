@@ -39,37 +39,37 @@ public class MainMenu extends JFrame{
 	public void btn() {
 		
 		btnCh.setLayout(null);
-		btnCh.setBounds(150, 195, 330, 70);
+		btnCh.setBounds(120, 195, 330, 70);
 		this.add(btnCh);
 		btnCh.setIcon(chinfo);
 		
 		
 		btnInven.setLayout(null);
-		btnInven.setBounds(150, 292,  330, 80);
+		btnInven.setBounds(120, 292,  330, 80);
 		this.add(btnInven);
 		btnInven.setIcon(inven);
 		
 	
 		btnShop.setLayout(null);
-		btnShop.setBounds(150,392,  330, 80);
+		btnShop.setBounds(120, 392,  330, 80);
 		this.add(btnShop);
 		btnShop.setIcon(shop);
 		
 		
 		btnFriend.setLayout(null);
-		btnFriend.setBounds(150, 492,  330, 80);
+		btnFriend.setBounds(120, 492,  330, 80);
 		this.add(btnFriend);
 		btnFriend.setIcon(friend);
 		
 		
 		btnAchieve.setLayout(null);
-		btnAchieve.setBounds(150, 592,  330, 80);
+		btnAchieve.setBounds(120, 592,  330, 80);
 		this.add(btnAchieve);
 		btnAchieve.setIcon(ach);
 		
 		
 		btnGameready.setLayout(null);
-		btnGameready.setBounds(880, 652, 350, 80);
+		btnGameready.setBounds(740, 652, 350, 80);
 		this.add(btnGameready);
 		btnGameready.setIcon(ready);
 		
@@ -78,7 +78,7 @@ public class MainMenu extends JFrame{
 	
 	public void homeframe() {
 		
-		setSize(1400, 800);
+		setSize(1200, 800);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setLayout(null);
