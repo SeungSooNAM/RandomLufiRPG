@@ -4,6 +4,9 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.npng.onepiece.gameready.view.CreateCharacterView;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -84,13 +87,16 @@ public class MainMenu extends JFrame{
 		setLayout(null);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JPanel background = new JPanel();		
+
 	}
 	public void paint(Graphics g) {
 		
 		g.drawImage(backimg, 0 , 0, getWidth(), getHeight(),this);
 	}
 	
-	public static void main(String[] args){
+	public stic void main(String[]aste
 		
 		new MainMenu();
 	}
