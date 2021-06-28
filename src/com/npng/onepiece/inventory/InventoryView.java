@@ -72,7 +72,7 @@ public class InventoryView extends JPanel {
 			
 		});
 		
-//		
+
 		label.add(buttonExit);
 //		label.add(buttonItem1);
 //		label.add(buttonItem2);
