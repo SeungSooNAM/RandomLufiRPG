@@ -1,5 +1,5 @@
 package com.npng.onepiece.battle;
 
-public class battleController {
+public class BattleController {
 
 }

@@ -1,5 +1,5 @@
 package com.npng.onepiece.ending;
 
-public class alarmController {
+public class AlarmController {
 
 }

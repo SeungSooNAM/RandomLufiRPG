@@ -1,5 +1,5 @@
 package com.npng.onepiece.inventory;
 
-public class invenDropController {
+public class InvenHaveController {
 
 }

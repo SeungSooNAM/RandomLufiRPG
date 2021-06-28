@@ -1,5 +1,5 @@
 package com.npng.onepiece.character;
 
-public class characterController {
+public class CharacterController {
 
 }

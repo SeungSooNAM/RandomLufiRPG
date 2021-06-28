@@ -1,5 +1,5 @@
 package com.npng.onepiece.gameready;
 
-public class gameReadyController {
+public class GameReadyController {
 
 }
