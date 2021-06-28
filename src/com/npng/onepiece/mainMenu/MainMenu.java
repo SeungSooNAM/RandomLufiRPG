@@ -26,5 +26,6 @@ public class MainMenu extends JFrame{
 		JPanel background = new JPanel();
 		
 		
+		
 	}
 }
