@@ -8,3 +8,5 @@ public class NewCharacterDTO {
 	private int Dex;
 	private int charisma;
 }
+
+
