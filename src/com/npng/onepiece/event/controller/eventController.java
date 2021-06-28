@@ -1,5 +1,7 @@
 package com.npng.onepiece.event.controller;
 
+import javax.swing.JLabel;
+
 import com.npng.onepiece.event.model.dto.SceDTO;
 import com.npng.onepiece.event.model.eventService.EventService;
 import com.npng.onepiece.event.views.EventSceView;
@@ -18,13 +20,14 @@ public class eventController {
 		}
 	}
 	
-	public SceDTO scenum(int num) {
+	public JLabel scenum(int num) {
 		
-		SceDTO story = EventService.scenum(num);
-		
+		String story = EventService.scenum(num);
+		  
+		return story;
 //		EventSceView view = new EventSceView();
 //		view.EventSceView(stroy);
-		return story;
+	;
 		
 		
 		

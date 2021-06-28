@@ -25,7 +25,7 @@ public class SceDAO {
 		}
 	}
 
-	public SceDTO scenum(Connection con, int num) {
+	public String scenum(Connection con, int num) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

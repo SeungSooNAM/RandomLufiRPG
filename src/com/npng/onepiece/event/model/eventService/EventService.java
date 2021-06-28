@@ -19,16 +19,15 @@ public class EventService {
 		
 	}
 
-	public  SceDTO scenum(int num) {
+	public String scenum(int num) {
 		
 		Connection con = getConnection();
 		
-		SceDTO story = SceDAO.scenum(con, num);
+		String story = SceDAO.scenum(con, num);
 
 		
 		close(con);
-		
-		return story;
+		;
 	}
 	
 }
