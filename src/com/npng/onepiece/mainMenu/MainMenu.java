@@ -1,6 +1,8 @@
 package com.npng.onepiece.mainMenu;
 
 import java.awt.Image;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -42,37 +44,38 @@ public class MainMenu extends JFrame{
 		btnCh.setBounds(120, 195, 330, 70);
 		this.add(btnCh);
 		btnCh.setIcon(chinfo);
-		
+		btnCh.addMouseListener(new ChActionListener());
 		
 		btnInven.setLayout(null);
 		btnInven.setBounds(120, 292,  330, 80);
 		this.add(btnInven);
 		btnInven.setIcon(inven);
-		
+		btnInven.addMouseListener(new InvenActionListener());
 	
 		btnShop.setLayout(null);
 		btnShop.setBounds(120, 392,  330, 80);
 		this.add(btnShop);
 		btnShop.setIcon(shop);
-		
+		btnShop.addMouseListener(new ShopActionListener());
 		
 		btnFriend.setLayout(null);
 		btnFriend.setBounds(120, 492,  330, 80);
 		this.add(btnFriend);
 		btnFriend.setIcon(friend);
-		
+		btnFriend.addMouseListener(new FriendActionListener());
 		
 		btnAchieve.setLayout(null);
 		btnAchieve.setBounds(120, 592,  330, 80);
 		this.add(btnAchieve);
 		btnAchieve.setIcon(ach);
+		btnAchieve.addMouseListener(new AchActionListener());
 		
 		
 		btnGameready.setLayout(null);
 		btnGameready.setBounds(740, 652, 350, 80);
 		this.add(btnGameready);
 		btnGameready.setIcon(ready);
-		
+		btnGameready.addMouseListener(new GamereadyActionListener());
 	}
 
 	
@@ -89,6 +92,25 @@ public class MainMenu extends JFrame{
 		
 		g.drawImage(backimg, 0 , 0, getWidth(), getHeight(),this);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public static void main(String[] args){
 		
