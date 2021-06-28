@@ -4,6 +4,9 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.npng.onepiece.gameready.view.CreateCharacterView;
+
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 
@@ -23,9 +26,7 @@ public class MainMenu extends JFrame{
 		setLayout(null);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel background = new JPanel();
-		
-		
+		JPanel background = new JPanel();		
 		
 	}
 }

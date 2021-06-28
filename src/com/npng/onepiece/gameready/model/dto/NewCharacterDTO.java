@@ -1,4 +1,4 @@
-package com.npng.onepiece.gameReady.model.dto;
+package com.npng.onepiece.gameready.model.dto;
 
 public class NewCharacterDTO {
 
