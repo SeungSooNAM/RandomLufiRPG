@@ -33,6 +33,20 @@ public class InventoryView extends JPanel {
 		
 
 		
+		
+		JLabel labelIcon = new JLabel(new ImageIcon());
+		this.img2 = new ImageIcon("images/hat1.PNG").getImage().getScaledInstance(90, 90, 0);
+		labelIcon.setIcon(new ImageIcon(img2));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		JButton buttonExit = new JButton(new ImageIcon("images/buttonExit.PNG"));
 //		JButton buttonItem1 = new JButton(new ImageIcon("images/meat1.PNG"));
 //		JButton buttonItem2 = new JButton(new ImageIcon("images/hat3.PNG"));
@@ -64,6 +78,12 @@ public class InventoryView extends JPanel {
 
 				buttonCancle.setBounds(900, 500, 150, 54);
 				label.add(buttonCancle);
+				
+				labelIcon.setBounds(750, 250, 90, 90);
+				
+				label.add(labelIcon);
+				
+				
 				
 				buttonMyItem1.setEnabled(false);
 				buttonExit.setEnabled(false);
