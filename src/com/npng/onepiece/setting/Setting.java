@@ -11,7 +11,7 @@ public class Setting extends JFrame{
 	private JButton sound = new JButton();
 	private JButton ranking = new JButton();
 	private JButton gameoff = new JButton();
-	
+	private JButton back = new JButton();
 	
 	private ImageIcon background =  new ImageIcon("image/mainMenu/mainBackground.PNG");
 	Image backimg = background.getImage();
@@ -41,6 +41,11 @@ public class Setting extends JFrame{
 		gameoff.setBounds(120, 392,  330, 80);
 		this.gameoff.add(gameoff);
 		gameoff.setBorderPainted(false);
+		
+		back.setLayout(null);
+		back.setBounds(1050, 10,100,100);
+		this.back.add(back);
+		back.setBorderPainted(false);
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
