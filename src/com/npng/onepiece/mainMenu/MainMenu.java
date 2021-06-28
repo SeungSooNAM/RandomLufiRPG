@@ -25,5 +25,6 @@ public class MainMenu extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel background = new JPanel();
 		
+		
 	}
 }
