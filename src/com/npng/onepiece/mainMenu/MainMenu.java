@@ -39,39 +39,39 @@ public class MainMenu extends JFrame{
 	public void btn() {
 		
 		btnCh.setLayout(null);
-		btnCh.setBounds(85, 195, 500, 70);
-		add(btnCh);
+		btnCh.setBounds(150, 195, 330, 70);
+		this.add(btnCh);
 		btnCh.setIcon(chinfo);
 		
 		
 		btnInven.setLayout(null);
-		btnInven.setBounds(85, 295, 500, 70);
-		add(btnInven);
-		btnCh.setIcon(chinfo);
+		btnInven.setBounds(150, 292,  330, 80);
+		this.add(btnInven);
+		btnInven.setIcon(inven);
 		
 	
 		btnShop.setLayout(null);
-		btnShop.setBounds(85,395, 500, 70);
-		add(btnShop);
-		btnCh.setIcon(shop);
+		btnShop.setBounds(150,392,  330, 80);
+		this.add(btnShop);
+		btnShop.setIcon(shop);
 		
 		
 		btnFriend.setLayout(null);
-		btnFriend.setBounds(85, 495, 500, 70);
-		add(btnFriend);
-		btnCh.setIcon(friend);
+		btnFriend.setBounds(150, 492,  330, 80);
+		this.add(btnFriend);
+		btnFriend.setIcon(friend);
 		
 		
 		btnAchieve.setLayout(null);
-		btnAchieve.setBounds(85, 595, 500, 70);
-		add(btnAchieve);
-		btnCh.setIcon(ach);
+		btnAchieve.setBounds(150, 592,  330, 80);
+		this.add(btnAchieve);
+		btnAchieve.setIcon(ach);
 		
 		
 		btnGameready.setLayout(null);
-		btnGameready.setBounds(880, 650, 450, 80);
-		add(btnGameready);
-		btnCh.setIcon(ready);
+		btnGameready.setBounds(880, 652, 350, 80);
+		this.add(btnGameready);
+		btnGameready.setIcon(ready);
 		
 	}
 
