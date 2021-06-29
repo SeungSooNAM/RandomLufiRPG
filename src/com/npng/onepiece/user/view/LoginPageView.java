@@ -16,12 +16,12 @@ import com.npng.onepiece.common.ViewUtil;
 
 public class LoginPageView extends JPanel {
 
-	private LoginView loginView;
+	private MainFrame loginView;
 	private LoginPageView loginPageView;
 	
-	public LoginPageView(LoginView loginView) {
+	public LoginPageView(MainFrame loginView) {
 		
-		this.loginView = loginView;
+		this.MainFrame = loginView;
 		this.loginPageView = this;
 		
 		this.setSize(1200, 800);

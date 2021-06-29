@@ -19,7 +19,7 @@ public class JoinPageView extends JPanel {
 
 	private JoinPageView joinPageView;
 	
-	public JoinPageView(LoginView loginView) {
+	public JoinPageView(MainFrame loginView) {
 		this.setSize(1200, 800);
 		
 		Image join = new ImageIcon("image/login/join.PNG").getImage().getScaledInstance(1200, 800, 0);
