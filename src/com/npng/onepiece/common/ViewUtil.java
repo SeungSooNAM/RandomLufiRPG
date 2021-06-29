@@ -2,12 +2,12 @@ package com.npng.onepiece.common;
 
 import javax.swing.JPanel;
 
-import com.npng.onepiece.user.view.LoginView;
+import com.npng.onepiece.user.view.MainFrame;
 
 public class ViewUtil {
 
 
-	public static void changePanel(LoginView mf, JPanel op, JPanel np) {
+	public static void changePanel(MainFrame mf, JPanel op, JPanel np) {
         mf.remove(op);
         mf.add(np);
         mf.repaint();

@@ -7,21 +7,22 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.npng.onepiece.event.ViewUtil;
-import com.npng.onepiece.event.eventsceview;
-import com.npng.onepiece.event.controller.eventController;
-import com.npng.onepiece.user.view.LoginView;
+import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.event.model.dto.SceDTO;
+import com.npng.onepiece.user.view.MainFrame;
 
 public class EventSceView extends JPanel{
 	
 	private Image img;
-	private LoginView mf;
+	private MainFrame mf;
 	private EventSceView view;
+	private SceDTO sce;
 
-	public EventSceView(LoginView mf) {
+	public EventSceView(MainFrame mf) {
 		
 		this.mf = mf;
 		this.view = this;
@@ -30,67 +31,47 @@ public class EventSceView extends JPanel{
 		
 		mf.add(this);
 		
-		Font font6 = new Font("",0,25);
 		
 		JLabel label = new JLabel(new ImageIcon());
-		 
-		this.img = new ImageIcon("image/sce/3.PNG").getImage().getScaledInstance(1000, 800, 0);
-		
+		this.img = new ImageIcon("image/sce/3.PNG").getImage().getScaledInstance(1200, 800, 0);
 		label.setIcon(new ImageIcon(img));
-		eventController text = new eventController();
-		String name1 = text.scenum();
-		String name2 = text.scenum();
-		
-		
-		
-		
-		JLabel text1 = new JLabel(name1);
-		JLabel text2 = new JLabel(name2);
-		text1.setFont(font6);
-		text2.setFont(font6);
-		
-		text1.setLocation(0, 100);
-		text1.setSize(1000, 1000);
-		
-		text2.setLocation(0, 130);
-		text2.setSize(1000, 1000);
-		
-		label.setBounds(0, 0, 800, 800);
-		
-		this.add(text1);
-		this.add(text2);
-		
-		this.setLayout(null);
+
 		
 		this.add(label);
 		
+		Font font1 = new Font("",0,20);
+        
+		
+		JButton btn1 = new JButton(new ImageIcon("image/sce/1번선택.PNG"));
+		btn1.setBounds(930, 560, 120, 70);
+		label.add(btn1);
+		
+		JButton btn2 = new JButton(new ImageIcon("image/sce/2번선택.PNG"));
+		btn2.setBounds(930, 650, 120, 90);
+		label.add(btn2);
+		
+		btn1.setBorderPainted(false);
+		btn2.setBorderPainted(false);
+		
+		
+		btn1.addMouseListener(new OneActionListener());
+		
+		
+//		btn.addMouseListener(new OneActionListener());
+	
+		
+		
+		
+		
 	}
-	private class acActionListener extends  MouseAdapter {
+	private class OneActionListener extends  MouseAdapter {
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
-		 ViewUtil.changePanel(mf, eventview, new eventsceview());
+		 ViewUtil.changePanel(mf, view, new EventOptionView(mf));
 	}
 	}
 
-	
-
-}
-
-package com.npng.onepiece.event.views;
-
-import javax.swing.JPanel;
-
-import com.npng.onepiece.event.model.dto.SceDTO;
-
-public class EventSceView extends JPanel{
-
-	public EventSceView(loginView mf, SceDTO story) {
-		
-		
-	}
-
-	
 
 }
 
