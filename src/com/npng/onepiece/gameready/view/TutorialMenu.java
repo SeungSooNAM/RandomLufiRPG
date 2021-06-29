@@ -1,8 +1,8 @@
 package com.npng.onepiece.gameready.view;
 
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,7 +18,8 @@ public class TutorialMenu extends JPanel {
 	private TutorialMenu tm;
 	private MainFrame mainFrame;
 	public TutorialMenu(MainFrame mainFrame) {
-		this.tm = tm;
+		
+		this.tm = this;
 		this.mainFrame = mainFrame;
 		Image background = new ImageIcon("image/tutorial/tutoMenu.png").getImage().getScaledInstance(1200, 800, 0);
 
@@ -31,17 +32,19 @@ public class TutorialMenu extends JPanel {
 		
 		JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
 		skipBtn.setBounds(940, 600, 150, 100);
-		this.add(skipBtn);
+		label1.add(skipBtn);
 
 	
-		skipBtn.addActionListener(new ActionListener() {
+		skipBtn.addMouseListener(new abc ());
 			
+	}
+			private class abc extends MouseAdapter{
+				
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void mouseClicked(MouseEvent e) {
 				ViewUtil.changePanel(mainFrame, tm, new MainMenu(mainFrame));				
 			}
-		});		
+		}
 			
 		
-	}
 }

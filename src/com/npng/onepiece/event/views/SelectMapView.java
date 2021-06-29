@@ -1,6 +1,5 @@
 package com.npng.onepiece.event.views;
 
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,6 +11,7 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.event.model.dto.SceDTO;
+import com.npng.onepiece.mainMenu.MainMenu;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class SelectMapView extends JPanel{
@@ -32,6 +32,8 @@ public class SelectMapView extends JPanel{
 		JLabel label = new JLabel(new ImageIcon());
 		this.img = new ImageIcon("image/sce/지도.PNG").getImage().getScaledInstance(1200, 800, 0);
 		label.setIcon(new ImageIcon(img));
+		
+		
 		
 		this.add(label);
 		
@@ -68,24 +70,27 @@ public class SelectMapView extends JPanel{
 		JButton exitbtn = new JButton(new ImageIcon("image/sce/메뉴화면으로.PNG"));
 		exitbtn.setBounds(517, 631, 128, 90);
 		label.add(exitbtn);
-//		btn1.setBorderPainted(false);
-//		btn2.setBorderPainted(false);
-//		btn3.setBorderPainted(false);
-//		btn4.setBorderPainted(false);
-//		btn5.setBorderPainted(false);
-//		btn6.setBorderPainted(false);
-//		btn7.setBorderPainted(false);
+		btn1.setBorderPainted(false);
+		btn2.setBorderPainted(false);
+		btn3.setBorderPainted(false);
+		btn4.setBorderPainted(false);
+		btn5.setBorderPainted(false);
+		btn6.setBorderPainted(false);
+		btn7.setBorderPainted(false);
 		exitbtn.setBorderPainted(false);
+//		
 		
-		
-		btn1.addMouseListener(new OneActionListener());
 		
 		
 //		btn.addMouseListener(new OneActionListener());
 	
 		
-		btn7.addMouseListener(new BossActionListener());
-		exitbtn.addMouseListener(new BossActionListener());
+		btn1.addMouseListener(new OneActionListener());  //일반이벤트
+		
+		btn2.addMouseListener(new TwoActionListener());  //전투이벤트
+		
+		btn7.addMouseListener(new BossActionListener()); //보스
+		exitbtn.addMouseListener(new ExitActionListener()); //메인메뉴로
 		
 		
 	}
@@ -97,6 +102,13 @@ public class SelectMapView extends JPanel{
 	}
 		
 	}
+	private class ExitActionListener extends  MouseAdapter {
+		
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			ViewUtil.changePanel(mf, view, new MainMenu(mf));
+		}
+	}
 	private class OneActionListener extends  MouseAdapter {
 		
 		@Override
@@ -104,13 +116,15 @@ public class SelectMapView extends JPanel{
 			ViewUtil.changePanel(mf, view, new EventSceView(mf));
 		}
 	}
-	private class ExitActionListener extends  MouseAdapter {
+	private class TwoActionListener extends  MouseAdapter {
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			ViewUtil.changePanel(mf, view, new EventSceView(mf));
 		}
 	}
+	
+	
 
 
 }

@@ -68,7 +68,7 @@ public class EventSceView extends JPanel{
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
-		 ViewUtil.changePanel(mf, view, new EventOptionView(mf));
+		 ViewUtil.changePanel(mf, view, new EventResultView(mf));
 	}
 	}
 
