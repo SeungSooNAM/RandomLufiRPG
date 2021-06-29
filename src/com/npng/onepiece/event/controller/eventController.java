@@ -12,7 +12,11 @@ public class eventController {
 	
 	public void random() {
 		
+
+		int number = (int)(Math.random() *60)+3;
+
 		int number = (int)(Math.random() *3)+1;
+
 		if(number == 1) { // 전투
 			
 		} if(number >= 2) {  // 일반
@@ -27,13 +31,25 @@ public class eventController {
 		return story;
 //		EventSceView view = new EventSceView();
 //		view.EventSceView(stroy);
+
+	
+	}
+	public JLabel optnum1(int num) {
+		return null;
+		
+	}
+		
+	public JLabel optnum2(int num) {
+		return null;
+			
+
 	;
 		
 		
 		
 		
 		
-	}
+  }
 	
 	
 	
