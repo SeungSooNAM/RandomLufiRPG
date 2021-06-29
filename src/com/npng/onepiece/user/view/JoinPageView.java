@@ -2,6 +2,7 @@ package com.npng.onepiece.user.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -18,8 +20,11 @@ import com.npng.onepiece.common.ViewUtil;
 public class JoinPageView extends JPanel {
 
 	private JoinPageView joinPageView;
-	
-	public JoinPageView(LoginView loginView) {
+
+	public JoinPageView(MainFrame mainFrame) {
+		
+		this.joinPageView = this;
+
 		this.setSize(1200, 800);
 		
 		Image join = new ImageIcon("image/login/join.PNG").getImage().getScaledInstance(1200, 800, 0);
@@ -27,19 +32,19 @@ public class JoinPageView extends JPanel {
 		
 		Font font1 = new Font("",0,35);
 		JTextField tf1 = new JTextField();
-		tf1.setLocation(599, 163);
+		tf1.setLocation(596, 161);
 		tf1.setSize(473, 83);
 		tf1.setFont(font1);
 		
 		Font font2 = new Font("",0,35);
 		JTextField tf2 = new JTextField();
-		tf2.setLocation(599, 278);
+		tf2.setLocation(596, 276);
 		tf2.setSize(473, 83);
 		tf2.setFont(font2);
 		
 		Font font3 = new Font("",0,35);
 		JTextField tf3 = new JTextField();
-		tf3.setLocation(599, 393);
+		tf3.setLocation(596, 391);
 		tf3.setSize(473, 83);
 		tf3.setFont(font3);
 		
@@ -52,25 +57,51 @@ public class JoinPageView extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(loginView, new JoinPageView(loginView), new LoginPageView(loginView));
+				ViewUtil.changePanel(mainFrame, joinPageView, new LoginPageView(mainFrame));
 			}
 		});
+		
 		Font font5= new Font("",0,25);
 		JButton btn2 = new JButton("가입하기");
 		btn2.setLocation(850, 600);
 		btn2.setSize(200, 100);
 		btn2.setFont(font5);
 		
-		JButton btn4 = new JButton(new ImageIcon("image/login/setting.PNG"));
-		btn4.setLocation(1145, 0);
-		btn4.setSize(50, 50);
+		JFrame joinSuccess = new JFrame();
+		joinSuccess.setLocation(750, 500);
+		joinSuccess.setSize(300, 100);
+		JPanel panel2 = new JPanel();
+		panel2.setSize(300,150);
+		JLabel label2 = new JLabel("회원가입 성공");
+		label2.setFont(font5);
+		JButton btn6 = new JButton("확인");
+		btn6.setFont(font5);
+		panel2.add(label2);
+		panel2.add(btn6);
+		joinSuccess.add(panel2);
+		
+		btn2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				joinSuccess.setVisible(true);
+				
+			}
+		});
+		
+		btn6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				joinSuccess.dispose();
+			}
+		});
 		
 		label.add(tf1);
 		label.add(tf2);
 		label.add(tf3);
 		label.add(btn1);
 		label.add(btn2);
-		label.add(btn4);
 		this.add(label, BorderLayout.CENTER);
 		
 	}

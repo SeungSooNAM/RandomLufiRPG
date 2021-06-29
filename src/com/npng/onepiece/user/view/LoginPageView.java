@@ -13,15 +13,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.gameready.view.CreateCharacterView;
 
 public class LoginPageView extends JPanel {
 
-	private LoginView loginView;
+	private MainFrame mainFrame;
 	private LoginPageView loginPageView;
 	
-	public LoginPageView(LoginView loginView) {
+	public LoginPageView(MainFrame mainFrame) {
 		
-		this.loginView = loginView;
+		this.mainFrame = mainFrame;
 		this.loginPageView = this;
 		
 		this.setSize(1200, 800);
@@ -46,6 +47,14 @@ public class LoginPageView extends JPanel {
 		btn1.setLocation(150, 600);
 		btn1.setSize(200, 100);
 		btn1.setFont(font4);
+		btn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ViewUtil.changePanel(mainFrame, loginPageView, new CreateCharacterView(mainFrame));
+			}
+		});
+
 		Font font5= new Font("",0,25);
 		JButton btn2 = new JButton("회원가입");
 		btn2.setLocation(500, 600);
@@ -55,7 +64,7 @@ public class LoginPageView extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(loginView, loginPageView, new JoinPageView(loginView));
+				ViewUtil.changePanel(mainFrame, loginPageView, new JoinPageView(mainFrame));
 			}
 		});
 		
@@ -64,10 +73,24 @@ public class LoginPageView extends JPanel {
 		btn3.setLocation(850, 600);
 		btn3.setSize(200, 100);
 		btn3.setFont(font6);
+		btn3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ViewUtil.changePanel(mainFrame, loginPageView, new FindPasswordPageView(mainFrame));
+			}
+		});
 		
 		JButton btn4 = new JButton(new ImageIcon("image/login/setting.PNG"));
 		btn4.setLocation(1145, 0);
 		btn4.setSize(50, 50);
+		btn4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ViewUtil.changePanel(mainFrame, loginPageView, new ManagerLoginView(mainFrame));
+			}
+		});
 		
 		label.add(tf1);
 		label.add(tf2);
@@ -76,6 +99,6 @@ public class LoginPageView extends JPanel {
 		label.add(btn3);
 		label.add(btn4);
 		this.add(label, BorderLayout.CENTER);
-		loginView.add(this);
+		mainFrame.add(this);
 	}
 }
