@@ -11,15 +11,15 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.mainMenu.MainMenu;
-import com.npng.onepiece.user.view.LoginView;
+import com.npng.onepiece.user.view.MainFrame;
 
 public class TutorialMenu extends JPanel {
 
 	private TutorialMenu tm;
-	private LoginView loginView;
-	public TutorialMenu(LoginView loginView) {
+	private MainFrame mainFrame;
+	public TutorialMenu(MainFrame mainFrame) {
 		this.tm = tm;
-		this.loginView = loginView;
+		this.mainFrame = mainFrame;
 		Image background = new ImageIcon("image/tutorial/tutoMenu.png").getImage().getScaledInstance(1200, 800, 0);
 
 		JLabel label1 = new JLabel(new ImageIcon(background));
@@ -27,17 +27,18 @@ public class TutorialMenu extends JPanel {
 
 		this.setSize(1200, 800);
 		this.setLayout(null);
-
+		this.add(label1);
+		
 		JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
 		skipBtn.setBounds(940, 600, 150, 100);
-		tm.add(skipBtn);
+		this.add(skipBtn);
 
 	
 		skipBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(loginView, tm, new MainMenu(loginView));				
+				ViewUtil.changePanel(mainFrame, tm, new MainMenu(mainFrame));				
 			}
 		});		
 			

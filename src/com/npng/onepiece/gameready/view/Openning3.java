@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.mainMenu.MainMenu;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class Openning3 extends JPanel {
@@ -40,12 +39,9 @@ public class Openning3 extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mainFrame, op3, new MainMenu(mainFrame));				
+				ViewUtil.changePanel(mainFrame, op3, new TutorialMenu(mainFrame));				
 			}
-		});
-		
-		
-			
+		});		
 		
 	}
 }
