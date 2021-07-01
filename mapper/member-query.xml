@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment />
+	<entry key="joinNewMember">
+		INSERT
+          INTO USER_INFO U
+        (
+          U.USER_NUM
+        , U.USER_ID
+        , U.USER_PASSWORD
+        , U.USER_NAME
+        , U.ABLE_YN
+        )
+        VALUES
+        (
+          USER_NUM.NEXTVAL
+        , ?
+        , ?
+        , ?
+        , 'N'
+        )
+	</entry>
+	<entry key="selectAllMember">
+	    SELECT
+		       USER_ID
+		     , USER_PASSWORD
+		  FROM USER_INFO
+	</entry>
+</properties>

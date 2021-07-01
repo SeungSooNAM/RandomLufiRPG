@@ -24,6 +24,7 @@ public class FindPasswordPageView extends JPanel {
 		
 		this.setSize(1200, 800);
 		
+		
 		Image FindPwd = new ImageIcon("image/login/findpwd.PNG").getImage().getScaledInstance(1200, 800, 0);
 		JLabel label = new JLabel(new ImageIcon(FindPwd));
 		

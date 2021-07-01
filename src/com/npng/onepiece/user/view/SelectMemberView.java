@@ -43,3 +43,4 @@ public class SelectMemberView extends JPanel {
 	}
 
 }
+

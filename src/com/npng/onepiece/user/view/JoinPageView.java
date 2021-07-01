@@ -1,12 +1,12 @@
 package com.npng.onepiece.user.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,16 +16,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.user.controller.MemberController;
 
 public class JoinPageView extends JPanel {
-
+	
 	private JoinPageView joinPageView;
 
 	public JoinPageView(MainFrame mainFrame) {
 		
+		MemberController mc = new MemberController();
+		
 		this.joinPageView = this;
 
 		this.setSize(1200, 800);
+		
 		
 		Image join = new ImageIcon("image/login/join.PNG").getImage().getScaledInstance(1200, 800, 0);
 		JLabel label = new JLabel(new ImageIcon(join));
@@ -67,25 +71,65 @@ public class JoinPageView extends JPanel {
 		btn2.setSize(200, 100);
 		btn2.setFont(font5);
 		
-		JFrame joinSuccess = new JFrame();
-		joinSuccess.setLocation(750, 500);
-		joinSuccess.setSize(300, 100);
+		JFrame joinMessageFrame = new JFrame();
+		joinMessageFrame.setLocation(750, 500);
+		joinMessageFrame.setSize(300, 100);
+		
 		JPanel panel2 = new JPanel();
 		panel2.setSize(300,150);
+		
 		JLabel label2 = new JLabel("회원가입 성공");
 		label2.setFont(font5);
+		
 		JButton btn6 = new JButton("확인");
 		btn6.setFont(font5);
+		
 		panel2.add(label2);
 		panel2.add(btn6);
-		joinSuccess.add(panel2);
+		joinMessageFrame.add(panel2);
+		
+		JFrame joinMessageFrame2 = new JFrame();
+		joinMessageFrame2.setLocation(750, 500);
+		joinMessageFrame2.setSize(300, 100);
+		
+		JPanel panel3 = new JPanel();
+		panel3.setSize(300,150);
+		
+		JLabel label3 = new JLabel("회원가입 실패");
+		label3.setFont(font5);
+		
+		JButton btn7 = new JButton("확인");
+		btn7.setFont(font5);
+		
+		panel3.add(label3);
+		panel3.add(btn7);
+		joinMessageFrame2.add(panel3);
+		
+		Map<String, String> map = new HashMap<>();
 		
 		btn2.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				joinSuccess.setVisible(true);
 				
+				if(tf1.getText().length() >= 5 && tf2.getText().length() >= 5 && tf3.getText().length() >= 2) {					
+					
+					String userId = tf1.getText();
+					String userPwd = tf2.getText();
+					String userName = tf3.getText();
+					
+					map.put("userId", userId);
+					map.put("userPwd", userPwd);
+					map.put("userName", userName);
+					
+					mc.joinNewMember(map);
+					
+					joinMessageFrame.setVisible(true);
+					
+				} else {
+					
+					joinMessageFrame2.setVisible(true);
+				}
 			}
 		});
 		
@@ -93,10 +137,18 @@ public class JoinPageView extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				joinSuccess.dispose();
+				joinMessageFrame.dispose();
 			}
 		});
 		
+		btn7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				joinMessageFrame2.dispose();
+			}
+		});
+
 		label.add(tf1);
 		label.add(tf2);
 		label.add(tf3);

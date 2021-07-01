@@ -24,6 +24,7 @@ public class ManagerLoginView extends JPanel {
 		
 		this.setSize(1200, 800);
 		
+		
 		Image managerLogin = new ImageIcon("image/login/managerlogin.PNG").getImage().getScaledInstance(1200, 800, 0);
 		JLabel label = new JLabel(new ImageIcon(managerLogin));
 		

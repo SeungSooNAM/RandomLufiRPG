@@ -34,6 +34,7 @@ public class DeleteMemberView extends JPanel {
 		tf1.setSize(404, 83);
 		tf1.setFont(font1);
 		
+		
 		Font font2= new Font("",0,25);
 		JButton btn2 = new JButton("삭제");
 		btn2.setLocation(870, 285);
