@@ -1,6 +1,8 @@
 package com.npng.onepiece.battle.model.dto;
 
 import java.io.Serializable;
+import java.util.List;
+
 
 public class BattleDTO implements Serializable{
 
@@ -30,13 +32,15 @@ public class BattleDTO implements Serializable{
 	private int mDex;
 	private int mExp;
 	private int mScore;
-	private int mGord;
+	private int mGold;
+	private List<FriendDTO> friendList;
 	
 	public BattleDTO() {}
 
 	public BattleDTO(int cNumber, int userNum, int cLv, String cName, int cAtk, int cHp, int cMp, int cLife, int cExp,
 			int cStr, int cDex, int cCharisma, int cPoint, int cScore, int mNum, String mName, String mCate, int mLv,
-			int mAtk, int mDef, int mHp, int mStr, int mDex, int mExp, int mScore, int mGord) {
+			int mAtk, int mDef, int mHp, int mStr, int mDex, int mExp, int mScore, int mGold,
+			List<FriendDTO> friendList) {
 		super();
 		this.cNumber = cNumber;
 		this.userNum = userNum;
@@ -63,8 +67,13 @@ public class BattleDTO implements Serializable{
 		this.mDex = mDex;
 		this.mExp = mExp;
 		this.mScore = mScore;
-		this.mGord = mGord;
+		this.mGold = mGold;
+		this.friendList = friendList;
 	}
+
+
+
+
 
 	public int getcNumber() {
 		return cNumber;
@@ -266,12 +275,20 @@ public class BattleDTO implements Serializable{
 		this.mScore = mScore;
 	}
 
-	public int getmGord() {
-		return mGord;
+	public int getmGold() {
+		return mGold;
 	}
 
-	public void setmGord(int mGord) {
-		this.mGord = mGord;
+	public void setmGold(int mGold) {
+		this.mGold = mGold;
+	}
+
+	public List<FriendDTO> getFriendList() {
+		return friendList;
+	}
+
+	public void setFriendList(List<FriendDTO> friendList) {
+		this.friendList = friendList;
 	}
 
 	@Override
@@ -281,8 +298,12 @@ public class BattleDTO implements Serializable{
 				+ cStr + ", cDex=" + cDex + ", cCharisma=" + cCharisma + ", cPoint=" + cPoint + ", cScore=" + cScore
 				+ ", mNum=" + mNum + ", mName=" + mName + ", mCate=" + mCate + ", mLv=" + mLv + ", mAtk=" + mAtk
 				+ ", mDef=" + mDef + ", mHp=" + mHp + ", mStr=" + mStr + ", mDex=" + mDex + ", mExp=" + mExp
-				+ ", mScore=" + mScore + ", mGord=" + mGord + "]";
+				+ ", mScore=" + mScore + ", mGord=" + mGold + ", friendList=" + friendList + "]";
 	}
-	
+
+
+
+
+
 	
 }

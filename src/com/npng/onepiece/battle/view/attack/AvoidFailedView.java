@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
+import com.npng.onepiece.battle.view.main.BattleContinueView;
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.mainMenu.MainFrame;
 

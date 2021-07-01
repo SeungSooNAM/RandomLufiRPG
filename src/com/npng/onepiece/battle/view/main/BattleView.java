@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
+import com.npng.onepiece.battle.view.skill.SelectSkillView;
+import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.mainMenu.MainFrame;
 
 public class BattleView extends JPanel{
@@ -20,17 +22,20 @@ public class BattleView extends JPanel{
 	private MainFrame mf;
 	private BattleView battleView;
 	private BattleController battleController = new BattleController();
+	private SelectSkillView selectSkillView;
 	private BattleDTO battleInfo;
 
 	private JLabel cLevel;
 	private JLabel cName;
 	private JLabel cAtk;
 	private JLabel cHp;
+	private JLabel cMp;
 	private JLabel mLevel;
 	private JLabel mName;
 	private JLabel mAtk;
 	private JLabel mDef;
 	private JLabel mHp;
+
 	
 	
 	private JPanel atkPanel;
@@ -44,7 +49,17 @@ public class BattleView extends JPanel{
 	private JLabel escapeLabel;
 	
 	private int cHpLabel;
+	private int cMpLabel;
+	private int cLvLabel;
+	private String cNameLabel;
+	private int cAtkLabel;
+	
 	private int mHpLabel;
+	private String mNameLabel;
+	private int mLvLabel;
+	private int mDefLabel;
+	private int mAtkLabel;
+
 	
 
 	public BattleView(MainFrame mf) {
@@ -70,13 +85,23 @@ public class BattleView extends JPanel{
 
 		battleInfo = battleController.readyBattle(map);
 		cHpLabel = battleInfo.getcHp();
+		cNameLabel = battleInfo.getcName();
+		cLvLabel = battleInfo.getcLv();
+		cAtkLabel = battleInfo.getcAtk();
+		cMpLabel = battleInfo.getcMp();
+		
 		mHpLabel = battleInfo.getmHp();
-		System.out.println(battleInfo.getmNum());
+		mNameLabel = battleInfo.getmName();
+		mLvLabel = battleInfo.getmLv();
+		mAtkLabel = battleInfo.getmAtk();
+		mDefLabel = battleInfo.getmDef();
+
 		Image img2 = new ImageIcon("image/battle/Monster" + battleInfo.getmNum() + ".png").getImage().getScaledInstance(400, 400, 0);
 		JLabel bl2 = new JLabel(new ImageIcon(img2));
 		bl2.setLocation(800, 120);
 		bl2.setSize(300, 400);
 		bl.add(bl2);
+		
 		
 		
 		atkPanel = new JPanel();
@@ -93,6 +118,10 @@ public class BattleView extends JPanel{
 		skilPanel.setSize(280, 80);
 		bl.add(skilPanel);
 		
+		skilLabel = new JLabel("스킬공격");
+		skilLabel.setFont(font1);
+		skilPanel.add(skilLabel, BorderLayout.CENTER);
+		
 		escapePanel = new JPanel();
 		escapePanel.setLocation(550, 640);
 		escapePanel.setSize(280, 80);
@@ -105,17 +134,17 @@ public class BattleView extends JPanel{
 		
 		
 		atkPanel.addMouseListener(new MyMouseAdapter());
-		
+		skilPanel.addMouseListener(new MyMouseAdapter());
 
-		cLevel = new JLabel("레벨 : 5");
+		cLevel = new JLabel("레벨 : " + cLvLabel);
 		cLevel.setLocation(50, 20);
 		cLevel.setSize(50, 50);
 		
-		cName = new JLabel("이름 : 루피");
+		cName = new JLabel("이름 : " + cNameLabel);
 		cName.setLocation(150, 20);
 		cName.setSize(100, 50);
 		
-		cAtk = new JLabel("공격력 : 30");
+		cAtk = new JLabel("공격력 : " + cAtkLabel);
 		cAtk.setLocation(50, 50);
 		cAtk.setSize(100, 50);
 		
@@ -123,19 +152,23 @@ public class BattleView extends JPanel{
 		cHp.setLocation(150, 50);
 		cHp.setSize(100, 50);
 		
-		mLevel = new JLabel("레벨 : 5");
+		cMp = new JLabel("마나 : " + cMpLabel);
+		cMp.setLocation(250, 50);
+		cMp.setSize(100, 50);
+		
+		mLevel = new JLabel("레벨 : " + mLvLabel);
 		mLevel.setLocation(900, 20);
 		mLevel.setSize(100, 50);
 		
-		mName = new JLabel("이름 : 아카이누");
+		mName = new JLabel("이름 : " + mNameLabel);
 		mName.setLocation(1000, 20);
 		mName.setSize(100, 50);
 		
-		mAtk = new JLabel("공격력 : 40");
+		mAtk = new JLabel("공격력 : " + mAtkLabel);
 		mAtk.setLocation(900, 50);
 		mAtk.setSize(100, 50);
 		
-		mDef = new JLabel("방어력 : 5");
+		mDef = new JLabel("방어력 : " + mDefLabel);
 		mDef.setLocation(1000, 50);
 		mDef.setSize(100, 50);
 
@@ -153,17 +186,18 @@ public class BattleView extends JPanel{
 		bl.add(mAtk);
 		bl.add(mDef);
 		bl.add(mHp);
+		bl.add(cMp);
 		
 	}
 	
-	private class MyMouseAdapter extends MouseAdapter{
+	public class MyMouseAdapter extends MouseAdapter{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == atkPanel) {
 				battleController.attack(mf, battleView, battleInfo);
 			} else if(e.getSource() == skilPanel){
-				battleController.skill(mf, battleView, battleInfo);
-			}
+				ViewUtil.changePanel(mf, battleView, new SelectSkillView(mf, battleInfo));
+			} 
 		}
 	}
 	
