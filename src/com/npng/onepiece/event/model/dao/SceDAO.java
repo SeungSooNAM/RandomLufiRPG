@@ -41,7 +41,6 @@ public  class SceDAO {
 
 			rset = pstmt.executeQuery();
 			
-			
 			while(rset.next()) {
 				
 //				sce = new SceDTO();

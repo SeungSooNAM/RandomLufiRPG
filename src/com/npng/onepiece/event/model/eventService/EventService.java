@@ -39,13 +39,7 @@ public class EventService {
 		
 		SceDTO bat = sceDAO.scenum(con,map, num);
 		
-		System.out.println("=====================================");
-		System.out.println("=====================================");
-		System.out.println("=====================================");
-		System.out.println("-------------" + bat + "===========");
-		System.out.println("=====================================");
-		System.out.println("=====================================");
-		System.out.println("=====================================");
+		
 		close(con);
 		return 1;
 	}
