@@ -32,7 +32,7 @@ public class Openning2 extends JPanel {
 
 		JButton nextBtn = new JButton(new ImageIcon("image/cre_character/next123.png"));
 		nextBtn.setBounds(940, 600, 130, 50);
-		op2.add(nextBtn);	
+		label1.add(nextBtn);	
 	
 		nextBtn.addActionListener(new ActionListener() {
 			
