@@ -96,11 +96,7 @@ public class LoginPageView extends JPanel {
 		
 		btn1.addActionListener(new ActionListener() {
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mainFrame, loginPageView,new CreateCharacterView(mainFrame));
-			}
-		});
+		
 		
 		btn6.addActionListener(new ActionListener() {
 			
