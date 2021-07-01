@@ -31,7 +31,13 @@ public class TutorialMenu extends JPanel {
 		
 		JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
 		skipBtn.setBounds(940, 600, 150, 100);
+
+		label1.add(skipBtn);
+
+	
+
 		label1.add(skipBtn);	
+
 		skipBtn.addActionListener(new ActionListener() {
 			
 			@Override
