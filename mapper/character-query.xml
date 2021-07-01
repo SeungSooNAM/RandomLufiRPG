@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment />
+	<entry key="insertNewCharacter">
+	       INSERT
+	         INTO CHARACTER A (
+	           A.CHAR_NAME
+	         , A.CHAR_LV
+	         , A.CHAR_ATK
+	         , A.CHAR_HP
+	         , A.CHAR_LIFE
+	         , A.CHAR_EXP
+	         , A.CHAR_STR
+	         , A.CHAR_DEX
+	         , A.CHAR_CHARISMA
+	         , A.CHAR_POINT
+	         , A.CHAR_MP
+	         , A.CHAR_NUMBER
+	         , A.USER_NUM
+	         , A.CHAR_SCORE
+	         )
+	         VALUES
+	         (
+	           ?
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         , CHAR_NUMBER.NEXTVAL   
+	         , ?
+	         , ?	       
+	         )
+	</entry>
+</properties>
