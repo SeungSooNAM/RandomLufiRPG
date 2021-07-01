@@ -22,6 +22,7 @@ public class MapResultView extends JPanel{
 
 	public MapResultView(MainFrame mf) {
 		
+		
 		this.mf = mf;
 		this.view = this;
 		this.setSize(1200, 800);

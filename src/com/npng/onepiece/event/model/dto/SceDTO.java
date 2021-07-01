@@ -3,85 +3,227 @@ package com.npng.onepiece.event.model.dto;
 
 public class SceDTO {
 	
-	private int num;
-	private String stroy;
-	private String clear;
-	private int exp;
-	private int score;
-	private int money;
+	private int logionnum;
+	private int charnum;
 	
+	
+	private int scenum;
+	private String scestroy;
+	private String sceclear;
+	private int sceexp;
+	private int scescore;
+	private int scemoney;
+	
+	private int optnum;
+	private int optstr;
+	private int optdex;
+	private int optcha;
+	
+	private int charlife;
+	private int charstr;
+	private int chardex;
+	private int charcha;
+	
+
 	public SceDTO() {
 		
 	}
-	
 
-	public SceDTO(int num, String stroy, String clear, int exp, int score, int money) {
+
+	public SceDTO(int logionnum, int charnum, int scenum, String scestroy, String sceclear, int sceexp, int scescore,
+			int scemoney, int optnum, int optstr, int optdex, int optcha, int charlife, int charstr, int chardex,
+			int charcha) {
 		super();
-		this.num = num;
-		this.stroy = stroy;
-		this.clear = clear;
-		this.exp = exp;
-		this.score = score;
-		this.money = money;
+		this.logionnum = logionnum;
+		this.charnum = charnum;
+		this.scenum = scenum;
+		this.scestroy = scestroy;
+		this.sceclear = sceclear;
+		this.sceexp = sceexp;
+		this.scescore = scescore;
+		this.scemoney = scemoney;
+		this.optnum = optnum;
+		this.optstr = optstr;
+		this.optdex = optdex;
+		this.optcha = optcha;
+		this.charlife = charlife;
+		this.charstr = charstr;
+		this.chardex = chardex;
+		this.charcha = charcha;
 	}
 
 
-	public int getNum() {
-		return num;
+	public int getLogionnum() {
+		return logionnum;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+
+	public void setLogionnum(int logionnum) {
+		this.logionnum = logionnum;
 	}
 
-	public String getStroy() {
-		return stroy;
+
+	public int getCharnum() {
+		return charnum;
 	}
 
-	public void setStroy(String stroy) {
-		this.stroy = stroy;
+
+	public void setCharnum(int charnum) {
+		this.charnum = charnum;
 	}
 
-	public String getClear() {
-		return clear;
+
+	public int getScenum() {
+		return scenum;
 	}
 
-	public void setClear(String clear) {
-		this.clear = clear;
+
+	public void setScenum(int scenum) {
+		this.scenum = scenum;
 	}
 
-	public int getExp() {
-		return exp;
+
+	public String getScestroy() {
+		return scestroy;
 	}
 
-	public void setExp(int exp) {
-		this.exp = exp;
+
+	public void setScestroy(String scestroy) {
+		this.scestroy = scestroy;
 	}
 
-	public int getScore() {
-		return score;
+
+	public String getSceclear() {
+		return sceclear;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+
+	public void setSceclear(String sceclear) {
+		this.sceclear = sceclear;
 	}
 
-	public int getMoney() {
-		return money;
+
+	public int getSceexp() {
+		return sceexp;
 	}
 
-	public void setMoney(int money) {
-		this.money = money;
+
+	public void setSceexp(int sceexp) {
+		this.sceexp = sceexp;
+	}
+
+
+	public int getScescore() {
+		return scescore;
+	}
+
+
+	public void setScescore(int scescore) {
+		this.scescore = scescore;
+	}
+
+
+	public int getScemoney() {
+		return scemoney;
+	}
+
+
+	public void setScemoney(int scemoney) {
+		this.scemoney = scemoney;
+	}
+
+
+	public int getOptnum() {
+		return optnum;
+	}
+
+
+	public void setOptnum(int optnum) {
+		this.optnum = optnum;
+	}
+
+
+	public int getOptstr() {
+		return optstr;
+	}
+
+
+	public void setOptstr(int optstr) {
+		this.optstr = optstr;
+	}
+
+
+	public int getOptdex() {
+		return optdex;
+	}
+
+
+	public void setOptdex(int optdex) {
+		this.optdex = optdex;
+	}
+
+
+	public int getOptcha() {
+		return optcha;
+	}
+
+
+	public void setOptcha(int optcha) {
+		this.optcha = optcha;
+	}
+
+
+	public int getCharlife() {
+		return charlife;
+	}
+
+
+	public void setCharlife(int charlife) {
+		this.charlife = charlife;
+	}
+
+
+	public int getCharstr() {
+		return charstr;
+	}
+
+
+	public void setCharstr(int charstr) {
+		this.charstr = charstr;
+	}
+
+
+	public int getChardex() {
+		return chardex;
+	}
+
+
+	public void setChardex(int chardex) {
+		this.chardex = chardex;
+	}
+
+
+	public int getCharcha() {
+		return charcha;
+	}
+
+
+	public void setCharcha(int charcha) {
+		this.charcha = charcha;
 	}
 
 
 	@Override
 	public String toString() {
-		return num + stroy +  clear + exp + score
-				 + money ;
+		return "SceDTO [logionnum=" + logionnum + ", charnum=" + charnum + ", scenum=" + scenum + ", scestroy="
+				+ scestroy + ", sceclear=" + sceclear + ", sceexp=" + sceexp + ", scescore=" + scescore + ", scemoney="
+				+ scemoney + ", optnum=" + optnum + ", optstr=" + optstr + ", optdex=" + optdex + ", optcha=" + optcha
+				+ ", charlife=" + charlife + ", charstr=" + charstr + ", chardex=" + chardex + ", charcha=" + charcha
+				+ "]";
 	}
-	
 
+
+	
 
 	
 	
