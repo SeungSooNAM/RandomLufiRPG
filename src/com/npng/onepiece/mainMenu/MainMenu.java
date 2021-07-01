@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.event.views.MapResultView;
-import com.npng.onepiece.inventory.view.InventoryView;
 import com.npng.onepiece.setting.Setting;
 import com.npng.onepiece.shop.view.ShopView;
 import com.npng.onepiece.user.view.MainFrame;
@@ -45,7 +44,7 @@ public class MainMenu extends JPanel{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ViewUtil.changePanel(mainFrame, mainMenu, new InventoryView(mainFrame));
+//			ViewUtil.changePanel(mainFrame, mainMenu, new InventoryView(mainFrame));
 			
 		}
 	});
