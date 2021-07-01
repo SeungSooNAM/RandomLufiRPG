@@ -39,7 +39,7 @@ public class Openning3 extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mainFrame, op3, new TutorialMenu(mainFrame));				
+				ViewUtil.changePanel(mainFrame, op3, new Tutorial(mainFrame));				
 			}
 		});		
 		

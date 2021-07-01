@@ -18,7 +18,7 @@ public class TutorialMenu extends JPanel {
 	private TutorialMenu tm;
 	private MainFrame mainFrame;
 	public TutorialMenu(MainFrame mainFrame) {
-		this.tm = tm;
+		this.tm = this;
 		this.mainFrame = mainFrame;
 		Image background = new ImageIcon("image/tutorial/tutoMenu.png").getImage().getScaledInstance(1200, 800, 0);
 
@@ -31,9 +31,13 @@ public class TutorialMenu extends JPanel {
 		
 		JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
 		skipBtn.setBounds(940, 600, 150, 100);
+
 		label1.add(skipBtn);
 
 	
+
+		label1.add(skipBtn);	
+
 		skipBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -42,6 +46,19 @@ public class TutorialMenu extends JPanel {
 			}
 		});		
 			
+		JButton battleBtn = new JButton(new ImageIcon("image/cre_character/next123.png"));
+		battleBtn.setBounds(190, 370, 140, 65);
+		label1.add(battleBtn);
+		battleBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ViewUtil.changePanel(mainFrame, tm, new BattleTutorial(mainFrame));					
+			}
+		});
+		
+		
+		
 		
 	}
 }
