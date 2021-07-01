@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
-import com.npng.onepiece.mainMenu.MainFrame;
+import com.npng.onepiece.user.view.MainFrame;
 
 public class BattleView extends JPanel{
 
@@ -47,9 +47,9 @@ public class BattleView extends JPanel{
 	private int mHpLabel;
 	
 
-	public BattleView(MainFrame mf) {
+	public BattleView(MainFrame mf, int map) {
 
-		int map = 1; // 맵정보 받기
+
 		
 		this.setSize(1200, 800);
 		this.mf = mf;
@@ -166,6 +166,6 @@ public class BattleView extends JPanel{
 			}
 		}
 	}
-	
+	1`
 	
 }

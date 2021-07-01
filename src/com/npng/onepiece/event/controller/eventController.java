@@ -2,38 +2,42 @@ package com.npng.onepiece.event.controller;
 
 import javax.swing.JLabel;
 
-import com.npng.onepiece.event.model.dto.SceDTO;
 import com.npng.onepiece.event.model.eventService.EventService;
 import com.npng.onepiece.event.views.EventSceView;
+import com.npng.onepiece.user.view.MainFrame;
 
 public class eventController {
 	
-	private EventService eventService = new EventService();
+	private EventSceView eventscevew;
+	private MainFrame mf;
+	private EventService eventservice = new EventService();
 	
-	public void random() {
+	
+//	private EventService eventService = new EventService();
+	
+	public int random(int map) {
+		int number = 0;
 		
-
-		int number = (int)(Math.random() *60)+3;
-
-		int number = (int)(Math.random() *3)+1;
-
-		if(number == 1) { // 전투
-			
-		} if(number >= 2) {  // 일반
-			
+		if(map <= 2) {
+			 number = (int)(Math.random() *37)+3;
 		}
+		if(map == 1) {
+		}
+		if(map == 2) {
+		}
+		return number;
 	}
 	
-	public JLabel scenum(int num) {
+	public int sceresult(int map , int num) { //선택지, 시나리오번호
 		
-		String story = EventService.scenum(num);
-		  
-		return story;
-//		EventSceView view = new EventSceView();
-//		view.EventSceView(stroy);
-
-	
+		int result = 0;
+		 result =eventservice.sceresult(map, num);
+		
+		 
+		 return result;
 	}
+		
+	
 	public JLabel optnum1(int num) {
 		return null;
 		
@@ -43,7 +47,6 @@ public class eventController {
 		return null;
 			
 
-	;
 		
 		
 		

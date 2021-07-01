@@ -12,5 +12,7 @@ public class ViewUtil {
         mf.add(np);
         mf.repaint();
         mf.revalidate();
+        
+   
     }
 }

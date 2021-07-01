@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.event.controller.eventController;
+import com.npng.onepiece.event.model.dto.SceDTO;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class EventResultView extends JPanel{
@@ -20,7 +21,7 @@ public class EventResultView extends JPanel{
 	private MainFrame mf;
 	private EventResultView view;
 	
-	public EventResultView(MainFrame mf) {
+	public EventResultView(MainFrame mf ,int map, int num) {
 		
 		this.mf = mf;
 		this.view = this;
@@ -30,7 +31,13 @@ public class EventResultView extends JPanel{
 		
 		Font font6 = new Font("",0,25);
 		
-
+		eventController event = new eventController(); //전투결과호출
+		event.sceresult(map, num);
+		
+		
+		
+		
+		
 		JLabel label = new JLabel(new ImageIcon());
 		this.img = new ImageIcon("image/sce/결과.PNG").getImage().getScaledInstance(1200, 800, 0);
 		label.setIcon(new ImageIcon(img));
