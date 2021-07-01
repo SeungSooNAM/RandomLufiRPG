@@ -2,94 +2,29 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment />
-	<entry key="registNewMember">
+	<entry key="joinNewMember">
 		INSERT
-          INTO TBL_MEMBER A
+          INTO USER_INFO U
         (
-          A.MEMBER_NO
-        , A.MEMBER_ID
-        , A.MEMBER_PWD
-        , A.MEMBER_NAME
-        , A.GENDER
-        , A.EMAIL
-        , A.PHONE
-        , A.ADDRESS
-        , A.AGE
-        , A.ENROLL_DATE
+          U.USER_NUM
+        , U.USER_ID
+        , U.USER_PASSWORD
+        , U.USER_NAME
+        , U.ABLE_YN
         )
         VALUES
         (
-          SEQ_MEMBER_NO.NEXTVAL
+          USER_NUM.NEXTVAL
         , ?
         , ?
         , ?
-        , ?
-        , ?
-        , ?
-        , ?
-        , ?
-        , SYSDATE
+        , 'N'
         )
 	</entry>
-	<entry key="selectAllMembers">
-		SELECT
-		  A.MEMBER_NO
-        , A.MEMBER_ID
-        , A.MEMBER_PWD
-        , A.MEMBER_NAME
-        , A.GENDER
-        , A.EMAIL
-        , A.PHONE
-        , A.ADDRESS
-        , A.AGE
-        , A.ENROLL_DATE
-		FROM TBL_MEMBER A
-	</entry>
-	<entry key="searchMemberById">
-		SELECT
-	          *
-		FROM TBL_MEMBER
-		WHERE MEMBER_ID = ?
-	</entry>
-	<entry key="searchMemberByGender">
-		SELECT
-		        *
-		FROM TBL_MEMBER
-		WHERE GENDER = ?
-	</entry>
-	<entry key="modifyPassword">
-		UPDATE 
-               TBL_MEMBER
-           SET MEMBER_PWD = ?
-         WHERE MEMBER_ID = ?
-	</entry>
-	<entry key="modifyEmail">
-		UPDATE 
-               TBL_MEMBER
-           SET EMAIL = ?
-         WHERE MEMBER_ID = ?
-	</entry>
-	<entry key="modifyPhone">
-		UPDATE 
-               TBL_MEMBER
-           SET PHONE = ?
-         WHERE MEMBER_ID = ?
-	</entry>
-	<entry key="modifyAddress">
-		UPDATE 
-               TBL_MEMBER
-           SET ADDRESS = ?
-         WHERE MEMBER_ID = ?
-	</entry>
-	<entry key="modifyPhone">
-	       UPDATE
-	              TBL_MEMBER
-	          SET PHONE = ?
-	        WHERE MEMBER_ID = ?      
-	</entry>	
-	<entry key="deleteMember">
-		DELETE 
-          FROM TBL_MEMBER
-         WHERE MEMBER_ID = ?
+	<entry key="selectAllMember">
+	    SELECT
+		       USER_ID
+		     , USER_PASSWORD
+		  FROM USER_INFO
 	</entry>
 </properties>

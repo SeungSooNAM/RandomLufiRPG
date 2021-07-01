@@ -1,14 +1,14 @@
 package com.npng.onepiece.user.model.dto;
 
-public class UserDTO implements java.io.Serializable {
+public class MemberDTO implements java.io.Serializable {
 
 	private String userId;
 	private String userPwd;
 	private String userName;
 	
-	public UserDTO() {}
+	public MemberDTO() {}
 
-	public UserDTO(String userId, String userPwd, String userName) {
+	public MemberDTO(String userId, String userPwd, String userName) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;

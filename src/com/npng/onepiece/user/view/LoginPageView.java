@@ -5,15 +5,19 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.gameready.view.CreateCharacterView;
+import com.npng.onepiece.user.controller.MemberController;
 
 public class LoginPageView extends JPanel {
 
@@ -21,6 +25,8 @@ public class LoginPageView extends JPanel {
 	private LoginPageView loginPageView;
 	
 	public LoginPageView(MainFrame mainFrame) {
+		
+		MemberController mc = new MemberController();
 		
 		this.mainFrame = mainFrame;
 		this.loginPageView = this;
@@ -47,11 +53,60 @@ public class LoginPageView extends JPanel {
 		btn1.setLocation(150, 600);
 		btn1.setSize(200, 100);
 		btn1.setFont(font4);
+		
+		JFrame loginMessageFrame = new JFrame();
+		loginMessageFrame.setLocation(750, 500);
+		loginMessageFrame.setSize(300, 170);
+		
+		JPanel panel2 = new JPanel();
+		panel2.setSize(300,200);
+		
+		JLabel label2 = new JLabel("로그인 실패");
+		label2.setFont(font1);
+		
+		JButton btn6 = new JButton("확인");
+		btn6.setFont(font1);
+		
+		panel2.add(label2);
+		panel2.add(btn6);
+		loginMessageFrame.add(panel2);
+		
+		Map<String, String> map = new HashMap<>();
+		
+//		btn1.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				String loginId = tf1.getText();
+//				String loginPwd = tf2.getText();
+//				
+//				map.put("loginId", loginId);
+//				map.put("loginPwd", loginPwd);
+//				
+//				int result = mc.login(map);
+//				
+//				if(result > 0) {
+//					ViewUtil.changePanel(mainFrame, loginPageView, new CreateCharacterView(mainFrame));					
+//				} else {
+//					loginMessageFrame.setVisible(true);
+//				}
+//			}
+//		});
+		
 		btn1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mainFrame, loginPageView, new CreateCharacterView(mainFrame));
+				ViewUtil.changePanel(mainFrame, loginPageView,new CreateCharacterView(mainFrame));
+			}
+		});
+		
+		btn6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loginMessageFrame.dispose();
 			}
 		});
 
