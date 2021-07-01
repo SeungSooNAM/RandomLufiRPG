@@ -20,7 +20,7 @@ public class SceDAO {
 	public SceDAO() {
 		this.prop = new Properties();
 		try {
-			prop.loadFromXML(new FileInputStream("mapper/member-query.xml"));
+			prop.loadFromXML(new FileInputStream("mapper/event-query.xml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
