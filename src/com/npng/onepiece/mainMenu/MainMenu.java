@@ -10,10 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.event.views.MapResultView;
-import com.npng.onepiece.inventory.view.InventoryView;
+import com.npng.onepiece.event.views.SelectMapView;
 import com.npng.onepiece.setting.Setting;
-import com.npng.onepiece.shop.view.ShopView;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class MainMenu extends JPanel{
@@ -21,9 +19,9 @@ public class MainMenu extends JPanel{
    private MainMenu mainMenu;
    private MainFrame mainFrame;  
    private Image icon;
-   
-   public MainMenu(MainFrame mainFrame)  {
-      
+   private int chNum;
+   public MainMenu(MainFrame mainFrame, int chNum)  {
+      this.chNum = chNum;
 	  this.mainFrame = mainFrame;
 	  this.mainMenu = this;
       this.setSize(1200,800);
@@ -64,14 +62,14 @@ public class MainMenu extends JPanel{
       
       JButton btnAch = new JButton("업 적");
       btnAch.setBounds(120, 610,  330, 80);
-      
+      System.out.println("캐릭터번호 : = " + chNum);
       JButton btnAdventure = new JButton("모 험 시 작");
       btnAdventure.setBounds(760, 680, 350, 80);
       btnAdventure.addActionListener(new ActionListener() {
           
           @Override
           public void actionPerformed(ActionEvent e) {
-              ViewUtil.changePanel(mainFrame, mainMenu, new MapResultView(mainFrame));
+              ViewUtil.changePanel(mainFrame, mainMenu, new SelectMapView(mainFrame,chNum));
           }
       });
       

@@ -16,9 +16,10 @@ public class Openning1 extends JPanel {
 
 	private Openning1 op1;
 	private MainFrame mainFrame;
+	private int chNum;
 
-	public Openning1(MainFrame mainFrame) {
-
+	public Openning1(MainFrame mainFrame, int chNum) {
+		this.chNum = chNum;
 		this.op1 = this;
 		this.mainFrame = mainFrame;
 		Image background = new ImageIcon("image/cre_character/op1.png").getImage().getScaledInstance(1200, 800, 0);
@@ -44,7 +45,7 @@ public class Openning1 extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mainFrame, op1, new Openning2(mainFrame));				
+				ViewUtil.changePanel(mainFrame, op1, new Openning2(mainFrame ,chNum));				
 			}
 		});
 		

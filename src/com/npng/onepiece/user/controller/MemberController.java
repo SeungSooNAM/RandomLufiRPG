@@ -42,7 +42,6 @@ public class MemberController {
 		
 		return result;
 	}
-	
 
 	public int managerLogin(String managerId, String managerPwd) {
 		

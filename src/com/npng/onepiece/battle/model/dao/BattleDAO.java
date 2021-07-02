@@ -27,6 +27,7 @@ public class BattleDAO {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public BattleDTO selectAllBattleInfo(Connection con) {		
 		
@@ -68,7 +69,7 @@ public class BattleDAO {
 		return battleInfo;
 	}
 
-	public BattleDTO selectMonsterInfo(Connection con, int num) {
+	public BattleDTO selectMonsterInfo(Connection con) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -108,7 +109,7 @@ public class BattleDAO {
 		return battleInfo;
 	}
 
-	public int checkBossClear(Connection con, int map) {
+	public int checkBossClear(Connection con, int map, int cNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		BattleDTO battleInfo = null;
@@ -119,6 +120,7 @@ public class BattleDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, map);
+			pstmt.setInt(2, cNum);
 			
 			rset = pstmt.executeQuery();
 			
@@ -138,7 +140,7 @@ public class BattleDAO {
 		return result;
 	}
 
-	public List<FriendDTO> friendInfo(Connection con) {
+	public List<FriendDTO> friendInfo(Connection con, int cNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<FriendDTO> friendList = null;
@@ -148,6 +150,7 @@ public class BattleDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cNum);
 			
 			rset = pstmt.executeQuery();
 			
@@ -172,5 +175,33 @@ public class BattleDAO {
 		}
 		return friendList;
 	}
+	public int escape(Connection con, int cNum, int cExp) {
+		
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+
+		
+		String query = prop.getProperty("updateCharacter");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cExp);
+			pstmt.setInt(2, cNum);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	
 
 }

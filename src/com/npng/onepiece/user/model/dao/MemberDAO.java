@@ -46,7 +46,6 @@ public class MemberDAO {
 			pstmt.setString(2, member.getUserPwd());
 			pstmt.setString(3, member.getUserName());
 
-			
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -232,7 +231,7 @@ public class MemberDAO {
 
 				member.setUserNum(rset.getInt("USER_NUM"));
 				member.setUserId(rset.getString("USER_ID"));
-				member.setUserPwd(rset.getString("USER_PASSWORD"));
+//				member.setUserPwd(rset.getString("USER_PASSWORD"));
 				member.setUserName(rset.getString("USER_NAME"));
 				member.setAbleYN(rset.getString("ABLE_YN"));
 

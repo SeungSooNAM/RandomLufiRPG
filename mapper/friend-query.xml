@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment />
+		<entry key="friendInfo">
+			SELECT
+			       *
+			  FROM FRIEND F
+			     , CH_FRIEND CF
+			 WHERE F.FR_NUM = CF.FR_NUM
+			   AND FR_HAVE_YN = 'Y'
+			   AND CF.CHAR_NUM = ?
+		</entry>
+</properties>

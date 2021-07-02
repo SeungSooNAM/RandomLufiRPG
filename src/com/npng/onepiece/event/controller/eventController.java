@@ -32,9 +32,8 @@ public class eventController {
 	
 	public String sceresult(int map , int num, int chNum) {
 		//선택지, 시나리오번호,캐릭터번호
-		
 		int result = 0; /*1~4번맵*/  /* 38~ 40 은 특수상점*/
-		if(num >= 3 && num <= 40) {	
+		if(num >= 3 &&  num <= 40) {	
 		 result =eventservice.sceresult(map, num,chNum);
 		}
 	
@@ -58,13 +57,8 @@ public class eventController {
 		
 	public JLabel optnum2(int num) {
 		return null;
-			
+		
 
-		
-		
-		
-		
-		
   }
 	
 	

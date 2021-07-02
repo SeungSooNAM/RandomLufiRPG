@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.gameready.controller.GameReadyController;
 import com.npng.onepiece.gameready.model.dto.NewCharacterDTO;
-import com.npng.onepiece.gameready.view.CharacterTutorial.CharacterTutorial1;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class CreateCharacterView extends JPanel {
@@ -24,9 +23,12 @@ public class CreateCharacterView extends JPanel {
 	private NewCharacterDTO newDto;
 	private CreateCharacterView createCharacterView;
 	private MainFrame mainFrame;
+	private int uNum;
 
-	public CreateCharacterView(MainFrame mainFrame) {
+	public CreateCharacterView(MainFrame mainFrame, int uNum) {
 
+		this.uNum = uNum;
+		
 		this.newDto = new NewCharacterDTO();
 		this.mainFrame = mainFrame;
 		this.createCharacterView = this;
@@ -92,7 +94,7 @@ public class CreateCharacterView extends JPanel {
 				str.setText(tstr + "");
 				dex.setText(tdex + "");
 				cha.setText(tcha + "");
-
+				
 				// 생성창에서 얻은 각각의 스탯수치를 인트로 변환, 기본 레벨, 능력치 지정
 				String name = chname.getText();
 				int level = 1;
@@ -105,12 +107,11 @@ public class CreateCharacterView extends JPanel {
 				int life = 5;
 				int exp = 0;
 				int point = 0;
-				int charNumber = 1;
 				int score = 0;
-				int userNum = 3;
+//				int userNum = uNum;
 
 				// dto에 새로생성할 캐릭터 정보 넣어주기
-				newDto.setUserNum(userNum);
+				newDto.setUserNum(uNum);
 				newDto.setName(name);
 				newDto.setLevel(level);
 				newDto.setAtk(catk);
@@ -119,7 +120,6 @@ public class CreateCharacterView extends JPanel {
 				newDto.setExp(exp);
 				newDto.setStr(cstr);
 				newDto.setDex(cdex);
-				newDto.setCharisma(ccha);
 				newDto.setPoint(point);
 				newDto.setMp(cmp);
 				newDto.setScore(score);
@@ -132,9 +132,11 @@ public class CreateCharacterView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(newDto);
+				GameReadyController gr = new GameReadyController();
 				int result = new GameReadyController().insertNewCharacter(newDto);
-				if (result > 0) {
-					ViewUtil.changePanel(mainFrame, createCharacterView, new OkCreateCharacter(mainFrame));
+				if (result  == 3) {
+					int chNum = gr.searchChNum(uNum); //캐릭터번호 불러오기
+					ViewUtil.changePanel(mainFrame, createCharacterView, new OkCreateCharacter(mainFrame, chNum));
 				}
 
 			}
@@ -152,10 +154,13 @@ public class CreateCharacterView extends JPanel {
 	public class OkCreateCharacter extends JPanel {
 		private OkCreateCharacter ok;
 		private MainFrame mf;
+		private int chNum;
+		
 
-		public OkCreateCharacter(MainFrame mf) {
+		public OkCreateCharacter(MainFrame mf , int chNum) {
 			this.ok = this;
 			this.mf = mf;
+			this.chNum = chNum;
 
 			Image background = new ImageIcon("image/tutorial/okcc.png").getImage().getScaledInstance(1200, 800, 0);
 
@@ -174,7 +179,7 @@ public class CreateCharacterView extends JPanel {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					ViewUtil.changePanel(mf, ok, new Openning1(mf));
+					ViewUtil.changePanel(mf, ok, new Openning1(mf, chNum));
 				}
 			});
 		}

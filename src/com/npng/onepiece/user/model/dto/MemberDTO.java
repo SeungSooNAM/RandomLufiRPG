@@ -39,7 +39,6 @@ public class MemberDTO implements java.io.Serializable {
 		return ableYN;
 	}
 
-	
 	public void setUserNum(int userNum) {
 		this.userNum = userNum;
 	}
@@ -63,7 +62,7 @@ public class MemberDTO implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "MemberDTO [userNum=" + userNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName="
-				+ userName + ", ableYN=" + ableYN + "]";
+				+ userName + ", ableYN=" + ableYN + "]" + "\n";
 	}
 	
 	

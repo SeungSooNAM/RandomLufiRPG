@@ -31,7 +31,7 @@ public class GameReadyDAO {
 		}
 	}
 
-	public int insertNewCharacter(Connection con, NewCharacterDTO charDTO) {
+	public int insertNewCharacter(Connection con, NewCharacterDTO charDTO ) {
 		/*TEST*/System.out.println("생성한 캐릭터 기본정보 DB에 insert하는 메소드 실행됨...");
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -124,6 +124,40 @@ public class GameReadyDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			rset = pstmt.executeQuery();
+			
+			pstmt.setInt(1, charDTO.getUserNum());
+			
+			if(rset.next()) {				
+				char_num = rset.getInt("CHAR_NUMBER");		
+			} else {
+				System.out.println("로그인한 유저의 캐릭터번호 조회 실패");
+			}
+			
+			System.out.println("dao findLoginCharNum.charNum : " + char_num);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);	
+
+		}
+				
+		return char_num;
+	}
+
+	public int searchNum(Connection con, int uNum) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int char_num = 0;
+		
+		String query = prop.getProperty("findLoginCharNum");
+		try {
+			pstmt = con.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			pstmt.setInt(1, uNum);
 			
 			if(rset.next()) {				
 				char_num = rset.getInt("CHAR_NUMBER");		

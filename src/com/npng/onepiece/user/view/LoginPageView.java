@@ -15,7 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.gameready.view.CreateCharacterView;
+import com.npng.onepiece.gameready.view.CharacterTutorial;
 import com.npng.onepiece.user.controller.MemberController;
 
 public class LoginPageView extends JPanel {
@@ -83,7 +83,7 @@ public class LoginPageView extends JPanel {
 				if(result > 0) {
 					int uNum = mc.userNum(loginId);
 					System.out.println("uNum : " + uNum);
-					ViewUtil.changePanel(mainFrame, loginPageView, new CreateCharacterView(mainFrame,uNum));					
+					ViewUtil.changePanel(mainFrame, loginPageView, new CharacterTutorial(mainFrame,uNum));					
 				} else {
 					loginMessageFrame.setVisible(true);
 				}

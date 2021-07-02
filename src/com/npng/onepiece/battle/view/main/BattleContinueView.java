@@ -113,15 +113,15 @@ public class BattleContinueView extends JPanel{
 		skilLabel.setFont(font1);
 		skilPanel.add(skilLabel, BorderLayout.CENTER);
 		
-		escapePanel = new JPanel();
-		escapePanel.setLocation(550, 640);
-		escapePanel.setSize(280, 80);
-		bl.add(escapePanel);
-		
-		infoPanel = new JPanel();
-		infoPanel.setLocation(850, 640);
-		infoPanel.setSize(280, 80);
-		bl.add(infoPanel);
+//		escapePanel = new JPanel();
+//		escapePanel.setLocation(550, 640);
+//		escapePanel.setSize(280, 80);
+//		bl.add(escapePanel);
+//		
+//		infoPanel = new JPanel();
+//		infoPanel.setLocation(850, 640);
+//		infoPanel.setSize(280, 80);
+//		bl.add(infoPanel);
 		
 		
 		atkPanel.addMouseListener(new MyMouseAdapter());
@@ -178,7 +178,7 @@ public class BattleContinueView extends JPanel{
 		bl.add(mAtk);
 		bl.add(mDef);
 		bl.add(mHp);
-		
+		bl.add(cMp);
 	}
 	
 	private class MyMouseAdapter extends MouseAdapter{

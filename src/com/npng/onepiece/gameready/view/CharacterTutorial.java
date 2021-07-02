@@ -1,11 +1,8 @@
 package com.npng.onepiece.gameready.view;
 
 import java.awt.Image;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,8 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.gameready.view.BattleTutorial.BattleTutorial1;
-import com.npng.onepiece.gameready.view.BattleTutorial.BattleTutorial1.BattleTutorial2;
 import com.npng.onepiece.user.view.MainFrame;
 
 
@@ -23,12 +18,13 @@ public class CharacterTutorial extends JPanel {
 
 	private CharacterTutorial ct;
 	private MainFrame mf;
+	private int uNum;
 	
-	public CharacterTutorial(MainFrame mf) {
+	public CharacterTutorial(MainFrame mf, int uNum) {
 
 	this.ct = this;
 	this.mf = mf;
-	
+	this.uNum = uNum;
 	Image background = new ImageIcon("image/tutorial/cc1.png").getImage().getScaledInstance(1200, 800, 0);
 	
 	JLabel label = new JLabel(new ImageIcon(background));
@@ -54,7 +50,7 @@ public class CharacterTutorial extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ViewUtil.changePanel(mf, ct, new CreateCharacterView(mf));
+			ViewUtil.changePanel(mf, ct, new CreateCharacterView(mf, uNum));
 		}
 	});
 
@@ -98,7 +94,7 @@ public class CharacterTutorial extends JPanel {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					ViewUtil.changePanel(mf, bt, new CreateCharacterView(mf));
+					ViewUtil.changePanel(mf, bt, new CreateCharacterView(mf , uNum));
 				}
 			});
 			
@@ -141,7 +137,7 @@ public class CharacterTutorial extends JPanel {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					ViewUtil.changePanel(mf, bt, new CreateCharacterView(mf));
+					ViewUtil.changePanel(mf, bt, new CreateCharacterView(mf,uNum));
 				}
 			});
 			
@@ -149,7 +145,7 @@ public class CharacterTutorial extends JPanel {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					ViewUtil.changePanel(mf, bt, new CreateCharacterView(mf));
+					ViewUtil.changePanel(mf, bt, new CreateCharacterView(mf,uNum));
 				}
 			});
 		}

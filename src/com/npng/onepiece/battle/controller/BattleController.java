@@ -12,6 +12,7 @@ import com.npng.onepiece.battle.view.main.BattleView;
 import com.npng.onepiece.battle.view.skill.SelectSkillView;
 import com.npng.onepiece.battle.view.skill.SkillAttackView;
 import com.npng.onepiece.battle.view.attack.BattleWinView;
+import com.npng.onepiece.battle.view.escape.Escape;
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.mainMenu.MainFrame;
 
@@ -20,10 +21,10 @@ public class BattleController {
 	BattleDTO battleInfo;
 	BattleService battleService = new BattleService();
 	
-	public BattleDTO readyBattle(int map) {
+	public BattleDTO readyBattle(int map, int cNum) {
 		
 
-		battleInfo = battleService.selectMonster(map);
+		battleInfo = battleService.selectMonster(map, cNum);
 		return battleInfo;
 	}
 
@@ -108,24 +109,37 @@ public class BattleController {
 	public void zoroSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
 		
 		System.out.println("조로 선택");
-		battleService.zoroSkill(battleInfo);
 		
-		ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+		int result = 0;
+		result = battleService.zoroSkill(battleInfo);
+		if(result > 0) {
+			ViewUtil.changePanel(mf, selectSkillView, new BattleWinView(mf, battleInfo));
+		}else {
+			ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+		}
 	}
 
 	public void sandiSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
 		System.out.println("상디 선택");
-		battleService.sandiSkill(battleInfo);
-		
-		ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+		int result = 0;
+		result = battleService.sandiSkill(battleInfo);
+		if(result > 0) {
+			ViewUtil.changePanel(mf, selectSkillView, new BattleWinView(mf, battleInfo));
+		}else {
+			ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+		}
 	}
 
 	public void oosopSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
 		System.out.println("우습 선택");
-		battleService.oosopSkill(battleInfo);
+		int result = 0;
+		result = battleService.oosopSkill(battleInfo);
 		
-		ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
-		
+		if(result > 0) {
+			ViewUtil.changePanel(mf, selectSkillView, new BattleWinView(mf, battleInfo));
+		}else {
+			ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+		}
 	}
 
 	public void namiSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
@@ -146,9 +160,22 @@ public class BattleController {
 
 	public void reilighSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
 		System.out.println("레일리선택");
-		battleService.reilighSkill(battleInfo);
+		int result = 0;
+		result = battleService.reilighSkill(battleInfo);
+		if(result > 0) {
+			ViewUtil.changePanel(mf, selectSkillView, new BattleWinView(mf, battleInfo));
+		}else {
+			ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+		}
+	}
+
+	public void escape(MainFrame mf, BattleView battleView, BattleDTO battleInfo) {
+
+		int result = battleService.escape(battleInfo);
 		
-		ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+		if(result > 0) {
+			ViewUtil.changePanel(mf, battleView, new Escape(mf, battleInfo));
+		}
 		
 	}
 
