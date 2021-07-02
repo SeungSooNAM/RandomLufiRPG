@@ -33,10 +33,10 @@ public class MainMenu extends JPanel{
       this.icon = new ImageIcon("image/mainMenu/mainBackground1.PNG").getImage().getScaledInstance(1200, 800, 0);
       imgLabel.setIcon(new ImageIcon(icon));
       
-      JButton btnCh = new JButton("Ä³¸¯ÅÍ Á¤º¸Ã¢");
+      JButton btnCh = new JButton("ìºë¦­í„° ì •ë³´ì°½");
       btnCh.setBounds(120, 215, 330, 70);
       
-      JButton btnInven = new JButton("°¡ ¹æ");
+      JButton btnInven = new JButton("ê°€ ë°©");
       btnInven.setBounds(120, 317,  330, 80);
       btnInven.addActionListener(new ActionListener() {
       @Override
@@ -46,7 +46,7 @@ public class MainMenu extends JPanel{
       }
   });
       
-      JButton btnShop = new JButton("»ó Á¡");
+      JButton btnShop = new JButton("ìƒ ì ");
       btnShop.setBounds(120, 417,  330, 80);
       btnShop.addActionListener(new ActionListener() {
           
@@ -56,13 +56,13 @@ public class MainMenu extends JPanel{
           }
       });
       
-      JButton btnFriend = new JButton("µ¿ ·á");
+      JButton btnFriend = new JButton("ë™ ë£Œ");
       btnFriend.setBounds(120, 515,  330, 80);
       
-      JButton btnAch = new JButton("¾÷ Àû");
+      JButton btnAch = new JButton("ì—… ì ");
       btnAch.setBounds(120, 610,  330, 80);
       
-      JButton btnAdventure = new JButton("¸ğ Çè ½Ã ÀÛ");
+      JButton btnAdventure = new JButton("ëª¨ í—˜ ì‹œ ì‘");
       btnAdventure.setBounds(760, 680, 350, 80);
       btnAdventure.addActionListener(new ActionListener() {
           
