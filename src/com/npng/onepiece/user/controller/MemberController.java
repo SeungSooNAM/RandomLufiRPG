@@ -71,6 +71,6 @@ public class MemberController {
 		return uNum;
 	}
 
-	
+
 
 }
