@@ -122,10 +122,9 @@ public class GameReadyDAO {
 		
 		String query = prop.getProperty("findLoginCharNum");
 		try {
-			pstmt = con.prepareStatement(query);
-			rset = pstmt.executeQuery();
-			
+			pstmt = con.prepareStatement(query);		
 			pstmt.setInt(1, charDTO.getUserNum());
+			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {				
 				char_num = rset.getInt("CHAR_NUMBER");		
@@ -155,9 +154,9 @@ public class GameReadyDAO {
 		String query = prop.getProperty("findLoginCharNum");
 		try {
 			pstmt = con.prepareStatement(query);
-			rset = pstmt.executeQuery();
 			
 			pstmt.setInt(1, uNum);
+			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {				
 				char_num = rset.getInt("CHAR_NUMBER");		
@@ -165,7 +164,7 @@ public class GameReadyDAO {
 				System.out.println("로그인한 유저의 캐릭터번호 조회 실패");
 			}
 			
-			System.out.println("dao findLoginCharNum.charNum : " + char_num);
+			System.out.println("searchNum : " + char_num);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

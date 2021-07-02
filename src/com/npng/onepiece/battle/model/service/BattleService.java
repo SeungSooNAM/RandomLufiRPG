@@ -1,16 +1,16 @@
 package com.npng.onepiece.battle.model.service;
 
 
+import static com.npng.onepiece.common.JDBCTemplate.close;
+import static com.npng.onepiece.common.JDBCTemplate.getConnection;
 import static com.npng.onepiece.common.RandomDice.randomDice;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.npng.onepiece.battle.model.dao.BattleDAO;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
 import com.npng.onepiece.battle.model.dto.FriendDTO;
-import static com.npng.onepiece.common.JDBCTemplate.*;
 
 public class BattleService {
 	
@@ -71,13 +71,12 @@ public class BattleService {
 		return result;
 	}
 
-	public BattleDTO selectMonster(int map) {
+	public BattleDTO selectMonster(int map, int cNum) {
 	
 		Connection con = getConnection();
 		
 		
 		battleDao = new BattleDAO();
-		int cNum = battleDao.selectMonsterInfo(con);
 		int result = battleDao.checkBossClear(con, map, cNum);  //보스 클리어 여부 확인
 		int num = (int) (Math.random() * 20) + 10;  //랜덤 몬스터 선택
 		if(result == 0) {  //보스 클리어 안됨
