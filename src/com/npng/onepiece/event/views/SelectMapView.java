@@ -36,9 +36,11 @@ public class SelectMapView extends JPanel{
 	private int num5= 5;
 	private int num6= 6;
 	
+	private chNum chNum;
+	
 
 
-	public SelectMapView(MainFrame mf) {
+	public SelectMapView(MainFrame mf, int chNum) {
 		
 		this.mf = mf;
 		this.view = this;
@@ -129,7 +131,7 @@ public class SelectMapView extends JPanel{
 	private class BossActionListener extends  MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-		 ViewUtil.changePanel(mf, view, new MapResultView(mf));
+		 ViewUtil.changePanel(mf, view, new MapResultView(mf,chNum));
 	}
 		
 	}
@@ -147,17 +149,17 @@ public class SelectMapView extends JPanel{
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == btn1) {
 
-				ViewUtil.changePanel(mf, view, new EventSceView(mf,1));}
+				ViewUtil.changePanel(mf, view, new EventSceView(mf,chNum, 1));}
 			if(e.getSource() == btn2) {
-				ViewUtil.changePanel(mf, view, new EventSceView(mf,2));}
+				ViewUtil.changePanel(mf, view, new EventSceView(mf,chNum,2));}
 			if(e.getSource() == btn3) {
-				ViewUtil.changePanel(mf, view, new EventSceView(mf,3));}
+				ViewUtil.changePanel(mf, view, new EventSceView(mf,chNum,3));}
 			if(e.getSource() == btn4) {
-				ViewUtil.changePanel(mf, view, new EventSceView(mf,4));}
+				ViewUtil.changePanel(mf, view, new EventSceView(mf,chNum,4));}
 			if(e.getSource() == btn5) {
-				ViewUtil.changePanel(mf, view, new EventSceView(mf,5));}
+				ViewUtil.changePanel(mf, view, new EventSceView(mf,chNum,5));}
 			if(e.getSource() == btn6) {
-				ViewUtil.changePanel(mf, view, new EventSceView(mf,6));}
+				ViewUtil.changePanel(mf, view, new EventSceView(mf,chNum,6));}
 		}
 	}
 	private class BattleActionListener extends MouseAdapter {
@@ -165,17 +167,17 @@ public class SelectMapView extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		if(e.getSource() == btn1) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,1));}
+			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,1));}
 		if(e.getSource() == btn2) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,2));}
+			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,2));}
 		if(e.getSource() == btn3) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,3));}
+			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,3));}
 		if(e.getSource() == btn4) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,4));}
+			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,4));}
 		if(e.getSource() == btn5) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,5));}
+			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,5));}
 		if(e.getSource() == btn6) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,6));}
+			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,6));}
 	}
 }
 	

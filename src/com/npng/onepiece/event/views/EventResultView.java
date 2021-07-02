@@ -20,9 +20,10 @@ public class EventResultView extends JPanel{
 	private Image img;
 	private MainFrame mf;
 	private EventResultView view;
+	private chNum chNum;
 	
-	public EventResultView(MainFrame mf ,int map, int num) {
-		
+	public EventResultView(MainFrame mf ,int chNum,int map, int num) {
+		/*선택번호 , 시나리오번호*/
 		this.mf = mf;
 		this.view = this;
 		
@@ -32,7 +33,7 @@ public class EventResultView extends JPanel{
 		Font font6 = new Font("",0,25);
 		
 		eventController event = new eventController(); //전투결과호출
-		event.sceresult(map, num);
+		event.sceresult(map, num,chNum);
 		
 		
 		
