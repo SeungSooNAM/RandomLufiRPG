@@ -1,6 +1,6 @@
 package com.npng.onepiece.inventory.model.dto;
 
-public class InvenrtoryDTO {
+public class InventoryDTO {
 	private int gold;
 	private int charNum;
 	private int inven1;
@@ -14,8 +14,8 @@ public class InvenrtoryDTO {
 	private int inven9;
 	private int inven10;
 	
-	public InvenrtoryDTO() {};
-	public InvenrtoryDTO(int gold, int charNum, int inven1, int inven2, int inven3, int inven4, int inven5, int inven6,
+	public InventoryDTO() {};
+	public InventoryDTO(int gold, int charNum, int inven1, int inven2, int inven3, int inven4, int inven5, int inven6,
 			int inven7, int inven8, int inven9, int inven10) {
 		super();
 		this.gold = gold;
