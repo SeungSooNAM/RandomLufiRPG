@@ -2,17 +2,25 @@ package com.npng.onepiece.user.model.dto;
 
 public class MemberDTO implements java.io.Serializable {
 
+	private int userNum;
 	private String userId;
 	private String userPwd;
 	private String userName;
+	private String ableYN;
 	
 	public MemberDTO() {}
 
-	public MemberDTO(String userId, String userPwd, String userName) {
+	public MemberDTO(int userNum, String userId, String userPwd, String userName, String ableYN) {
 		super();
+		this.userNum = userNum;
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.userName = userName;
+		this.ableYN = ableYN;
+	}
+
+	public int getUserNum() {
+		return userNum;
 	}
 
 	public String getUserId() {
@@ -27,6 +35,14 @@ public class MemberDTO implements java.io.Serializable {
 		return userName;
 	}
 
+	public String getAbleYN() {
+		return ableYN;
+	}
+
+	public void setUserNum(int userNum) {
+		this.userNum = userNum;
+	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
@@ -39,10 +55,16 @@ public class MemberDTO implements java.io.Serializable {
 		this.userName = userName;
 	}
 
+	public void setAbleYN(String ableYN) {
+		this.ableYN = ableYN;
+	}
+
 	@Override
 	public String toString() {
-		return "UserDTO [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + "]";
+		return "MemberDTO [userNum=" + userNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName="
+				+ userName + ", ableYN=" + ableYN + "]";
 	}
 	
 	
+
 }

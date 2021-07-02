@@ -1,6 +1,5 @@
 package com.npng.onepiece.user.view;
 
-
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Image;
@@ -12,15 +11,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.user.controller.MemberController;
 
 public class NewPasswordView extends JPanel {
 	
 	private NewPasswordView newPasswordView;
 	
 	public NewPasswordView(MainFrame mainFrame) {
+		
+		MemberController mc = new MemberController();
 		
 		this.newPasswordView = this;
 		
@@ -30,16 +33,16 @@ public class NewPasswordView extends JPanel {
 		JLabel label = new JLabel(new ImageIcon(newpwd));
 		
 		Font font1 = new Font("",0,35);
-		JTextField tf1 = new JTextField();
-		tf1.setLocation(542, 294);
-		tf1.setSize(474, 83);
+		JPasswordField tf1 = new JPasswordField();
+		tf1.setLocation(542, 295);
+		tf1.setSize(473, 83);
 		tf1.setFont(font1);
 		
-		Font font3 = new Font("",0,35);
-		JTextField tf2 = new JTextField();
-		tf2.setLocation(542, 409);
-		tf2.setSize(474, 83);
-		tf2.setFont(font3);
+		Font font2 = new Font("",0,35);
+		JPasswordField tf2 = new JPasswordField();
+		tf2.setLocation(542, 410);
+		tf2.setSize(473, 83);
+		tf2.setFont(font2);
 		
 		Font font4 = new Font("",0,25);
 		JButton btn1 = new JButton("뒤로가기");
@@ -60,24 +63,47 @@ public class NewPasswordView extends JPanel {
 		btn2.setSize(200, 100);
 		btn2.setFont(font5);
 		
-		JFrame joinSuccess = new JFrame();
-		joinSuccess.setLocation(750, 500);
-		joinSuccess.setSize(300, 100);
+		JFrame messageFrame = new JFrame();
+		messageFrame.setLocation(750, 500);
+		messageFrame.setSize(320, 150);
+		
 		JPanel panel2 = new JPanel();
-		panel2.setSize(300,150);
+		panel2.setSize(320,150);
+		
 		JLabel label2 = new JLabel("변경 성공");
 		label2.setFont(font5);
+
 		JButton btn6 = new JButton("확인");
 		btn6.setFont(font5);
+		
 		panel2.add(label2);
 		panel2.add(btn6);
-		joinSuccess.add(panel2);
+		messageFrame.add(panel2);
 		
 		btn2.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				joinSuccess.setVisible(true);
+				
+				String newPwd = tf1.getText();
+				String newPwd2 = tf2.getText();
+				
+				if(newPwd.length() >= 5) {
+					if(newPwd.equals(newPwd2)) {
+						int result = mc.newPassword(newPwd);
+						
+						if(result > 0) {
+							label2.setText("변경 성공");						
+							messageFrame.setVisible(true);
+						}
+					} else {
+						label2.setText("잘못 입력 되었습니다");
+						messageFrame.setVisible(true);
+					}	
+				} else {
+					label2.setText("비밀번호가 5자 미만입니다");
+					messageFrame.setVisible(true);
+				}
 				
 			}
 		});
@@ -86,7 +112,7 @@ public class NewPasswordView extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				joinSuccess.dispose();
+				messageFrame.dispose();
 			}
 		});
 		

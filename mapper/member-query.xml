@@ -1,30 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<properties>
-	<comment />
-	<entry key="joinNewMember">
-		INSERT
-          INTO USER_INFO U
-        (
-          U.USER_NUM
-        , U.USER_ID
-        , U.USER_PASSWORD
-        , U.USER_NAME
-        , U.ABLE_YN
-        )
-        VALUES
-        (
-          USER_NUM.NEXTVAL
-        , ?
-        , ?
-        , ?
-        , 'N'
-        )
-	</entry>
-	<entry key="selectAllMember">
-	    SELECT
-		       USER_ID
-		     , USER_PASSWORD
-		  FROM USER_INFO
-	</entry>
+
+-<properties>
+
+<comment/>
+
+<entry key="joinNewMember">INSERTINTO USER_INFO U(U.USER_NUM, U.USER_ID, U.USER_PASSWORD, U.USER_NAME, U.ABLE_YN)VALUES(USER_NUM.NEXTVAL, ?, ?, ?, 'N') </entry>
+
+<entry key="selectUserNum">SELECTUSER_NUMFROM USER_INFOWHERE USER_ID = ? </entry>
+
+<entry key="selectPassword">SELECTUSER_PASSWORDFROM USER_INFOWHERE USER_ID = ? </entry>
+
+<entry key="selectName">SELECTUSER_NAMEFROM USER_INFOWHERE USER_ID = ? </entry>
+
+<entry key="updatePassword">UPDATEUSER_INFOSET USER_PASSWORD = ?WHERE USER_ID = ? </entry>
+
+<entry key="selectManagerPassword">SELECTUSER_PASSWORDFROM USER_INFOWHERE USER_ID = ?AND ABLE_YN = 'Y' </entry>
+
+<entry key="deleteMember">DELETEFROM USER_INFOWHERE USER_ID = ? </entry>
+
+<entry key="selectAllMember">SELECTUSER_NUM, USER_ID, USER_PASSWORD, USER_NAME, ABLE_YNFROM USER_INFO </entry>
+
 </properties>

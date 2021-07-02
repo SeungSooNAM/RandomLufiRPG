@@ -5,20 +5,17 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.gameready.view.CharacterTutorial;
 import com.npng.onepiece.gameready.view.CreateCharacterView;
-import com.npng.onepiece.gameready.view.TutorialMenu;
 import com.npng.onepiece.user.controller.MemberController;
 
 public class LoginPageView extends JPanel {
@@ -45,11 +42,10 @@ public class LoginPageView extends JPanel {
 		tf1.setFont(font1);
 		
 		Font font3 = new Font("",0,35);
-		JTextField tf2 = new JTextField();
+		JPasswordField tf2 = new JPasswordField();
 		tf2.setLocation(495, 410);
 		tf2.setSize(473, 83);
 		tf2.setFont(font3);
-		
 		
 		Font font4 = new Font("",0,25);
 		JButton btn1 = new JButton("로그인");
@@ -74,35 +70,23 @@ public class LoginPageView extends JPanel {
 		panel2.add(btn6);
 		loginMessageFrame.add(panel2);
 		
-		Map<String, String> map = new HashMap<>();
-		
-//		btn1.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				
-//				String loginId = tf1.getText();
-//				String loginPwd = tf2.getText();
-//				
-//				map.put("loginId", loginId);
-//				map.put("loginPwd", loginPwd);
-//				
-//				int result = mc.login(map);
-//				
-//				if(result > 0) {
-//					ViewUtil.changePanel(mainFrame, loginPageView, new CreateCharacterView(mainFrame));					
-//				} else {
-//					loginMessageFrame.setVisible(true);
-//				}
-//			}
-//		});
-		
 		btn1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mainFrame, loginPageView,new CharacterTutorial(mainFrame));
-//				ViewUtil.changePanel(mainFrame, loginPageView,new TutorialMenu(mainFrame));
+				
+				String loginId = tf1.getText();
+				String loginPwd = tf2.getText();
+				
+				int result = mc.login(loginId,loginPwd);
+				
+				if(result > 0) {
+					String uNum = mc.userNum(loginId);
+					System.out.println("uNum : " + uNum);
+					ViewUtil.changePanel(mainFrame, loginPageView, new CreateCharacterView(mainFrame,uNum));					
+				} else {
+					loginMessageFrame.setVisible(true);
+				}
 			}
 		});
 		
