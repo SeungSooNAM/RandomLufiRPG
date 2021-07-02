@@ -54,6 +54,7 @@ public class InventoryView extends JPanel {
 
 		JLabel labelIcon = new JLabel(new ImageIcon());
 		this.img2 = new ImageIcon("image/shop/hat1.PNG").getImage().getScaledInstance(90, 90, 0);
+
 		labelIcon.setIcon(new ImageIcon(img2));
 		
 		
@@ -75,6 +76,13 @@ public class InventoryView extends JPanel {
 		Font font = new Font("맑은 고딕", Font.PLAIN, 30);
 		MoneyLabel.setFont(font); 
 		MoneyLabel.setBounds(950, 5, 300, 100);
+
+		labelIcon.setIcon(new ImageIcon(img2));		
+		
+		JButton buttonExit = new JButton(new ImageIcon("image/shop/buttonExit.PNG"));	
+		JButton buttonMyItem1 = new JButton(new ImageIcon("image/shop/hat1.PNG"));
+		JButton buttonCancle = new JButton(new ImageIcon("image/shop/cancle.PNG"));		
+
 		
 		buttonExit.setBounds(1000, 690, 190, 65);
 
@@ -93,6 +101,7 @@ public class InventoryView extends JPanel {
 		buttonMyItem1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				int n = 1;
 				int i = inven.getInven1();
 				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
@@ -183,6 +192,13 @@ public class InventoryView extends JPanel {
 		
 		
 		label.add(MoneyLabel);
+
+				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf));
+			}			
+			
+		});		
+	
+
 		label.add(buttonExit);
 
 		if(inven.getInven1() != 0) {
