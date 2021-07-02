@@ -28,77 +28,48 @@ public class MainMenu extends JPanel{
       this.setSize(1200,800);
       this.setLayout(null);      
 
-      Image icon = new ImageIcon("image/mainMenu/mainBackground.PNG").getImage().getScaledInstance(1200, 800, 0);
-      JLabel imgLabel = new JLabel(new ImageIcon(icon));       
-      this.add(imgLabel);
+      JLabel  imgLabel = new JLabel(new ImageIcon());
+      this.icon = new ImageIcon("image/mainMenu/mainBackground1.PNG").getImage().getScaledInstance(1200, 800, 0);
+      imgLabel.setIcon(new ImageIcon(icon));
       
-      JButton btnCh = new JButton("image/btn/chinfo.PNG");
-      btnCh.setBounds(120, 195, 330, 70);
-      JButton btnInven = new JButton("image/btn/inven.PNG");
-      btnInven.setBounds(120, 292,  330, 80);
-      JButton btnShop = new JButton("image/btn/shop.PNG");
-      btnShop.setBounds(120, 392,  330, 80);
-      JButton btnFriend = new JButton("image/btn/friend.PNG");
-      btnFriend.setBounds(120, 492,  330, 80);
-      JButton btnAch = new JButton("image/btn/ach.PNG");
-      btnAch.setBounds(120, 592,  330, 80);
-      JButton btnGameready = new JButton("image/btn/ready.PNG");
-      btnGameready.setBounds(740, 652, 350, 80);
-      JButton btnSetting = new JButton("image/btn/setting.jpg");
-      btnSetting.setBounds(1050, 10,100,100);
+      JButton btnCh = new JButton("캐릭터 정보창");
+      btnCh.setBounds(120, 215, 330, 70);
+      
+      JButton btnInven = new JButton("가 방");
+      btnInven.setBounds(120, 317,  330, 80);
+      
+      JButton btnShop = new JButton("상 점");
+      btnShop.setBounds(120, 417,  330, 80);
+      
+      JButton btnFriend = new JButton("동 료");
+      btnFriend.setBounds(120, 515,  330, 80);
+      
+      JButton btnAch = new JButton("업 적");
+      btnAch.setBounds(120, 610,  330, 80);
+      
+      JButton btnAdventure = new JButton("모 험 시 작");
+      btnAdventure.setBounds(760, 680, 350, 80);
+      
+      JButton btnSetting = new JButton();
+      btnSetting.setBounds(1070, 10,90,80);
      
+      btnCh.setOpaque(false);
+      btnInven.setOpaque(false);
+      btnShop.setOpaque(false);
+      btnFriend.setOpaque(false);
+      btnAch.setOpaque(false);
+      btnAdventure.setOpaque(false);
+      btnSetting.setOpaque(false);
+     
+      this.add(imgLabel);
       imgLabel.add(btnCh);
       imgLabel.add(btnInven);
       imgLabel.add(btnShop);
       imgLabel.add(btnFriend);
       imgLabel.add(btnAch);
-      imgLabel.add(btnGameready);
-      imgLabel.add(btnSetting);     
-      
-
+      imgLabel.add(btnAdventure);
+      imgLabel.add(btnSetting);
        
-     
-       btnInven.addActionListener(new ActionListener() {		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-//			ViewUtil.changePanel(mainFrame, mainMenu, new InventoryView(mainFrame));
-			
-		}
-	});      
-       
-    
-       btnShop.addActionListener(new ActionListener() {		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-//			ViewUtil.changePanel(mainFrame, mainMenu, new ShopView(mainFrame));
-		}
-	});
-    
-       
-       JButton btnAdventure = new JButton(new ImageIcon("image/btn/ready.PNG"));
-       btnAdventure.setBounds(740, 652, 350, 80);
-       btnAdventure.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			ViewUtil.changePanel(mainFrame, mainMenu, new MapResultView(mainFrame));
-		}
-	});   
-
-      
-      btnSetting.addActionListener(new ActionListener() {
-         
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            ViewUtil.changePanel(mainFrame, mainMenu, new Setting(mainFrame));
-     
-         }
-      });
-      
 
    }
-
-      
-
-   
 }
