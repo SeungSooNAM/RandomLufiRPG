@@ -29,7 +29,7 @@ public class BattleDAO {
 	}
 	
 
-	public BattleDTO selectAllBattleInfo(Connection con) {		
+	public BattleDTO selectAllBattleInfo(Connection con, int cNum) {		
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -39,6 +39,7 @@ public class BattleDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cNum);
 			
 			rset = pstmt.executeQuery();
 			
@@ -69,7 +70,7 @@ public class BattleDAO {
 		return battleInfo;
 	}
 
-	public BattleDTO selectMonsterInfo(Connection con) {
+	public BattleDTO selectMonsterInfo(Connection con, int num) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

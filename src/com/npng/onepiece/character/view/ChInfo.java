@@ -21,7 +21,7 @@ public class ChInfo extends JPanel {
 	private ChInfo charInfo;
 	private JFrame mf;
 
-	public ChInfo(MainFrame mf) {
+	public ChInfo(MainFrame mf, int cNum) {
 		this.charInfo = this;
 		this.mf = mf;
 

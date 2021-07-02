@@ -84,10 +84,13 @@
              )   
    </entry>
    <entry key="findLoginCharNum">
-          SELECT
-                 CHAR_NUMBER
-            FROM CHARACTER   
-            WHERE USER_NUM = ?
+          SELECT 
+               MAX(CHAR_NUMBER) CHAR_NUMBER
+            FROM USER_INFO U 
+               , CHARACTER C
+           WHERE C.USER_NUM = U.USER_NUM
+             AND U.USER_NUM = ?
+           GROUP BY U.USER_NUM
    </entry>
    
 </properties>

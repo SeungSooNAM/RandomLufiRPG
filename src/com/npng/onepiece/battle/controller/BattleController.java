@@ -6,15 +6,15 @@ import com.npng.onepiece.battle.view.attack.AttackFailedView;
 import com.npng.onepiece.battle.view.attack.AttackView;
 import com.npng.onepiece.battle.view.attack.AvoidFailedView;
 import com.npng.onepiece.battle.view.attack.AvoidSuccessView;
-import com.npng.onepiece.battle.view.main.BattleContinueView;
 import com.npng.onepiece.battle.view.attack.BattleLoseView;
+import com.npng.onepiece.battle.view.attack.BattleWinView;
+import com.npng.onepiece.battle.view.escape.Escape;
+import com.npng.onepiece.battle.view.main.BattleContinueView;
 import com.npng.onepiece.battle.view.main.BattleView;
 import com.npng.onepiece.battle.view.skill.SelectSkillView;
 import com.npng.onepiece.battle.view.skill.SkillAttackView;
-import com.npng.onepiece.battle.view.attack.BattleWinView;
-import com.npng.onepiece.battle.view.escape.Escape;
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.mainMenu.MainFrame;
+import com.npng.onepiece.user.view.MainFrame;
 
 public class BattleController {
 	

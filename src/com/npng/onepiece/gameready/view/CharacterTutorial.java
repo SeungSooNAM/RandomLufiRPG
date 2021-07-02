@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.gameready.controller.GameReadyController;
 import com.npng.onepiece.user.view.MainFrame;
 
 
@@ -17,6 +18,7 @@ import com.npng.onepiece.user.view.MainFrame;
 public class CharacterTutorial extends JPanel {
 
 	private CharacterTutorial ct;
+	private GameReadyController gc;
 	private MainFrame mf;
 	private int uNum;
 	
@@ -25,6 +27,8 @@ public class CharacterTutorial extends JPanel {
 	this.ct = this;
 	this.mf = mf;
 	this.uNum = uNum;
+	
+	
 	Image background = new ImageIcon("image/tutorial/cc1.png").getImage().getScaledInstance(1200, 800, 0);
 	
 	JLabel label = new JLabel(new ImageIcon(background));
