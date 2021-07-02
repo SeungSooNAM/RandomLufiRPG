@@ -19,17 +19,30 @@ public class GameReadyService {
 
 	public int insertNewCharacter(NewCharacterDTO charDTO) {
 		Connection con = getConnection();
+		int result = 0;
 		
-		int result = gameReadyDAO.insertNewCharacter(con, charDTO);
+		result += gameReadyDAO.insertNewCharacter(con, charDTO); //생성한 캐릭터 정보 DB에 insert	
 		
-		if (result > 0) {
+		
+		int charNum = gameReadyDAO.findLoginCharNum(con, charDTO);// 로그인한 유저의 캐릭터번호 가져오기
+		
+		/*TEST*/System.out.println("DAO에서 로그인한 유저의 charNum 찾아옴  charNum = " + charNum);
+		
+		 result += gameReadyDAO.createNewInventory(con, charNum);
+		 result += gameReadyDAO.createNewItemEquip(con, charNum);
+		 
+		
+		if (result == 3) {
 			commit(con);
 		} else {
 			rollback(con);
 		}
-		close(con);		
-		
+		close(con);				
+	
 		return result;
 	}
+	
+	
+	
 
 }

@@ -16,7 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.gameready.view.CharacterTutorial;
 import com.npng.onepiece.gameready.view.CreateCharacterView;
+import com.npng.onepiece.gameready.view.TutorialMenu;
 import com.npng.onepiece.user.controller.MemberController;
 
 public class LoginPageView extends JPanel {
@@ -99,7 +101,8 @@ public class LoginPageView extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mainFrame, loginPageView,new CreateCharacterView(mainFrame));
+				ViewUtil.changePanel(mainFrame, loginPageView,new CharacterTutorial(mainFrame));
+//				ViewUtil.changePanel(mainFrame, loginPageView,new TutorialMenu(mainFrame));
 			}
 		});
 		
