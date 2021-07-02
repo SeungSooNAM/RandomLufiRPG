@@ -2,6 +2,8 @@ package com.npng.onepiece.user.view;
 
 import javax.swing.JFrame;
 
+import com.npng.onepiece.event.views.SelectMapView;
+
 public class MainFrame extends JFrame {
 
 	public MainFrame() {
