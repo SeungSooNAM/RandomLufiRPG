@@ -37,16 +37,14 @@ public class SelectMapView extends JPanel{
 	private int num6= 6;
 	
 	private int chNum;
-	
-	
 
 
-	public SelectMapView(MainFrame mf, int chNum1) {
+	public SelectMapView(MainFrame mf, int chNum) {
 		this.mf = mf;
 		this.view = this;
 		this.setSize(1200, 800);
 		mf.add(this);
-		chNum = chNum1;
+		this.chNum = chNum;
 		
 		JLabel label = new JLabel(new ImageIcon());
 		this.img = new ImageIcon("image/sce/지도.PNG").getImage().getScaledInstance(1200, 800, 0);
@@ -141,7 +139,7 @@ public class SelectMapView extends JPanel{
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			ViewUtil.changePanel(mf, view, new MainMenu(mf));
+			ViewUtil.changePanel(mf, view, new MainMenu(mf ,chNum));
 		}
 	}
 	
