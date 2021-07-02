@@ -15,7 +15,8 @@ import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
 import com.npng.onepiece.battle.view.skill.SelectSkillView;
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.mainMenu.MainFrame;
+import com.npng.onepiece.user.view.MainFrame;
+
 
 public class BattleView extends JPanel{
 
@@ -62,7 +63,7 @@ public class BattleView extends JPanel{
 
 	
 
-	public BattleView(MainFrame mf) {
+	public BattleView(MainFrame mf, int cNum) {
 
 		int map = 1; // 맵정보 받기
 		
@@ -83,7 +84,8 @@ public class BattleView extends JPanel{
 
 		
 
-		battleInfo = battleController.readyBattle(map);
+		battleInfo = battleController.readyBattle(map, cNum);
+		
 		cHpLabel = battleInfo.getcHp();
 		cNameLabel = battleInfo.getcName();
 		cLvLabel = battleInfo.getcLv();
@@ -126,6 +128,9 @@ public class BattleView extends JPanel{
 		escapePanel.setLocation(550, 640);
 		escapePanel.setSize(280, 80);
 		bl.add(escapePanel);
+		escapeLabel = new JLabel("도망가기");
+		escapeLabel.setFont(font1);
+		escapePanel.add(escapeLabel, BorderLayout.CENTER);
 		
 		infoPanel = new JPanel();
 		infoPanel.setLocation(850, 640);
@@ -135,6 +140,7 @@ public class BattleView extends JPanel{
 		
 		atkPanel.addMouseListener(new MyMouseAdapter());
 		skilPanel.addMouseListener(new MyMouseAdapter());
+		escapePanel.addMouseListener(new MyMouseAdapter());
 
 		cLevel = new JLabel("레벨 : " + cLvLabel);
 		cLevel.setLocation(50, 20);
@@ -197,7 +203,9 @@ public class BattleView extends JPanel{
 				battleController.attack(mf, battleView, battleInfo);
 			} else if(e.getSource() == skilPanel){
 				ViewUtil.changePanel(mf, battleView, new SelectSkillView(mf, battleInfo));
-			} 
+			} else if(e.getSource() == escapePanel) {
+				battleController.escape(mf, battleView, battleInfo);
+			}
 		}
 	}
 	

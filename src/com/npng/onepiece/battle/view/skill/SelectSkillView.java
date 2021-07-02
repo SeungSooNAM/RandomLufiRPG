@@ -16,9 +16,9 @@ import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
 import com.npng.onepiece.battle.model.dto.FriendDTO;
 import com.npng.onepiece.battle.view.main.BattleContinueView;
-import com.npng.onepiece.battle.view.main.BattleView;
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.mainMenu.MainFrame;
+import com.npng.onepiece.user.view.MainFrame;
+
 
 public class SelectSkillView extends JPanel{
 
@@ -223,7 +223,7 @@ public class SelectSkillView extends JPanel{
 		bl.add(mAtk);
 		bl.add(mDef);
 		bl.add(mHp);
-		
+		bl.add(cMp);
 	}
 	
 	private class MyMouseAdapter extends MouseAdapter{
@@ -252,7 +252,7 @@ public class SelectSkillView extends JPanel{
 				String grade = sandi.getFrGrade();
 				if(sandi.getFrHave().equals("Y")) { 
 					if(battleInfo.getcMp() >= sandi.getFrMp()) {
-						battleController.zoroSkill(mf, selectSkillView, battleInfo, num, grade);						
+						battleController.sandiSkill(mf, selectSkillView, battleInfo, num, grade);						
 					} else {
 						System.out.println("마나가 없습니다.");
 					}
@@ -265,7 +265,7 @@ public class SelectSkillView extends JPanel{
 				String grade = oosop.getFrGrade();
 				if(oosop.getFrHave().equals("Y")) { 
 					if(battleInfo.getcMp() >= oosop.getFrMp()) {
-						battleController.zoroSkill(mf, selectSkillView, battleInfo, num, grade);						
+						battleController.oosopSkill(mf, selectSkillView, battleInfo, num, grade);						
 					} else {
 						System.out.println("마나가 없습니다.");
 					}
@@ -278,7 +278,7 @@ public class SelectSkillView extends JPanel{
 				String grade = nami.getFrGrade();
 				if(nami.getFrHave().equals("Y")) { 
 					if(battleInfo.getcMp() >= nami.getFrMp()) {
-						battleController.zoroSkill(mf, selectSkillView, battleInfo, num, grade);						
+						battleController.namiSkill(mf, selectSkillView, battleInfo, num, grade);						
 					} else {
 						System.out.println("마나가 없습니다.");
 					}
@@ -291,7 +291,7 @@ public class SelectSkillView extends JPanel{
 				String grade = hankok.getFrGrade();
 				if(hankok.getFrHave().equals("Y")) { 
 					if(battleInfo.getcMp() >= hankok.getFrMp()) {
-						battleController.zoroSkill(mf, selectSkillView, battleInfo, num, grade);						
+						battleController.hankokSkill(mf, selectSkillView, battleInfo, num, grade);						
 					} else {
 						System.out.println("마나가 없습니다.");
 					}
@@ -304,7 +304,7 @@ public class SelectSkillView extends JPanel{
 				String grade = reiligh.getFrGrade();
 				if(reiligh.getFrHave().equals("Y")) { 
 					if(battleInfo.getcMp() >= reiligh.getFrMp()) {
-						battleController.zoroSkill(mf, selectSkillView, battleInfo, num, grade);						
+						battleController.reilighSkill(mf, selectSkillView, battleInfo, num, grade);						
 					} else {
 						System.out.println("마나가 없습니다.");
 					}

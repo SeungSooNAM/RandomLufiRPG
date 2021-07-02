@@ -1,6 +1,5 @@
 package com.npng.onepiece.battle.view.attack;
 
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -11,8 +10,8 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
-import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.mainMenu.MainFrame;
+import com.npng.onepiece.user.view.MainFrame;
+
 
 public class BattleWinView extends JPanel{
 	
