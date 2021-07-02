@@ -71,6 +71,7 @@ public class Setting extends JPanel{
           }
        });
       
+      
       this.add(imgLabel);
       imgLabel.add(btnSound);
       imgLabel.add(btnRanking);
