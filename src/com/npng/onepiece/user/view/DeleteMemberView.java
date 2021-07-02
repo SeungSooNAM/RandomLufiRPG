@@ -14,12 +14,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.user.controller.MemberController;
 
 public class DeleteMemberView extends JPanel {
 	
 	private DeleteMemberView deleteMember;
 	
 	public DeleteMemberView(MainFrame mainFrame) {
+		
+		MemberController mc = new MemberController();
 		
 		this.deleteMember = this;
 		
@@ -34,13 +37,6 @@ public class DeleteMemberView extends JPanel {
 		tf1.setSize(404, 83);
 		tf1.setFont(font1);
 		
-		
-		Font font2= new Font("",0,25);
-		JButton btn2 = new JButton("삭제");
-		btn2.setLocation(870, 285);
-		btn2.setSize(130, 100);
-		btn2.setFont(font2);
-		
 		Font font5= new Font("",0,25);
 		JButton btn1 = new JButton("뒤로가기");
 		btn1.setLocation(500, 600);
@@ -54,24 +50,45 @@ public class DeleteMemberView extends JPanel {
 			}
 		});
 		
-		JFrame joinSuccess = new JFrame();
-		joinSuccess.setLocation(750, 500);
-		joinSuccess.setSize(300, 100);
+		Font font2= new Font("",0,25);
+		JButton btn2 = new JButton("삭제");
+		btn2.setLocation(870, 285);
+		btn2.setSize(130, 100);
+		btn2.setFont(font2);
+		
+		JFrame messageFrame = new JFrame();
+		messageFrame.setLocation(750, 500);
+		messageFrame.setSize(300, 160);
+		
 		JPanel panel2 = new JPanel();
-		panel2.setSize(300,150);
+		panel2.setSize(300,160);
+		
 		JLabel label2 = new JLabel("삭제 성공");
 		label2.setFont(font5);
+		
 		JButton btn6 = new JButton("확인");
 		btn6.setFont(font5);
+		
 		panel2.add(label2);
 		panel2.add(btn6);
-		joinSuccess.add(panel2);
+		messageFrame.add(panel2);
 		
 		btn2.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				joinSuccess.setVisible(true);
+				
+				String userId = tf1.getText();
+				
+				int result = mc.deleteMember(userId);
+				
+				if(result > 0) {
+					label2.setText("삭제 성공");
+					messageFrame.setVisible(true);					
+				} else {
+					label2.setText("등록되지 않은 아이디 입니다");
+					messageFrame.setVisible(true);
+				}
 				
 			}
 		});
@@ -80,7 +97,7 @@ public class DeleteMemberView extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				joinSuccess.dispose();
+				messageFrame.dispose();
 			}
 		});
 		

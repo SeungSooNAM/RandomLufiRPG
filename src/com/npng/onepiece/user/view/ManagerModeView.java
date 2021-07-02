@@ -28,7 +28,6 @@ public class ManagerModeView extends JPanel {
 		JLabel label = new JLabel(new ImageIcon(managerMode));
 		
 		Font font1 = new Font("",0,35);
-		
 		JButton btn1 = new JButton("회원조회");
 		btn1.setLocation(378, 163);
 		btn1.setSize(473, 83);

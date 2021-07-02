@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.npng.onepiece.common.ViewUtil;
@@ -30,7 +31,6 @@ public class JoinPageView extends JPanel {
 
 		this.setSize(1200, 800);
 		
-		
 		Image join = new ImageIcon("image/login/join.PNG").getImage().getScaledInstance(1200, 800, 0);
 		JLabel label = new JLabel(new ImageIcon(join));
 		
@@ -41,7 +41,7 @@ public class JoinPageView extends JPanel {
 		tf1.setFont(font1);
 		
 		Font font2 = new Font("",0,35);
-		JTextField tf2 = new JTextField();
+		JPasswordField tf2 = new JPasswordField();
 		tf2.setLocation(596, 276);
 		tf2.setSize(473, 83);
 		tf2.setFont(font2);
@@ -90,12 +90,12 @@ public class JoinPageView extends JPanel {
 		
 		JFrame joinMessageFrame2 = new JFrame();
 		joinMessageFrame2.setLocation(750, 500);
-		joinMessageFrame2.setSize(300, 100);
+		joinMessageFrame2.setSize(300, 160);
 		
 		JPanel panel3 = new JPanel();
-		panel3.setSize(300,150);
+		panel3.setSize(300,160);
 		
-		JLabel label3 = new JLabel("회원가입 실패");
+		JLabel label3 = new JLabel("<html>아이디,비밀번호 5자" + "<br>" + "이상 입력해주세요</html>");
 		label3.setFont(font5);
 		
 		JButton btn7 = new JButton("확인");
@@ -112,7 +112,7 @@ public class JoinPageView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if(tf1.getText().length() >= 5 && tf2.getText().length() >= 5 && tf3.getText().length() >= 2) {					
+				if(tf1.getText().length() >= 5 && tf2.getText().length() >= 5 && tf3.getText().length() >= 1) {					
 					
 					String userId = tf1.getText();
 					String userPwd = tf2.getText();
