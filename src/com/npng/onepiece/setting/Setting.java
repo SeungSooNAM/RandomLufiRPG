@@ -27,43 +27,42 @@ public class Setting extends JPanel{
 	      this.setting = this;
 	      
 	  JLabel  imgLabel = new JLabel(new ImageIcon());
-	  this.icon = new ImageIcon("image/mainMenu/mainBackground.PNG").getImage().getScaledInstance(1200, 800, 0);
-      imgLabel.setIcon(new ImageIcon(icon));
+	  this.icon = new ImageIcon("image/mainMenu/mainBackground1.PNG").getImage().getScaledInstance(1200, 800, 0);
+	  imgLabel.setIcon(new ImageIcon(icon));
       
       Sound sound = new Sound(mainFrame);
-	
-      JButton btnSound = new JButton(new ImageIcon("image/btn/sound.PNG"));
-      btnSound.setBounds(120, 210, 350, 80);
+      JButton btnSound = new JButton("사 운 드");
+      btnSound.setBounds(120, 215, 330, 70);
       btnSound.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			ViewUtil.changePanel(mainFrame, setting, sound);
-		}
-	});
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ViewUtil.changePanel(mainFrame, setting, sound);
+        }
+    });
       
-      JButton btnRanking = new JButton(new ImageIcon("image/btn/ranking.PNG"));
-      btnRanking.setBounds(120, 312,  350, 80);
+      JButton btnRanking = new JButton("랭 킹 확 인");
+      btnRanking.setBounds(120, 317,  330, 80);
       btnRanking.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			ViewUtil.changePanel(mainFrame, setting, new Ranking(mainFrame));
-		}
-	});
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ViewUtil.changePanel(mainFrame, setting, new Ranking(mainFrame));
+        }
+    });
       
-      JButton btnReturnLogin = new JButton(new ImageIcon("image/btn/gameoff.PNG"));
-      btnReturnLogin.setBounds(120, 412, 350, 80);
+      JButton btnReturnLogin = new JButton("게임 종료");
+      btnReturnLogin.setBounds(120, 417,  330, 80);
       btnReturnLogin.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			 ViewUtil.changePanel(mainFrame, setting, new LoginPageView(mainFrame));
-			
-		}
-	});
-      JButton btnBack = new JButton(new ImageIcon("image/btn/back.PNG"));
-      btnBack.setBounds(740, 652, 350, 80);
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+             ViewUtil.changePanel(mainFrame, setting, new LoginPageView(mainFrame));
+            
+        }
+    });
+      JButton btnBack = new JButton("뒤 로 가 기");
+      btnBack.setBounds(760, 680, 350, 80);
       btnBack.addActionListener(new ActionListener() {
           
           @Override
@@ -72,12 +71,12 @@ public class Setting extends JPanel{
           }
        });
       
+      
       this.add(imgLabel);
       imgLabel.add(btnSound);
       imgLabel.add(btnRanking);
       imgLabel.add(btnReturnLogin);
       imgLabel.add(btnBack);
-      
   
 	}
  
