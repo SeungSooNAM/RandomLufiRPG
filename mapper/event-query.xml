@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+
 	<comment />
 	<entry key="searchuserlogin">
 		SELECT
@@ -78,3 +79,70 @@
 		   )
 	</entry>
 </properties>
+
+   <comment />
+   <entry key="searchuserlogin">
+      SELECT
+         CHAR_NUMBER
+         FROM USER_LOGIN
+   </entry>
+   
+   <entry key="searchsce1">
+      SELECT
+           OPT_STR
+         , OPT_DEX
+         , OPT_CHA
+         FROM SCE_OPTION1
+         JOIN SCENARIO USING(SCE_NUM)
+         WHERE SCE_NUM = ?
+         AND OPT_NUM = ?
+   </entry>
+   <entry key="searchsce2">
+      SELECT
+           OPT_STR
+         , OPT_DEX
+         , OPT_CHA
+         FROM SCE_OPTION2
+         JOIN SCENARIO USING(SCE_NUM)
+         WHERE SCE_NUM = ?
+         AND OPT_NUM = ?
+   </entry>
+   
+   <entry key ="searhch">
+         SELECT
+            CHAR_STR
+          , CHAR_DEX
+          , CHAR_CHARISMA
+        FROM CHARACTER
+        WHERE CHAR_NUMBER = ?
+   </entry>
+   <entry key ="reward">
+         SELECT
+            SCE_EXP
+          , SCE_SCORE
+          , SCE_MONEY
+        FROM SCENARIO
+        WHERE SCE_NUM = ?
+   </entry>
+   <entry key ="chupdate">
+    UPDATE
+       CHARACTER C1
+         SET C1.CHAR_EXP  = (C1.CHAR_EXP+ ?)
+         ,    C1.CHAR_SCORE =  (C1.CHAR_SCORE + ?)
+       WHERE  C1.CHAR_NUMBER = ?
+   </entry>
+   <entry key ="invenupdate">
+       UPDATE 
+       (
+          SELECT
+           I.INVEN_GOLD 
+         ,   C.CHAR_NUMBER
+         FROM CHARACTER C , INVENTORY I
+         WHERE C.CHAR_NUMBER = I.CHAR_NUMBER
+          )
+      SET INVEN_GOLD = INVEN_GOLD + ?
+       WHERE CHAR_NUMBER = ?
+   </entry>
+   
+</properties>
+

@@ -29,7 +29,7 @@ public class InventoryView extends JPanel {
 	private Image img2;
 	private EquipDTO equip;
 
-	public InventoryView (MainFrame mf, InventoryDTO inven) {
+	public InventoryView (MainFrame mf, InventoryDTO inven, EquipDTO equip) {
 
 		InventoryController equipInfo = new InventoryController();
 		equip = equipInfo.getEquipInfo();

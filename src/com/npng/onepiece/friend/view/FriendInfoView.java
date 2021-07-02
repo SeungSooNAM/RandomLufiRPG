@@ -1,6 +1,5 @@
 package com.npng.onepiece.friend.view;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -12,12 +11,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.npng.onepiece.battle.view.main.BattleView.MyMouseAdapter;
-import com.npng.onepiece.battle.view.skill.SelectSkillView;
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.friend.controller.FriendController;
 import com.npng.onepiece.friend.model.dto.FriendDTO;
-import com.npng.onepiece.mainMenu.MainFrame;
+import com.npng.onepiece.user.view.MainFrame;
 
 public class FriendInfoView extends JPanel{
 	
@@ -42,7 +39,7 @@ public class FriendInfoView extends JPanel{
 	private JLabel goldLabel;
 	private int gold;
 
-	public FriendInfoView(MainFrame mf) {
+	public FriendInfoView(MainFrame mf, int cNum) {
 		this.setSize(1200, 800);
 		this.mf = mf;
 		this.friendInfoView = this;

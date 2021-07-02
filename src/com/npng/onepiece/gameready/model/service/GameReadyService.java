@@ -47,6 +47,8 @@ public class GameReadyService {
 		Connection con = getConnection();
 		
 		int chNum = gameReadyDAO.searchNum(con ,uNum);
+		
+		close(con);
 		return chNum;
 	}
 	

@@ -24,6 +24,8 @@ public class CreateCharacterView extends JPanel {
 	private CreateCharacterView createCharacterView;
 	private MainFrame mainFrame;
 	private int uNum;
+	private String name;
+	private JTextField chname;
 
 	public CreateCharacterView(MainFrame mainFrame, int uNum) {
 
@@ -65,7 +67,7 @@ public class CreateCharacterView extends JPanel {
 		JLabel nameLabel = new JLabel();
 		nameLabel.setBounds(660, 220, 410, 50);
 
-		JTextField chname = new JTextField();
+		chname = new JTextField();
 		chname.setSize(410, 50);
 		nameLabel.add(chname);
 
@@ -96,7 +98,6 @@ public class CreateCharacterView extends JPanel {
 				cha.setText(tcha + "");
 				
 				// 생성창에서 얻은 각각의 스탯수치를 인트로 변환, 기본 레벨, 능력치 지정
-				String name = chname.getText();
 				int level = 1;
 				int cstr = Integer.parseInt(str.getText());
 				int cdex = Integer.parseInt(dex.getText());
@@ -112,7 +113,6 @@ public class CreateCharacterView extends JPanel {
 
 				// dto에 새로생성할 캐릭터 정보 넣어주기
 				newDto.setUserNum(uNum);
-				newDto.setName(name);
 				newDto.setLevel(level);
 				newDto.setAtk(catk);
 				newDto.setHp(chp);
@@ -131,11 +131,13 @@ public class CreateCharacterView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(newDto);
+				name = chname.getText();
+				newDto.setName(name);
 				GameReadyController gr = new GameReadyController();
 				int result = new GameReadyController().insertNewCharacter(newDto);
 				if (result  == 3) {
 					int chNum = gr.searchChNum(uNum); //캐릭터번호 불러오기
+					System.out.println("cNum : " + chNum);
 					ViewUtil.changePanel(mainFrame, createCharacterView, new OkCreateCharacter(mainFrame, chNum));
 				}
 

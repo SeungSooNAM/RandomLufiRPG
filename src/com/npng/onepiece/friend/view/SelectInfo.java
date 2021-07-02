@@ -9,14 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.friend.controller.FriendController;
 import com.npng.onepiece.friend.model.dto.FriendDTO;
-import com.npng.onepiece.mainMenu.MainFrame;
+import com.npng.onepiece.user.view.MainFrame;
 
 public class SelectInfo extends JPanel{
 	
