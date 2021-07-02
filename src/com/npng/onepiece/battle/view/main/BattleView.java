@@ -63,7 +63,7 @@ public class BattleView extends JPanel{
 
 	
 
-	public BattleView(MainFrame mf) {
+	public BattleView(MainFrame mf, int cNum) {
 
 		int map = 1; // 맵정보 받기
 		
@@ -84,7 +84,8 @@ public class BattleView extends JPanel{
 
 		
 
-		battleInfo = battleController.readyBattle(map);
+		battleInfo = battleController.readyBattle(map, cNum);
+		
 		cHpLabel = battleInfo.getcHp();
 		cNameLabel = battleInfo.getcName();
 		cLvLabel = battleInfo.getcLv();

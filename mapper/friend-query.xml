@@ -9,5 +9,6 @@
 			     , CH_FRIEND CF
 			 WHERE F.FR_NUM = CF.FR_NUM
 			   AND FR_HAVE_YN = 'Y'
+			   AND CF.CHAR_NUM = ?
 		</entry>
 </properties>

@@ -25,7 +25,7 @@ private Properties prop;
 			e.printStackTrace();
 		}
 	}
-	public List<FriendDTO> friendInfo(Connection con) {
+	public List<FriendDTO> friendInfo(Connection con, int cNum) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -39,6 +39,7 @@ private Properties prop;
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cNum);
 			
 			rset = pstmt.executeQuery();
 			

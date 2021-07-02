@@ -71,13 +71,12 @@ public class BattleService {
 		return result;
 	}
 
-	public BattleDTO selectMonster(int map) {
+	public BattleDTO selectMonster(int map, int cNum) {
 	
 		Connection con = getConnection();
 		
 		
 		battleDao = new BattleDAO();
-		int cNum = battleDao.selectUser(con);
 		int result = battleDao.checkBossClear(con, map, cNum);  //보스 클리어 여부 확인
 		int num = (int) (Math.random() * 20) + 10;
 		if(result == 0) {  //보스 클리어 안됨

@@ -32,12 +32,15 @@ public class FriendInfoView extends JPanel{
 	private JPanel fourthPanel;
 	private JPanel fifthPanel;
 	private JPanel sixthPanel;
+	
+	private int cNum;
 
-	public FriendInfoView(MainFrame mf) {
+	public FriendInfoView(MainFrame mf, int cNum) {
 		this.setSize(1200, 800);
 		this.mf = mf;
 		this.friendInfoView = this;
 		mf.add(this);
+		this.cNum = cNum;
 		
 		this.setLayout(null);
 		
@@ -86,7 +89,7 @@ public class FriendInfoView extends JPanel{
 		fi.add(sixthPanel);
 		
 		friendList = new ArrayList<>();
-		friendList = friendController.friendInfo();
+		friendList = friendController.friendInfo(cNum);
 		System.out.println(friendList);
 		
 		for(int i = 0; i < friendListLabel.length; i++) {

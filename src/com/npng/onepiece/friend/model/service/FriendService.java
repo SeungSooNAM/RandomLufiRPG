@@ -11,13 +11,13 @@ public class FriendService {
 	
 	private FriendDAO friendDao = new FriendDAO();
 
-	public List<FriendDTO> friendInfo() {
+	public List<FriendDTO> friendInfo(int cNum) {
 		
 		Connection con = getConnection();
 		
 		List<FriendDTO> friendList = null;
 		
-		friendList = friendDao.friendInfo(con);
+		friendList = friendDao.friendInfo(con, cNum);
 		
 		close(con);
 		

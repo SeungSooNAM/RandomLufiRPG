@@ -11,11 +11,11 @@ public class FriendController {
 	
 	
 
-	public List<FriendDTO> friendInfo() {
+	public List<FriendDTO> friendInfo(int cNum) {
 		
 		List<FriendDTO> friendList = null;
 		
-		friendList = friendService.friendInfo();
+		friendList = friendService.friendInfo(cNum);
 		
 		return friendList;
 	}
