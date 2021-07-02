@@ -26,11 +26,11 @@ public class MainMenu extends JPanel{
 	   this.mainFrame = mainFrame;
 	   this.mainMenu = this;
       this.setSize(1200,800);
+      this.setLayout(null);      
 
       Image icon = new ImageIcon("image/mainMenu/mainBackground.PNG").getImage().getScaledInstance(1200, 800, 0);
-      JLabel imgLabel = new JLabel(new ImageIcon(icon));
-      
-      this.setLayout(null);      
+      JLabel imgLabel = new JLabel(new ImageIcon(icon));       
+      this.add(imgLabel);
       
       JButton btnCh = new JButton("image/btn/chinfo.PNG");
       btnCh.setBounds(120, 195, 330, 70);
@@ -53,51 +53,27 @@ public class MainMenu extends JPanel{
       imgLabel.add(btnFriend);
       imgLabel.add(btnAch);
       imgLabel.add(btnGameready);
-      imgLabel.add(btnSetting);
-      
-      this.add(imgLabel);
+      imgLabel.add(btnSetting);     
       
 
-      this.mainFrame = mainFrame;
-      this.mainMenu = this;
-      
-      JLabel  imgLabel = new JLabel(new ImageIcon());
-      this.icon = new ImageIcon("image/mainMenu/mainBackground.PNG").getImage().getScaledInstance(1200, 800, 0);
-      imgLabel.setIcon(new ImageIcon(icon));
-      
-      
-      
-      
-       JButton btnCh = new JButton(new ImageIcon("image/btn/chinfo.PNG"));
-       btnCh.setBounds(120, 210, 350, 80);
        
-       
-       JButton btnInven = new JButton(new ImageIcon("image/btn/bag.PNG"));
-       btnInven.setBounds(120, 312,  350, 80);
-       btnInven.addActionListener(new ActionListener() {
-		
+     
+       btnInven.addActionListener(new ActionListener() {		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 //			ViewUtil.changePanel(mainFrame, mainMenu, new InventoryView(mainFrame));
 			
 		}
-	});
+	});      
        
-       
-       JButton btnShop = new JButton(new ImageIcon("image/btn/shop.PNG"));
-       btnShop.setBounds(120, 412, 350, 80);
-       btnShop.addActionListener(new ActionListener() {
-		
+    
+       btnShop.addActionListener(new ActionListener() {		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ViewUtil.changePanel(mainFrame, mainMenu, new ShopView(mainFrame));
+//			ViewUtil.changePanel(mainFrame, mainMenu, new ShopView(mainFrame));
 		}
 	});
-       JButton btnFriend = new JButton(new ImageIcon("image/btn/friend.PNG"));
-       btnFriend.setBounds(120, 512,  350, 80);
-       
-       JButton btnAch = new JButton(new ImageIcon("image/btn/ach.PNG"));
-       btnAch.setBounds(120, 612,  350, 80);
+    
        
        JButton btnAdventure = new JButton(new ImageIcon("image/btn/ready.PNG"));
        btnAdventure.setBounds(740, 652, 350, 80);
@@ -107,9 +83,7 @@ public class MainMenu extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			ViewUtil.changePanel(mainFrame, mainMenu, new MapResultView(mainFrame));
 		}
-	});
-       JButton btnSetting = new JButton(new ImageIcon("image/btn/setting.jpg"));
-       btnSetting.setBounds(1050, 10,100,100);
+	});   
 
       
       btnSetting.addActionListener(new ActionListener() {
@@ -120,18 +94,6 @@ public class MainMenu extends JPanel{
      
          }
       });
-      
-     
-      
-
-      this.add(imgLabel);
-      imgLabel.add(btnCh);
-      imgLabel.add(btnInven);
-      imgLabel.add(btnShop);
-      imgLabel.add(btnFriend);
-      imgLabel.add(btnAch);
-      imgLabel.add(btnAdventure);
-      imgLabel.add(btnSetting);
       
 
    }

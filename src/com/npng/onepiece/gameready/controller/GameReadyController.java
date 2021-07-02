@@ -9,14 +9,16 @@ public class GameReadyController {
 	private ResultView resultView = new ResultView();
 	private GameReadyService gameReadySerivce = new GameReadyService();
 
-	public void insertNewCharacter(NewCharacterDTO charDTO) {
+	public int insertNewCharacter(NewCharacterDTO charDTO) {
 
 		int result = gameReadySerivce.insertNewCharacter(charDTO);
 
-		if (result > 0) {
+		System.out.println("컨트롤러  reuslt = " + result);
+		if (result == 3) {
 			resultView.displayDmlResult("createSuccess");
 		} else {
 			resultView.displayDmlResult("createFailed");
 		}
+		return result;
 	}
 }
