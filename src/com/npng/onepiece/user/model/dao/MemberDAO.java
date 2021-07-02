@@ -246,13 +246,13 @@ public class MemberDAO {
 		return memberList;
 	}
 
-	public String userNum(Connection con, String loginId) {
+	public int userNum(Connection con, String loginId) {
 		
 		PreparedStatement pstmt = null;
 
 		ResultSet rset = null;
 
-		String uNum = null;
+		int uNum = 0;
 		
 		String query = prop.getProperty("selectUserNum");
 
@@ -262,7 +262,7 @@ public class MemberDAO {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				uNum = rset.getString(1);
+				uNum = rset.getInt(1);
 				System.out.println(rset.getString(1));				
 			}
 		} catch (SQLException e) {

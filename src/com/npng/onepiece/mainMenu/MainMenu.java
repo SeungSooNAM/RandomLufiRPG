@@ -43,7 +43,7 @@ public class MainMenu extends JPanel{
       btnInven.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-          ViewUtil.changePanel(mainFrame, mainMenu, new InventoryView(mainFrame));
+//          ViewUtil.changePanel(mainFrame, mainMenu, new InventoryView(mainFrame));
           
       }
   });
@@ -58,7 +58,7 @@ public class MainMenu extends JPanel{
           }
       });
       
-      
+
       JButton btnFriend = new JButton("동 료");
       btnFriend.setBounds(120, 515,  330, 80);
       

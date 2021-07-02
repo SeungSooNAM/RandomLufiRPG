@@ -81,7 +81,7 @@ public class LoginPageView extends JPanel {
 				int result = mc.login(loginId,loginPwd);
 				
 				if(result > 0) {
-					String uNum = mc.userNum(loginId);
+					int uNum = mc.userNum(loginId);
 					System.out.println("uNum : " + uNum);
 					ViewUtil.changePanel(mainFrame, loginPageView, new CreateCharacterView(mainFrame,uNum));					
 				} else {

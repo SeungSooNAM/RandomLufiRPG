@@ -90,10 +90,10 @@ public class MemberService {
 		
 	}
 
-	public String userNum(String loginId) {
+	public int userNum(String loginId) {
 
 		Connection con = getConnection();
-		String uNum = memberDAO.userNum(con, loginId);
+		int uNum = memberDAO.userNum(con, loginId);
 		
 		return uNum;
 	}
