@@ -46,6 +46,7 @@ public class MemberDAO {
 			pstmt.setString(2, member.getUserPwd());
 			pstmt.setString(3, member.getUserName());
 
+			
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException e) {

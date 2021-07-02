@@ -39,6 +39,7 @@ public class MemberDTO implements java.io.Serializable {
 		return ableYN;
 	}
 
+	
 	public void setUserNum(int userNum) {
 		this.userNum = userNum;
 	}

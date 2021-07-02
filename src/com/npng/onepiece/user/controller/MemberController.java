@@ -42,6 +42,7 @@ public class MemberController {
 		
 		return result;
 	}
+	
 
 	public int managerLogin(String managerId, String managerPwd) {
 		
@@ -64,9 +65,9 @@ public class MemberController {
 		return memberList;
 	}
 
-	public String userNum(String loginId) {
+	public int userNum(String loginId) {
 		
-		String uNum = memberService.userNum(loginId);
+		int uNum = memberService.userNum(loginId);
 		
 		return uNum;
 	}
