@@ -29,8 +29,8 @@ public class ManagerModeView extends JPanel {
 		
 		Font font1 = new Font("",0,35);
 		JButton btn1 = new JButton("회원조회");
-		btn1.setLocation(378, 163);
-		btn1.setSize(473, 83);
+		btn1.setLocation(372, 190);
+		btn1.setSize(477, 82);
 		btn1.setFont(font1);
 		btn1.addActionListener(new ActionListener() {
 			
@@ -39,17 +39,11 @@ public class ManagerModeView extends JPanel {
 				ViewUtil.changePanel(mainFrame, managerModeView, new SelectMemberView(mainFrame));
 			}
 		});
-
-		Font font2 = new Font("",0,35);
-		JButton btn2 = new JButton("회원수정");
-		btn2.setLocation(378, 279);
-		btn2.setSize(473, 83);
-		btn2.setFont(font2);
 		
 		Font font3 = new Font("",0,35);
 		JButton btn3 = new JButton("회원삭제");
-		btn3.setLocation(378, 395);
-		btn3.setSize(473, 83);
+		btn3.setLocation(372, 335);
+		btn3.setSize(477, 82);
 		btn3.setFont(font3);
 		btn3.addActionListener(new ActionListener() {
 			
@@ -73,7 +67,6 @@ public class ManagerModeView extends JPanel {
 		});
 		
 		label.add(btn1);
-		label.add(btn2);
 		label.add(btn3);
 		label.add(btn4);
 		this.add(label, BorderLayout.CENTER);

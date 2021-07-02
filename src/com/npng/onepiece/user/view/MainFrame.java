@@ -2,8 +2,6 @@ package com.npng.onepiece.user.view;
 
 import javax.swing.JFrame;
 
-import com.npng.onepiece.event.views.SelectMapView;
-
 public class MainFrame extends JFrame {
 
 	public MainFrame() {
@@ -12,7 +10,6 @@ public class MainFrame extends JFrame {
 		this.setBounds(300, 150, 1200, 800);
 		
 		new LoginPageView(this);
-		
 		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

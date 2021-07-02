@@ -46,7 +46,6 @@ public class MemberDAO {
 			pstmt.setString(2, member.getUserPwd());
 			pstmt.setString(3, member.getUserName());
 
-			
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -232,7 +231,7 @@ public class MemberDAO {
 
 				member.setUserNum(rset.getInt("USER_NUM"));
 				member.setUserId(rset.getString("USER_ID"));
-				member.setUserPwd(rset.getString("USER_PASSWORD"));
+//				member.setUserPwd(rset.getString("USER_PASSWORD"));
 				member.setUserName(rset.getString("USER_NAME"));
 				member.setAbleYN(rset.getString("ABLE_YN"));
 
@@ -274,6 +273,31 @@ public class MemberDAO {
 		}
 
 		return uNum;
+	}
+
+	public int newManagerPwd(Connection con, String userId, String userName, String newPwd) {
+		
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+
+		String query = prop.getProperty("updateManagerPassword");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, newPwd);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, userName);
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 
 }
