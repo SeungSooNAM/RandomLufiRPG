@@ -31,6 +31,7 @@ public class MainMenu extends JPanel{
 
       JLabel  imgLabel = new JLabel(new ImageIcon());
       this.icon = new ImageIcon("image/mainMenu/mainBackground1.PNG").getImage().getScaledInstance(1200, 800, 0);
+      imgLabel.setSize(1200,800);
       imgLabel.setIcon(new ImageIcon(icon));
       
       JButton btnCh = new JButton("캐릭터 정보창");
