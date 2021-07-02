@@ -19,7 +19,7 @@ public class eventController {
 		int number = 0;
 		
 		if(map <= 4) {
-			 number = (int)(Math.random() *37)+3;
+			 number = (int)(Math.random() *40)+3;
 		}
 		if(map == 5) {
 			number = (int)(Math.random() *37)+2;
@@ -33,15 +33,16 @@ public class eventController {
 	public String sceresult(int map , int num, int chNum) {
 		//선택지, 시나리오번호,캐릭터번호
 		
-		int result = 0;
-		if(num >= 3 && num <= 37) {	
+		int result = 0; /*1~4번맵*/  /* 38~ 40 은 특수상점*/
+		if(num >= 3 && num <= 40) {	
 		 result =eventservice.sceresult(map, num,chNum);
 		}
-		if(num== 38) {
-			/*핸콕 동료 이벤트실행*/
+	
+		if(num == 2) {    /*5번맵*/
+		 result = eventservice.sceresult(map, num,chNum);
 		}
-		if(num == 2) {
-			/* 조로 동료 이벤트 실행*/
+		if(num== 41) {    /*6번맵*/
+			/*핸콕 동료 이벤트실행*/
 		}
 		 
 		String name = "d";
