@@ -24,19 +24,21 @@ public class MainMenu extends JPanel{
    
    public MainMenu(MainFrame mainFrame)  {
       
-	   this.mainFrame = mainFrame;
-	   this.mainMenu = this;
+	  this.mainFrame = mainFrame;
+	  this.mainMenu = this;
       this.setSize(1200,800);
       this.setLayout(null);      
+      
 
       JLabel  imgLabel = new JLabel(new ImageIcon());
       this.icon = new ImageIcon("image/mainMenu/mainBackground1.PNG").getImage().getScaledInstance(1200, 800, 0);
+      imgLabel.setSize(1200,800);
       imgLabel.setIcon(new ImageIcon(icon));
       
-      JButton btnCh = new JButton("ƒ≥∏Ø≈Õ ¡§∫∏√¢");
+      JButton btnCh = new JButton("Ï∫êÎ¶≠ÌÑ∞ Ï†ïÎ≥¥Ï∞Ω");
       btnCh.setBounds(120, 215, 330, 70);
       
-      JButton btnInven = new JButton("∞° πÊ");
+      JButton btnInven = new JButton("Í∞Ä Î∞©");
       btnInven.setBounds(120, 317,  330, 80);
       btnInven.addActionListener(new ActionListener() {
       @Override
@@ -46,7 +48,7 @@ public class MainMenu extends JPanel{
       }
   });
       
-      JButton btnShop = new JButton("ªÛ ¡°");
+      JButton btnShop = new JButton("ÏÉÅ Ï†ê");
       btnShop.setBounds(120, 417,  330, 80);
       btnShop.addActionListener(new ActionListener() {
           
@@ -56,13 +58,14 @@ public class MainMenu extends JPanel{
           }
       });
       
-      JButton btnFriend = new JButton("µø ∑·");
+      
+      JButton btnFriend = new JButton("Îèô Î£å");
       btnFriend.setBounds(120, 515,  330, 80);
       
-      JButton btnAch = new JButton("æ˜ ¿˚");
+      JButton btnAch = new JButton("ÏóÖ Ï†Å");
       btnAch.setBounds(120, 610,  330, 80);
       
-      JButton btnAdventure = new JButton("∏ «Ë Ω√ ¿€");
+      JButton btnAdventure = new JButton("Î™® Ìóò Ïãú Ïûë");
       btnAdventure.setBounds(760, 680, 350, 80);
       btnAdventure.addActionListener(new ActionListener() {
           
