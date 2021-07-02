@@ -36,17 +36,15 @@ public class SelectMapView extends JPanel{
 	private int num5= 5;
 	private int num6= 6;
 	
-	private chNum chNum;
-	
+	private int chNum;
 
 
 	public SelectMapView(MainFrame mf, int chNum) {
-		
 		this.mf = mf;
 		this.view = this;
 		this.setSize(1200, 800);
 		mf.add(this);
-		
+		this.chNum = chNum;
 		
 		JLabel label = new JLabel(new ImageIcon());
 		this.img = new ImageIcon("image/sce/지도.PNG").getImage().getScaledInstance(1200, 800, 0);
@@ -103,10 +101,11 @@ public class SelectMapView extends JPanel{
 //		btn.addMouseListener(new OneActionListener());
 	
 		int number = (int) (Math.random()*3)+1;
-		 
+		 System.out.println("맵, 일반이벤트 번호 : " + number);
 		  //일반이벤트
 	
 			if(number == 0) {	
+//				if(number == 1) {	
 				btn1.addMouseListener(new BattleActionListener());  //전투이벤트
 				btn2.addMouseListener(new BattleActionListener());  
 				btn3.addMouseListener(new BattleActionListener());  
@@ -114,6 +113,7 @@ public class SelectMapView extends JPanel{
 				btn5.addMouseListener(new BattleActionListener());  
 				btn6.addMouseListener(new BattleActionListener());  
 			} if(number > 0) {
+//			} if(number > 1) {
 
 				btn1.addMouseListener(new SceActionListener());  //일반이벤트
 				btn2.addMouseListener(new SceActionListener());  
@@ -139,7 +139,7 @@ public class SelectMapView extends JPanel{
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			ViewUtil.changePanel(mf, view, new MainMenu(mf));
+			ViewUtil.changePanel(mf, view, new MainMenu(mf ,chNum));
 		}
 	}
 	

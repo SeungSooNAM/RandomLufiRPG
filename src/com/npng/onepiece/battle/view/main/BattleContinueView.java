@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -13,10 +12,9 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
-import com.npng.onepiece.battle.model.dto.FriendDTO;
 import com.npng.onepiece.battle.view.skill.SelectSkillView;
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.mainMenu.MainFrame;
+import com.npng.onepiece.user.view.MainFrame;
 
 public class BattleContinueView extends JPanel{
 
@@ -113,15 +111,15 @@ public class BattleContinueView extends JPanel{
 		skilLabel.setFont(font1);
 		skilPanel.add(skilLabel, BorderLayout.CENTER);
 		
-		escapePanel = new JPanel();
-		escapePanel.setLocation(550, 640);
-		escapePanel.setSize(280, 80);
-		bl.add(escapePanel);
-		
-		infoPanel = new JPanel();
-		infoPanel.setLocation(850, 640);
-		infoPanel.setSize(280, 80);
-		bl.add(infoPanel);
+//		escapePanel = new JPanel();
+//		escapePanel.setLocation(550, 640);
+//		escapePanel.setSize(280, 80);
+//		bl.add(escapePanel);
+//		
+//		infoPanel = new JPanel();
+//		infoPanel.setLocation(850, 640);
+//		infoPanel.setSize(280, 80);
+//		bl.add(infoPanel);
 		
 		
 		atkPanel.addMouseListener(new MyMouseAdapter());
@@ -178,7 +176,7 @@ public class BattleContinueView extends JPanel{
 		bl.add(mAtk);
 		bl.add(mDef);
 		bl.add(mHp);
-		
+		bl.add(cMp);
 	}
 	
 	private class MyMouseAdapter extends MouseAdapter{

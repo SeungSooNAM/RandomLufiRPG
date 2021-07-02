@@ -16,8 +16,10 @@ public class Openning2 extends JPanel {
 
 	private Openning2 op2;
 	private MainFrame mainFrame;
-	public Openning2(MainFrame mainFrame) {
-
+	private int chNum;
+	public Openning2(MainFrame mainFrame, int chNum) {
+		
+		this.chNum = chNum;
 		this.op2 = this;
 		this.mainFrame = mainFrame;
 		JPanel panel = new JPanel();
@@ -38,7 +40,7 @@ public class Openning2 extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mainFrame, op2, new Openning3(mainFrame));				
+				ViewUtil.changePanel(mainFrame, op2, new Openning3(mainFrame, chNum));				
 			}
 		});
 		

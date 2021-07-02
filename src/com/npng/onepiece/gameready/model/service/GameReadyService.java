@@ -41,6 +41,16 @@ public class GameReadyService {
 	
 		return result;
 	}
+
+	public int searchChNum(int uNum) {
+		
+		Connection con = getConnection();
+		
+		int chNum = gameReadyDAO.searchNum(con ,uNum);
+		
+		close(con);
+		return chNum;
+	}
 	
 	
 	

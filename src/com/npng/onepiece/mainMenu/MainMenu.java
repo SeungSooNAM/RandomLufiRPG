@@ -1,107 +1,148 @@
 package com.npng.onepiece.mainMenu;
 
+import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.npng.onepiece.battle.view.main.BattleView.MyMouseAdapter;
+import com.npng.onepiece.character.view.ChInfo;
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.event.views.MapResultView;
+import com.npng.onepiece.event.views.SelectMapView;
+import com.npng.onepiece.friend.view.FriendInfoView;
+import com.npng.onepiece.friend.view.SelectInfo;
+import com.npng.onepiece.inventory.controller.InventoryController;
+import com.npng.onepiece.inventory.model.dto.EquipDTO;
+import com.npng.onepiece.inventory.model.dto.InventoryDTO;
 import com.npng.onepiece.inventory.view.InventoryView;
-import com.npng.onepiece.setting.Setting;
 import com.npng.onepiece.shop.view.ShopView;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class MainMenu extends JPanel{
 
    private MainMenu mainMenu;
-   private MainFrame mainFrame;  
+   private MainFrame mf;  
    private Image icon;
+   private int chNum;
    
-   public MainMenu(MainFrame mainFrame)  {
-      
-	  this.mainFrame = mainFrame;
+   private JPanel chPanel;
+   private JPanel invenPanel;
+   private JPanel shopPanel;
+   private JPanel friendPanel;
+   private JPanel achPanel;
+   private JPanel playPanel;
+   private JPanel settingPanel;
+   private String userName;
+   
+   public MainMenu(MainFrame mainFrame, int chNum)  {
+      this.chNum = chNum;
+	  this.mf = mainFrame;
 	  this.mainMenu = this;
-      this.setSize(1200,800);
       this.setLayout(null);      
       
+      Font font1 = new Font("Dialog",Font.BOLD, 45);
+      Image imgBackground = new ImageIcon("image/mainMenu/mainBackground2.png").getImage().getScaledInstance(1200, 800, 0);
+      JLabel fi = new JLabel(new ImageIcon(imgBackground));
+      fi.setLocation(0, 0);
+      fi.setSize(1200, 800);
+      this.add(fi);
+      
+      
+      JLabel userNameLabel = new JLabel(userName);
+      userNameLabel.setBounds(5, 125, 150, 50);
+      fi.add(userNameLabel);
+      
+      chPanel = new JPanel();
+      chPanel.setBounds(120, 215, 330, 75);
+      chPanel.setOpaque(false);
+      fi.add(chPanel);
+      JLabel character = new JLabel("캐릭터정보");
+      character.setFont(font1);
+      chPanel.add(character);
+      
+      invenPanel = new JPanel();
+      invenPanel.setBounds(120, 318,  330, 75);
+      invenPanel.setOpaque(false);
+      fi.add(invenPanel);
+      JLabel inven = new JLabel("인벤토리");
+      inven.setFont(font1);
+      invenPanel.add(inven);
+      
+      
+      shopPanel = new JPanel();
+      shopPanel.setBounds(120, 420,  330, 75);
+      shopPanel.setOpaque(false);
+      fi.add(shopPanel);
+      JLabel shop = new JLabel("상점");
+      shop.setFont(font1);
+      shopPanel.add(shop);
+      
 
-      JLabel  imgLabel = new JLabel(new ImageIcon());
-      this.icon = new ImageIcon("image/mainMenu/mainBackground1.PNG").getImage().getScaledInstance(1200, 800, 0);
-      imgLabel.setSize(1200,800);
-      imgLabel.setIcon(new ImageIcon(icon));
+      friendPanel = new JPanel();
+      friendPanel.setBounds(120, 522,  330, 75);
+      friendPanel.setOpaque(false);
+      fi.add(friendPanel);
+      JLabel friend = new JLabel("동료");
+      friend.setFont(font1);
+      friendPanel.add(friend);
       
-      JButton btnCh = new JButton("캐릭터 정보창");
-      btnCh.setBounds(120, 215, 330, 70);
-      
-      JButton btnInven = new JButton("가 방");
-      btnInven.setBounds(120, 317,  330, 80);
-      btnInven.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-//          ViewUtil.changePanel(mainFrame, mainMenu, new InventoryView(mainFrame));
-          
-      }
-  });
-      
-      JButton btnShop = new JButton("상 점");
-      btnShop.setBounds(120, 417,  330, 80);
-      btnShop.addActionListener(new ActionListener() {
-          
-          @Override
-          public void actionPerformed(ActionEvent e) {
-//              ViewUtil.changePanel(mainFrame, mainMenu, new ShopView(mainFrame,  inven));
-          }
-      });
-      
-
-      JButton btnFriend = new JButton("동 료");
-      btnFriend.setBounds(120, 515,  330, 80);
-      
-      JButton btnAch = new JButton("업 적");
-      btnAch.setBounds(120, 610,  330, 80);
-      
-      JButton btnAdventure = new JButton("모 험 시 작");
-      btnAdventure.setBounds(760, 680, 350, 80);
-      btnAdventure.addActionListener(new ActionListener() {
-          
-          @Override
-          public void actionPerformed(ActionEvent e) {
-              ViewUtil.changePanel(mainFrame, mainMenu, new MapResultView(mainFrame));
-          }
-      });
-      
-      JButton btnSetting = new JButton();
-      btnSetting.setBounds(1070, 10,90,80);
-      btnSetting.addActionListener(new ActionListener() {
-          
-          @Override
-          public void actionPerformed(ActionEvent e) {
-             ViewUtil.changePanel(mainFrame, mainMenu, new Setting(mainFrame));
-          }
-       });
-     
-      btnCh.setOpaque(false);
-      btnInven.setOpaque(false);
-      btnShop.setOpaque(false);
-      btnFriend.setOpaque(false);
-      btnAch.setOpaque(false);
-      btnAdventure.setOpaque(false);
-      btnSetting.setOpaque(false);
-     
-      this.add(imgLabel);
-      imgLabel.add(btnCh);
-      imgLabel.add(btnInven);
-      imgLabel.add(btnShop);
-      imgLabel.add(btnFriend);
-      imgLabel.add(btnAch);
-      imgLabel.add(btnAdventure);
-      imgLabel.add(btnSetting);
+      achPanel = new JPanel();
+      achPanel.setBounds(120, 625,  330, 75);
+      achPanel.setOpaque(false);
+      fi.add(achPanel);
+      JLabel ach = new JLabel("업적");
+      ach.setFont(font1);
+      achPanel.add(ach);
        
-
+      playPanel = new JPanel();
+      playPanel.setBounds(650, 690, 450, 120);
+      playPanel.setOpaque(false);
+      fi.add(playPanel);
+      JLabel play = new JLabel("항해 시작");
+      play.setFont(font1);
+      playPanel.add(play);
+      
+      chPanel.addMouseListener(new MyMouseAdapter());
+      invenPanel.addMouseListener(new MyMouseAdapter());
+      shopPanel.addMouseListener(new MyMouseAdapter());
+      friendPanel.addMouseListener(new MyMouseAdapter());
+      achPanel.addMouseListener(new MyMouseAdapter());
+      playPanel.addMouseListener(new MyMouseAdapter());
+      
+      
    }
+   
+   public class MyMouseAdapter extends MouseAdapter{
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if(e.getSource() == chPanel) {
+				ViewUtil.changePanel(mf, mainMenu, new ChInfo(mf, chNum));
+			} else if(e.getSource() == invenPanel){
+				InventoryDTO inven = new InventoryDTO();
+	            inven.setGold(10000);
+	            inven.setInven1(7);
+	            ViewUtil.changePanel(mf, mainMenu, new ShopView(mf, inven));
+
+			} else if(e.getSource() == shopPanel) {
+				InventoryController equipInfo = new InventoryController();
+	            EquipDTO equip = equipInfo.getEquipInfo();
+	            InventoryDTO inven = new InventoryDTO();
+	            inven.setGold(10000);
+	            inven.setInven1(7);
+	            ViewUtil.changePanel(mf, mainMenu, new InventoryView(mf, inven, equip));
+			} else if(e.getSource() == friendPanel) {
+				ViewUtil.changePanel(mf, mainMenu, new FriendInfoView(mf, chNum));
+			} else if(e.getSource() == achPanel) {
+//				ViewUtil.changePanel(mf, mainMenu, new AchivementView(mf, chNum));
+			} else if(e.getSource() == playPanel) {
+				ViewUtil.changePanel(mf, mainMenu, new SelectMapView(mf, chNum));
+			} else if(e.getSource() == settingPanel) {
+//				ViewUtil.changePanel(mf, selectInfo, new SelectInfo(mf, friendName[5]));
+			}	
+		}
+	}
 }

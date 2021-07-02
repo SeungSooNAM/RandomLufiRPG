@@ -17,7 +17,9 @@ public class TutorialMenu extends JPanel {
 
 	private TutorialMenu tm;
 	private MainFrame mainFrame;
-	public TutorialMenu(MainFrame mainFrame) {
+	private int chNum;
+	public TutorialMenu(MainFrame mainFrame ,int chNum) {
+		this.chNum = chNum;
 		this.tm = this;
 		this.mainFrame = mainFrame;
 		Image background = new ImageIcon("image/tutorial/tutoMenu.png").getImage().getScaledInstance(1200, 800, 0);
@@ -60,7 +62,7 @@ public class TutorialMenu extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mainFrame, tm, new MainMenu(mainFrame));				
+				ViewUtil.changePanel(mainFrame, tm, new MainMenu(mainFrame,chNum));				
 			}
 		});		
 			

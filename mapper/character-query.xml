@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<comment />
-	<entry key="insertNewCharacter">
-	       INSERT INTO CHARACTER A (
-	           A.CHAR_NAME
-	         , A.CHAR_LV
-	         , A.CHAR_ATK
-	         , A.CHAR_HP
-	         , A.CHAR_LIFE
-	         , A.CHAR_EXP
-	         , A.CHAR_STR
-	         , A.CHAR_DEX
-	         , A.CHAR_CHARISMA
-	         , A.CHAR_POINT
-	         , A.CHAR_MP
-	         , A.CHAR_NUMBER
-	         , A.USER_NUM
-	         , A.CHAR_SCORE
-	         )
-	         VALUES
-	         (
-	           ?
-	         , ?
-	         , ?
-	         , ?
-	         , ?
-	         , ?
-	         , ?
-	         , ?
-	         , ?
-	         , ?
-	         , ?
-	         , CHAR_NUMBER.NEXTVAL   
-	         , ?
-	         , ?	       
-	         )
-	</entry>	
-	<entry key="createNewInventory">
-	       INSERT INTO INVENTORY (            
+   <comment />
+   <entry key="insertNewCharacter">
+          INSERT INTO CHARACTER A (
+              A.CHAR_NAME
+            , A.CHAR_LV
+            , A.CHAR_ATK
+            , A.CHAR_HP
+            , A.CHAR_LIFE
+            , A.CHAR_EXP
+            , A.CHAR_STR
+            , A.CHAR_DEX
+            , A.CHAR_CHARISMA
+            , A.CHAR_POINT
+            , A.CHAR_MP
+            , A.CHAR_NUMBER
+            , A.USER_NUM
+            , A.CHAR_SCORE
+            )
+            VALUES
+            (
+              ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , CHAR_NUMBER.NEXTVAL   
+            , ?
+            , ?          
+            )
+   </entry>   
+   <entry key="createNewInventory">
+          INSERT INTO INVENTORY (            
                CHAR_NUMBER
              , INVEN_GOLD
              , INVEN1
@@ -67,9 +67,9 @@
              , 0
              , 0
               )
-	</entry>
-	<entry key="createNewItemEquip">
-	       INSERT INTO ITEM_EQUIP_YN (
+   </entry>
+   <entry key="createNewItemEquip">
+          INSERT INTO ITEM_EQUIP_YN (
                CHAR_NUMBER
              , WEAPON_YN
              , ARMOR_YN
@@ -81,12 +81,16 @@
              , 0
              , 0
              , 0
-             )	
-	</entry>
-	<entry key="findLoginCharNum">
-	       SELECT
-	              CHAR_NUMBER
-	         FROM USER_LOGIN    	
-	</entry>
-	
+             )   
+   </entry>
+   <entry key="findLoginCharNum">
+          SELECT 
+               MAX(CHAR_NUMBER) CHAR_NUMBER
+            FROM USER_INFO U 
+               , CHARACTER C
+           WHERE C.USER_NUM = U.USER_NUM
+             AND U.USER_NUM = ?
+           GROUP BY U.USER_NUM
+   </entry>
+   
 </properties>

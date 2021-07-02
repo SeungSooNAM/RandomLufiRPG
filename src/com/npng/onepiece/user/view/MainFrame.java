@@ -7,7 +7,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		
 		super("Random Lupi RPG");
-		this.setBounds(300, 150, 1200, 800);
+		this.setBounds(300, 150, 1200, 850);
 		
 		new LoginPageView(this);
 		

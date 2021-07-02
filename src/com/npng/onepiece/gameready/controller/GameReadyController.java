@@ -21,4 +21,11 @@ public class GameReadyController {
 		}
 		return result;
 	}
+
+	public int searchChNum(int uNum) { // 캐릭터번호 불러오기
+		
+		int chNum = gameReadySerivce.searchChNum(uNum);
+		
+		return chNum;
+	}
 }

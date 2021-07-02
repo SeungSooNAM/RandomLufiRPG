@@ -90,6 +90,7 @@ public  class SceDAO {
 				sce.setOptstr(rset.getInt("OPT_STR"));
 				sce.setOptdex(rset.getInt("OPT_DEX"));
 				sce.setOptcha(rset.getInt("OPT_CHA"));
+				sce.setScestory(rset.getString("OPT_STORY"));
 				
 			}
 			
@@ -97,6 +98,7 @@ public  class SceDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			
 			close(pstmt);
 			close(rset);
 
@@ -137,6 +139,7 @@ public  class SceDAO {
 						sce.setOptstr(rset.getInt("OPT_STR"));
 						sce.setOptdex(rset.getInt("OPT_DEX"));
 						sce.setOptcha(rset.getInt("OPT_CHA"));
+						sce.setScestory(rset.getString("OPT_STORY"));
 						
 					}
 					
@@ -279,6 +282,31 @@ public  class SceDAO {
 		return result;
 	}
 
+	public int insertfriend(Connection con , int chNum) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("insertfriend");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, chNum);
+			pstmt.setInt(2, 2);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		
+		
+		
+		}
+		return result;
 
 
+
+	}
 }

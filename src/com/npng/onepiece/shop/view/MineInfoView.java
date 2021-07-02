@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -14,8 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.inventory.model.dto.InvenrtoryDTO;
-import com.npng.onepiece.shop.model.dto.ItemDTO;
+import com.npng.onepiece.inventory.controller.InventoryController;
+import com.npng.onepiece.inventory.model.dto.EquipDTO;
+import com.npng.onepiece.inventory.model.dto.InventoryDTO;
+import com.npng.onepiece.inventory.model.dto.ItemDTO;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class MineInfoView extends JPanel {
@@ -24,95 +25,22 @@ public class MineInfoView extends JPanel {
 	private MineInfoView mainPageI;
 	private Image img;
 	private Image img2;
-	private List<ItemDTO> invenList;
+	private List<ItemDTO> itemList;
 
-	public MineInfoView (MainFrame mf, int i, InvenrtoryDTO inven) {
+	public MineInfoView (MainFrame mf, int i, int n, InventoryDTO inven) {
+//		n은 몇번째 인벤칸인지, i는 해당 칸에 들어있는 아이템의 번호
 
-		///////////////////////////////////////////////////////////////////////////	
-		//2 3 8 9 14 15 19
-		ItemDTO item0 = new ItemDTO();
-		item0.setNum(7);
-		item0.setName("밀짚모자");
-		item0.setPrice(100);
-		item0.setCate("방어구");
-		item0.setGrade("노멀");
-		item0.setEq_yn("N");
+		InventoryController itemInfo = new InventoryController();
+		itemList = itemInfo.getItemInfo();
 		
-		ItemDTO item1 = new ItemDTO();
-		item1.setNum(2);
-		item1.setName("토르의 망치");
-		item1.setPrice(100);
-		item1.setCate("무기");
-		item1.setGrade("노말");
-		item1.setEq_yn("N");
-
-		ItemDTO item2 = new ItemDTO();
-		item2.setNum(3);
-		item2.setName("유바시리");
-		item2.setPrice(500);
-		item2.setCate("무기");
-		item2.setGrade("레어");
-		item2.setEq_yn("N");
-
-		ItemDTO item3 = new ItemDTO();
-		item3.setNum(8);
-		item3.setName("해적두건");
-		item3.setPrice(100);
-		item3.setCate("방어구");
-		item3.setGrade("노멀");
-		item3.setEq_yn("N");
-
-		ItemDTO item4 = new ItemDTO();
-		item4.setNum(9);
-		item4.setName("쵸파모자");
-		item4.setPrice(500);
-		item4.setCate("방어구");
-		item4.setGrade("레어");
-		item4.setEq_yn("N");
-
-		ItemDTO item5 = new ItemDTO();
-		item5.setNum(14);
-		item5.setName("마이스터이어링");
-		item5.setPrice(500);
-		item5.setCate("장신구");
-		item5.setGrade("노멀");
-		item5.setEq_yn("N");
-
-		ItemDTO item6 = new ItemDTO();
-		item6.setNum(15);
-		item6.setName("하프이어링");
-		item6.setPrice(500);
-		item6.setCate("장신구");
-		item6.setGrade("레어");
-		item6.setEq_yn("N");
-
-		ItemDTO item7 = new ItemDTO();
-		item7.setNum(19);
-		item7.setName("커피");
-		item7.setPrice(200);
-		item7.setCate("포션");
-
-
-		invenList = new ArrayList<ItemDTO>();
-
-		invenList.add(item1);
-		invenList.add(item2);
-		invenList.add(item3);
-		invenList.add(item4);
-		invenList.add(item5);
-		invenList.add(item6);
-		invenList.add(item7);
-
-		System.out.println(invenList.size());
-		System.out.println(invenList.get(i));
-
-
-
-		//////////////////////////////////////////////////////////////////////
-
-
-
-
+		ItemDTO selectedItem = new ItemDTO();
+		
+		for(int k = 0; k < itemList.size(); k++) {
+			if(itemList.get(k).getNum() == i) {
+				selectedItem = itemList.get(k);
+			}
+		}
+		System.out.println(itemList);
 
 
 
@@ -122,7 +50,12 @@ public class MineInfoView extends JPanel {
 		this.mf = mf;
 		this.mainPageI = this;
 
-		JLabel InfoLabel = new JLabel("아이템이름");
+		JLabel labelName = new JLabel("이름 : " + selectedItem.getName());
+		JLabel labelCate = new JLabel("종류 : "+ selectedItem.getCate());
+		JLabel labelGrade = new JLabel("등급 : "+ selectedItem.getGrade());
+		JLabel labelPrice = new JLabel("가격 : " + selectedItem.getPrice());
+
+		JLabel MoneyLabel = new JLabel("소지금 : " + inven.getGold() + "G");
 
 		JLabel label = new JLabel(new ImageIcon());
 		this.img = new ImageIcon("image/shop/store_bg.PNG").getImage().getScaledInstance(1200, 800, 0);
@@ -133,6 +66,11 @@ public class MineInfoView extends JPanel {
 
 		Image img2 = new ImageIcon("image/shop/infoBoard.PNG").getImage().getScaledInstance(300, 615, 0);
 		labelBoard.setIcon(new ImageIcon(img2));
+
+		JLabel labelIcon = new JLabel(new ImageIcon());
+
+		Image img3 = new ImageIcon("image/shop/item/" + selectedItem.getNum() +".PNG").getImage();
+		labelIcon.setIcon(new ImageIcon(img3));
 
 
 		JButton buttonExit = new JButton(new ImageIcon("image/shop/buttonExit.PNG"));
@@ -184,21 +122,34 @@ public class MineInfoView extends JPanel {
 
 
 
-		label.add(InfoLabel);
 
-		label.add(buttonSell);
-		label.add(buttonCancle);
 
-		label.add(labelBoard);
+
+
+
+		Font fontM = new Font("맑은 고딕", Font.PLAIN, 30);
+		MoneyLabel.setFont(fontM); 
+		MoneyLabel.setBounds(950, 5, 300, 100);
 
 
 		Font font = new Font("맑은 고딕", Font.PLAIN, 20);
-		InfoLabel.setBounds(800, 0, 200, 550);
-		InfoLabel.setFont(font); 
+		labelName.setFont(font); 
+		labelName.setBounds(820, 250, 200, 100);
+		labelName.setForeground(Color.WHITE);
 
-		InfoLabel.setForeground(Color.WHITE);
+		labelCate.setFont(font); 
+		labelCate.setBounds(820, 300, 200, 100);
+		labelCate.setForeground(Color.WHITE);
 
+		labelGrade.setFont(font); 
+		labelGrade.setBounds(820, 350, 200, 100);
+		labelGrade.setForeground(Color.WHITE);
 
+		labelPrice.setFont(font); 
+		labelPrice.setBounds(820, 400, 200, 100);
+		labelPrice.setForeground(Color.WHITE);
+
+		labelIcon.setBounds(850, 150 , 90, 90);
 		labelBoard.setBounds(750, 50, 310, 620);
 
 
@@ -206,8 +157,47 @@ public class MineInfoView extends JPanel {
 		buttonSell.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				InventoryController equipInfo = new InventoryController();
+				EquipDTO equip = equipInfo.getEquipInfo();
+				
+				if (i == equip.geteWeaponNum() || i == equip.geteArmorNum() || i == equip.geteASCNum()) {
+					JLabel alarm = new JLabel("장비중 입니다.");
+					
+					ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven));
+					return;
+				}
 
-
+				for(int k = 0;  k < itemList.size(); k++) {
+					if(itemList.get(k).getNum() == i) {
+						int cal = inven.getGold() + itemList.get(k).getPrice();
+						inven.setGold(cal);
+					}
+				}
+				
+				
+				
+				if(n == 1) {
+					inven.setInven1(0);
+				}  else if(n == 2) {
+					inven.setInven2(0);
+				}  else if(n == 3) {
+					inven.setInven3(0);
+				}  else if(n == 4) {
+					inven.setInven4(0);
+				}  else if(n == 5) {
+					inven.setInven5(0);
+				}  else if(n == 6) {
+					inven.setInven6(0);
+				}  else if(n == 7) {
+					inven.setInven7(0);
+				}  else if(n == 8) {
+					inven.setInven8(0);
+				}  else if(n == 9) {
+					inven.setInven9(0);
+				}  else if(n == 10) {
+					inven.setInven10(0);
+				}
 				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
 
 			}
@@ -226,6 +216,21 @@ public class MineInfoView extends JPanel {
 
 		});
 
+		label.add(labelIcon);
+
+
+
+		label.add(labelName);
+		label.add(labelCate);
+		label.add(labelGrade);
+		label.add(labelPrice);
+
+
+		label.add(buttonSell);
+		label.add(buttonCancle);
+
+		label.add(labelBoard);
+		label.add(MoneyLabel);
 
 
 		label.add(buttonExit);

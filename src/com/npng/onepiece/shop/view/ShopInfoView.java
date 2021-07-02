@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -14,8 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.inventory.model.dto.InvenrtoryDTO;
-import com.npng.onepiece.shop.model.dto.ItemDTO;
+import com.npng.onepiece.inventory.model.dto.InventoryDTO;
+import com.npng.onepiece.inventory.model.dto.ItemDTO;
+import com.npng.onepiece.shop.controller.ShopController;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class ShopInfoView extends JPanel {
@@ -25,83 +25,15 @@ public class ShopInfoView extends JPanel {
 	private Image img;
 	private List<ItemDTO> shopList;
 
-
-
-	public ShopInfoView (MainFrame mf, int i, InvenrtoryDTO inven) {
+//	i는 상점의 몇번쨰 칸인지
+	public ShopInfoView (MainFrame mf, int i, InventoryDTO inven) {
 		
-///////////////////////////////////////////////////////////////////////////	
-		//2 3 8 9 14 15 19
-		ItemDTO item1 = new ItemDTO();
-		item1.setNum(2);
-		item1.setName("토르의 망치");
-		item1.setPrice(100);
-		item1.setCate("무기");
-		item1.setGrade("노말");
-		item1.setEq_yn("N");
 
-		ItemDTO item2 = new ItemDTO();
-		item2.setNum(3);
-		item2.setName("유바시리");
-		item2.setPrice(500);
-		item2.setCate("무기");
-		item2.setGrade("레어");
-		item2.setEq_yn("N");
-
-		ItemDTO item3 = new ItemDTO();
-		item3.setNum(8);
-		item3.setName("해적두건");
-		item3.setPrice(100);
-		item3.setCate("방어구");
-		item3.setGrade("노멀");
-		item3.setEq_yn("N");
-
-		ItemDTO item4 = new ItemDTO();
-		item4.setNum(9);
-		item4.setName("쵸파모자");
-		item4.setPrice(500);
-		item4.setCate("방어구");
-		item4.setGrade("레어");
-		item4.setEq_yn("N");
-
-		ItemDTO item5 = new ItemDTO();
-		item5.setNum(14);
-		item5.setName("마이스터이어링");
-		item5.setPrice(500);
-		item5.setCate("장신구");
-		item5.setGrade("노멀");
-		item5.setEq_yn("N");
+		ShopController shopInfo = new ShopController();
+		shopList = shopInfo.getShopInfo();
 		
-		ItemDTO item6 = new ItemDTO();
-		item6.setNum(15);
-		item6.setName("하프이어링");
-		item6.setPrice(500);
-		item6.setCate("장신구");
-		item6.setGrade("레어");
-		item6.setEq_yn("N");
-
-		ItemDTO item7 = new ItemDTO();
-		item7.setNum(19);
-		item7.setName("커피");
-		item7.setPrice(200);
-		item7.setCate("포션");
-
-		
-		shopList = new ArrayList<ItemDTO>();
-
-		shopList.add(item1);
-		shopList.add(item2);
-		shopList.add(item3);
-		shopList.add(item4);
-		shopList.add(item5);
-		shopList.add(item6);
-		shopList.add(item7);
-		
-		System.out.println(shopList.size());
+				System.out.println(shopList.size());
 		System.out.println(shopList.get(i));
-		
-	
-
-//////////////////////////////////////////////////////////////////////
 		
 		this.setBounds(0, 0, 1200, 800);
 		this.mf = mf;
@@ -200,7 +132,7 @@ public class ShopInfoView extends JPanel {
 		labelCate.setFont(font); 
 		labelCate.setBounds(820, 300, 200, 100);
 		labelCate.setForeground(Color.WHITE);
-
+		
 		labelGrade.setFont(font); 
 		labelGrade.setBounds(820, 350, 200, 100);
 		labelGrade.setForeground(Color.WHITE);
@@ -215,13 +147,14 @@ public class ShopInfoView extends JPanel {
 		
 		
 		
+		
 		buttonBuy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				if((inven.getGold() - shopList.get(i).getPrice()) < 0) {
-					System.out.println("돈이없자너");
-					ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
+					JLabel alarm = new JLabel("돈이 부족합니다.");
+					ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven));
 					return;
 				}
 				
@@ -229,7 +162,7 @@ public class ShopInfoView extends JPanel {
 				
 				if(i == 6) {
 					inven.setGold(cal);
-					System.out.println("목숨회복");
+					System.out.println("목숨1회복");
 					System.out.println(inven);
 					ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
 					return;
@@ -238,11 +171,26 @@ public class ShopInfoView extends JPanel {
 				
 				if((inven.getInven1() != 0) && (inven.getInven2() != 0) && (inven.getInven3() != 0) && (inven.getInven4() != 0) && (inven.getInven5() != 0)
 						&& (inven.getInven6() != 0) && (inven.getInven7() != 0) && (inven.getInven8() != 0) && (inven.getInven9() != 0) && (inven.getInven10() != 0) ) {
-					System.out.println("인벤 꽉 찼어!");
-					ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
+					JLabel alarm = new JLabel("인벤토리 자리없음");
+					ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven));
+					
 					return;
 				}
 				
+				
+				
+				if(inven.getInven1() == shopList.get(i).getNum() || inven.getInven2() == shopList.get(i).getNum() || inven.getInven3() == shopList.get(i).getNum()
+						|| inven.getInven4() == shopList.get(i).getNum() || inven.getInven5() == shopList.get(i).getNum() || inven.getInven6() == shopList.get(i).getNum()
+						|| inven.getInven7() == shopList.get(i).getNum() || inven.getInven8() == shopList.get(i).getNum() || inven.getInven9() == shopList.get(i).getNum()
+						|| inven.getInven10() == shopList.get(i).getNum()) {
+					
+					JLabel alarm = new JLabel("이미 보유중 ");
+						
+
+						ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven));
+					return;
+				}
+
 				
 				
 				if(inven.getInven1() == 0) {
@@ -270,6 +218,7 @@ public class ShopInfoView extends JPanel {
 				inven.setGold(cal);
 				System.out.println(inven);
 				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
+
 
 			}
 
