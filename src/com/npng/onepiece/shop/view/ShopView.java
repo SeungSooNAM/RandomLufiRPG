@@ -11,7 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.inventory.model.dto.InvenrtoryDTO;
+import com.npng.onepiece.inventory.controller.InventoryController;
+import com.npng.onepiece.inventory.model.dto.EquipDTO;
+import com.npng.onepiece.inventory.model.dto.InventoryDTO;
+import com.npng.onepiece.inventory.view.InventoryView;
 import com.npng.onepiece.user.view.MainFrame;
 
 
@@ -20,12 +23,12 @@ public class ShopView extends JPanel {
 
 	private MainFrame  mf;
 	private ShopView mainPage;
+	private InventoryView invenPage;
 	private Image img;
 	private Image img2;
 
-	public ShopView(MainFrame mf, InvenrtoryDTO inven) {
+	public ShopView(MainFrame mf, InventoryDTO inven) {
 		System.out.println(inven.getGold());
-		System.out.println(inven.getInven1());
 
 		this.setBounds(0, 0, 1200, 800);
 		this.mf = mf;
@@ -37,6 +40,11 @@ public class ShopView extends JPanel {
 		JLabel label = new JLabel(new ImageIcon());
 		this.img = new ImageIcon("image/shop/store_bg.PNG").getImage().getScaledInstance(1200, 800, 0);
 		label.setIcon(new ImageIcon(img));
+		
+		JLabel labelIcon = new JLabel(new ImageIcon());
+
+		Image img2 = new ImageIcon("image/shop/infoBoard.PNG").getImage().getScaledInstance(300, 615, 0);
+		labelIcon.setIcon(new ImageIcon(img2));
 
 		JButton buttonExit = new JButton(new ImageIcon("image/shop/buttonExit.PNG"));
 		JButton buttonItem1 = new JButton(new ImageIcon("image/shop/item/2.PNG"));
@@ -84,15 +92,9 @@ public class ShopView extends JPanel {
 		MoneyLabel.setFont(font); 
 		MoneyLabel.setBounds(950, 5, 300, 100);
 
-		JButton buttonCancle = new JButton(new ImageIcon("image/shop/cancle.PNG"));
+		
 
-
-		JLabel labelIcon = new JLabel(new ImageIcon());
-
-		Image img2 = new ImageIcon("image/shop/infoBoard.PNG").getImage().getScaledInstance(300, 615, 0);
-		labelIcon.setIcon(new ImageIcon(img2));
-
-
+//		i는 상점의 몇번쨰 칸인지
 		buttonItem1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -166,12 +168,13 @@ public class ShopView extends JPanel {
 
 
 		
-
+//		n은 몇번째 인벤칸인지, i는 해당 칸에 들어있는 아이템의 번호
 		buttonMyItem1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int n = 1;
 				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, inven));
+				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, n, inven));
 
 			}
 
@@ -179,8 +182,9 @@ public class ShopView extends JPanel {
 		buttonMyItem2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, inven));
+				int n = 2;
+				int i = inven.getInven2();
+				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, n, inven));
 				
 			}
 			
@@ -188,8 +192,9 @@ public class ShopView extends JPanel {
 		buttonMyItem3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, inven));
+				int n = 3;
+				int i = inven.getInven3();
+				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, n, inven));
 				
 			}
 			
@@ -197,8 +202,9 @@ public class ShopView extends JPanel {
 		buttonMyItem4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, inven));
+				int n = 4;
+				int i = inven.getInven4();
+				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, n, inven));
 				
 			}
 			
@@ -206,8 +212,9 @@ public class ShopView extends JPanel {
 		buttonMyItem5.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, inven));
+				int n = 5;
+				int i = inven.getInven5();
+				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, n, inven));
 				
 			}
 			
@@ -215,8 +222,9 @@ public class ShopView extends JPanel {
 		buttonMyItem6.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, inven));
+				int n = 6;
+				int i = inven.getInven6();
+				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, n, inven));
 				
 			}
 			
@@ -224,8 +232,9 @@ public class ShopView extends JPanel {
 		buttonMyItem7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, inven));
+				int n = 7;
+				int i = inven.getInven7();
+				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, n, inven));
 				
 			}
 			
@@ -233,8 +242,9 @@ public class ShopView extends JPanel {
 		buttonMyItem8.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, inven));
+				int n = 8;
+				int i = inven.getInven8();
+				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, n, inven));
 				
 			}
 			
@@ -242,8 +252,9 @@ public class ShopView extends JPanel {
 		buttonMyItem9.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, inven));
+				int n = 9;
+				int i = inven.getInven9();
+				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, n, inven));
 				
 			}
 			
@@ -251,13 +262,27 @@ public class ShopView extends JPanel {
 		buttonMyItem10.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, inven));
+				int n = 10;
+				int i = inven.getInven10();
+				ViewUtil.changePanel(mf, mainPage, new MineInfoView(mf, i, n, inven));
 				
 			}
 			
 		});
 
+		buttonExit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				InventoryController equipInfo = new InventoryController();
+				EquipDTO equip = equipInfo.getEquipInfo();
+				
+				ViewUtil.changePanel(mf, mainPage, new InventoryView(mf, inven, equip));
+				
+			}
+			
+		});
+		
 		
 		label.add(MoneyLabel);
 		label.add(buttonExit);
