@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.event.views.MapResultView;
+import com.npng.onepiece.inventory.view.InventoryView;
 import com.npng.onepiece.setting.Setting;
 import com.npng.onepiece.shop.view.ShopView;
 import com.npng.onepiece.user.view.MainFrame;
@@ -37,9 +38,23 @@ public class MainMenu extends JPanel{
       
       JButton btnInven = new JButton("가 방");
       btnInven.setBounds(120, 317,  330, 80);
+      btnInven.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+          ViewUtil.changePanel(mainFrame, mainMenu, new InventoryView(mainFrame));
+          
+      }
+  });
       
       JButton btnShop = new JButton("상 점");
       btnShop.setBounds(120, 417,  330, 80);
+      btnShop.addActionListener(new ActionListener() {
+          
+          @Override
+          public void actionPerformed(ActionEvent e) {
+//              ViewUtil.changePanel(mainFrame, mainMenu, new ShopView(mainFrame,  inven));
+          }
+      });
       
       JButton btnFriend = new JButton("동 료");
       btnFriend.setBounds(120, 515,  330, 80);
@@ -49,9 +64,23 @@ public class MainMenu extends JPanel{
       
       JButton btnAdventure = new JButton("모 험 시 작");
       btnAdventure.setBounds(760, 680, 350, 80);
+      btnAdventure.addActionListener(new ActionListener() {
+          
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              ViewUtil.changePanel(mainFrame, mainMenu, new MapResultView(mainFrame));
+          }
+      });
       
       JButton btnSetting = new JButton();
       btnSetting.setBounds(1070, 10,90,80);
+      btnSetting.addActionListener(new ActionListener() {
+          
+          @Override
+          public void actionPerformed(ActionEvent e) {
+             ViewUtil.changePanel(mainFrame, mainMenu, new Setting(mainFrame));
+          }
+       });
      
       btnCh.setOpaque(false);
       btnInven.setOpaque(false);
