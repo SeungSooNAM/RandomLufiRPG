@@ -28,8 +28,9 @@ public class EventSceView extends JPanel{
 	private JButton btn1;
 	private JButton btn2;
 	private JButton btn3;
+	private chNum chNum;
 
-	public EventSceView(MainFrame mf, int map) {
+	public EventSceView(MainFrame mf,int chNum, int map) {
 		
 		
 		this.mf = mf;
@@ -38,7 +39,8 @@ public class EventSceView extends JPanel{
 		mf.add(this);
 		
 		eventController co = new eventController();
-		 num = co.random(map);
+//		 num = co.random(map);  /* 시나리오번호*/
+		 num = 3;  /* 교체해야됨*/
 		
 		
 		JLabel label = new JLabel(new ImageIcon());
@@ -61,25 +63,16 @@ public class EventSceView extends JPanel{
 		btn2.setBounds(930, 650, 120, 55);
 		label.add(btn2);
 		
-//	    btn3 = new JButton(new ImageIcon("image/sce/3번선택.PNG"));
-//		btn3.setBounds(930, 670, 120, 55);
-//		label.add(btn3);
 		
-//		JButton btn3 = new JButton(new ImageIcon("image/sce/2번선택.PNG"));
-//		btn3.setBounds(930, 740, 120, 90);
-//		label.add(btn3);
-		
-//		btn1.setBorderPainted(false);
-//		btn2.setBorderPainted(false);
+		btn1.setBorderPainted(false);
+		btn2.setBorderPainted(false);
 //		btn3.setBorderPainted(false);
 		
 		
 		
-		btn1.addMouseListener(new OneActionListener() {
-		});
-		
-		
-//		btn.addMouseListener(new OneActionListener());
+		btn1.addMouseListener(new OneActionListener());
+	
+		btn2.addMouseListener(new OneActionListener());
 	
 		
 		
@@ -91,11 +84,10 @@ public class EventSceView extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e ) {
 			if(e.getSource() == btn1) {
-		 ViewUtil.changePanel(mf, view, new EventResultView(mf ,1 ,num));}
+		 ViewUtil.changePanel(mf, view, new EventResultView(mf ,chNum,1 ,num));}
 			if(e.getSource() == btn2) {
-		 ViewUtil.changePanel(mf, view, new EventResultView(mf ,2 ,num));}
-//			if(e.getSource() == btn3) {
-//		 ViewUtil.changePanel(mf, view, new EventResultView(mf ,3 ,num));}
+		 ViewUtil.changePanel(mf, view, new EventResultView(mf ,chNum,2 ,num));}
+
 			
 	}
 		
