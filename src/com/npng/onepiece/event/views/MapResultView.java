@@ -19,10 +19,11 @@ public class MapResultView extends JPanel{
 	private MainFrame mf;
 	private MapResultView view;
 	private SceDTO sce;
+	private int chNum;
 
 	public MapResultView(MainFrame mf,int chNum) {
 		
-		
+		this.chNum = chNum;
 		this.mf = mf;
 		this.view = this;
 		this.setSize(1200, 800);
@@ -50,7 +51,7 @@ public class MapResultView extends JPanel{
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
-		 ViewUtil.changePanel(mf, view, new SelectMapView(mf));
+		 ViewUtil.changePanel(mf, view, new SelectMapView(mf,chNum));
 	}
 	}
 

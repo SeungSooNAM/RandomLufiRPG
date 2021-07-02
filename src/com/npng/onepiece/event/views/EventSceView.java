@@ -29,14 +29,13 @@ public class EventSceView extends JPanel{
 	private JButton btn2;
 	private JButton btn3;
 	private int chNum;
-	public EventSceView(MainFrame mf,int chNum1, int map) {
+	public EventSceView(MainFrame mf,int chNum, int map) {
 		
-		chNum = chNum1;
+		this.chNum = chNum;
 		this.mf = mf;
 		this.view = this;
 		this.setSize(1200, 800);
 		mf.add(this);
-		
 		eventController co = new eventController();
 		 num = co.random(map);  /* 시나리오번호*/
 		 num = 3;  /* 교체해야됨*/

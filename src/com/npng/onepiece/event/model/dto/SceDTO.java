@@ -9,7 +9,7 @@ public class SceDTO {
 	
 	/*시나리오*/
 	private int scenum;
-	private String scestroy;
+	private String scestory;
 	private String sceclear;
 	private int sceexp;
 	private int scescore;
@@ -74,14 +74,14 @@ public class SceDTO {
 
 
 
-	public String getScestroy() {
-		return scestroy;
+	public String getScestory() {
+		return scestory;
 	}
 
 
 
-	public void setScestroy(String scestroy) {
-		this.scestroy = scestroy;
+	public void setScestory(String scestory) {
+		this.scestory = scestory;
 	}
 
 
@@ -266,14 +266,14 @@ public class SceDTO {
 
 
 
-	public SceDTO(int logionnum, int charnum, int scenum, String scestroy, String sceclear, int sceexp, int scescore,
+	public SceDTO(int logionnum, int charnum, int scenum, String scestory, String sceclear, int sceexp, int scescore,
 			int scemoney, int optnum, int optstr, int optdex, int optcha, int charlife, int charstr, int chardex,
 			int charcha, int charexp, int charscore, int invengold) {
 		super();
 		this.logionnum = logionnum;
 		this.charnum = charnum;
 		this.scenum = scenum;
-		this.scestroy = scestroy;
+		this.scestory = scestory;
 		this.sceclear = sceclear;
 		this.sceexp = sceexp;
 		this.scescore = scescore;
@@ -295,8 +295,8 @@ public class SceDTO {
 
 	@Override
 	public String toString() {
-		return "SceDTO [logionnum=" + logionnum + ", charnum=" + charnum + ", scenum=" + scenum + ", scestroy="
-				+ scestroy + ", sceclear=" + sceclear + ", sceexp=" + sceexp + ", scescore=" + scescore + ", scemoney="
+		return "SceDTO [logionnum=" + logionnum + ", charnum=" + charnum + ", scenum=" + scenum + ", scestory="
+				+ scestory + ", sceclear=" + sceclear + ", sceexp=" + sceexp + ", scescore=" + scescore + ", scemoney="
 				+ scemoney + ", optnum=" + optnum + ", optstr=" + optstr + ", optdex=" + optdex + ", optcha=" + optcha
 				+ ", charlife=" + charlife + ", charstr=" + charstr + ", chardex=" + chardex + ", charcha=" + charcha
 				+ ", charexp=" + charexp + ", charscore=" + charscore + ", invengold=" + invengold + "]";
