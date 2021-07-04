@@ -38,7 +38,9 @@ public class SelectMapView extends JPanel{
 	private int num6= 6;
 	
 	private int chNum;
+
 	private int boss;
+
 
 
 	public SelectMapView(MainFrame mf, int chNum) {
@@ -47,8 +49,7 @@ public class SelectMapView extends JPanel{
 		this.setSize(1200, 800);
 		mf.add(this);
 		this.chNum = chNum;
-		
-		
+
 		
 		JLabel label = new JLabel(new ImageIcon());
 		this.img = new ImageIcon("image/sce/지도.PNG").getImage().getScaledInstance(1200, 800, 0);

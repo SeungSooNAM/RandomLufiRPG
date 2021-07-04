@@ -21,7 +21,9 @@ public class EventResultView extends JPanel{
 	private MainFrame mf;
 	private EventResultView view;
 	private int chNum;
+
 	private int result;
+
 	
 	public EventResultView(MainFrame mf ,int chNum,int map, int num) {
 		/*선택번호 , 시나리오번호*/
@@ -32,6 +34,7 @@ public class EventResultView extends JPanel{
 		
 		this.setSize(1200, 800);
 		mf.add(this);
+
 		
 		eventController event = new eventController(); //전투결과호출
 		result = event.sceresult(map, num,chNum, view); //승리1 , 패배0
@@ -50,7 +53,18 @@ public class EventResultView extends JPanel{
 		SceDTO sd = event.levelUp(chNum);
 		
 		
+
+		Font font6 = new Font("",0,25);
+		eventController event = new eventController(); //전투결과호출
+		int result = event.sceresult(map, num,chNum); //승리1 , 패배0
+		SceDTO reward = event.reward(result, num);   //보상
+		String story = event.story(result, num);   //보상스토리
 		
+		if(result == 2) {
+		friend = "동료를 획득하였습니다";
+		}
+		
+
 
 		
 		JLabel label = new JLabel(new ImageIcon());
@@ -72,6 +86,7 @@ public class EventResultView extends JPanel{
 		JLabel rewardlb2 = new JLabel("점수 + "+reward.getScescore());
 		JLabel rewardlb3 = new JLabel("돈+ "+reward.getScemoney());
 		JLabel friendstory = new JLabel(friend);
+
 		JLabel lvup = new JLabel(sd.getLvupname());
 		JLabel bossname = new JLabel(sd.getBossname());
 		
@@ -98,6 +113,26 @@ public class EventResultView extends JPanel{
 		label.add(friendstory);					//동료획득
 		bossname.setBounds(100,290,500,100);
 		label.add(bossname);					//보스해금
+
+		
+		
+		opt_story.setFont(font1);
+		rewardlb2.setFont(font1);
+		rewardlb3.setFont(font1);
+		rewardlb3.setFont(font1);
+		friendstory.setFont(font1);
+		
+		opt_story.setBounds(100,110,1000,100);
+		label.add(opt_story);
+		rewardlb1.setBounds(100,140,200,100);
+		label.add(rewardlb1);
+		rewardlb2.setBounds(100,170,200,100);
+		label.add(rewardlb2);
+		rewardlb3.setBounds(100,200,200,100);
+		label.add(rewardlb3);
+		friendstory.setBounds(100,230,500,100);
+		label.add(friendstory);
+
 		
 		
 		
@@ -112,6 +147,7 @@ public class EventResultView extends JPanel{
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
+
 					
 			ViewUtil.changePanel(mf, view, new SelectMapView(mf, chNum));
 		
@@ -119,6 +155,13 @@ public class EventResultView extends JPanel{
 		}
 	}
 
+
+		 ViewUtil.changePanel(mf, view, new SelectMapView(mf, chNum));
+	}
+	}
+	
+	
+	
 
 
 }

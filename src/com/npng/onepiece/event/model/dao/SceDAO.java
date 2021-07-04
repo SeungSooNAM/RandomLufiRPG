@@ -306,6 +306,7 @@ public  class SceDAO {
 
 
 
+
 	}
 
 	public int friendcheck(Connection con ,int chNum) {
@@ -339,7 +340,9 @@ public  class SceDAO {
 			close(pstmt);
 			close(rset);
 
+
 		}
+
 
 		return result;
 }
@@ -508,4 +511,8 @@ public  class SceDAO {
 	}
 
 	
+
+
+	}
+
 }
