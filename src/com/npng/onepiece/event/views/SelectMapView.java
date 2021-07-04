@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.battle.view.main.BattleView;
 import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.event.controller.eventController;
 import com.npng.onepiece.event.model.dto.SceDTO;
 import com.npng.onepiece.mainMenu.MainMenu;
 import com.npng.onepiece.user.view.MainFrame;
@@ -38,6 +39,9 @@ public class SelectMapView extends JPanel{
 	
 	private int chNum;
 
+	private int boss;
+
+
 
 	public SelectMapView(MainFrame mf, int chNum) {
 		this.mf = mf;
@@ -45,6 +49,7 @@ public class SelectMapView extends JPanel{
 		this.setSize(1200, 800);
 		mf.add(this);
 		this.chNum = chNum;
+
 		
 		JLabel label = new JLabel(new ImageIcon());
 		this.img = new ImageIcon("image/sce/지도.PNG").getImage().getScaledInstance(1200, 800, 0);
@@ -87,24 +92,17 @@ public class SelectMapView extends JPanel{
 		JButton exitbtn = new JButton(new ImageIcon("image/sce/메뉴화면으로.PNG"));
 		exitbtn.setBounds(517, 631, 128, 90);
 		label.add(exitbtn);
-//		btn1.setBorderPainted(false);
-//		btn2.setBorderPainted(false);
-//		btn3.setBorderPainted(false);
-//		btn4.setBorderPainted(false);
-//		btn5.setBorderPainted(false);
-//		btn6.setBorderPainted(false);
-//		btn7.setBorderPainted(false);
-//		exitbtn.setBorderPainted(false);
 		
+		eventController event = new eventController();
 		
-		
-//		btn.addMouseListener(new OneActionListener());
-	
+		SceDTO sd = event.levelUp(chNum);
+		boss = sd.getCharlv();
+			
 		int number = (int) (Math.random()*3)+1;
 		 System.out.println("맵, 일반이벤트 번호 : " + number);
 		  //일반이벤트
 	
-			if(number == 0) {	
+			if(number == 1) {	
 //				if(number == 1) {	
 				btn1.addMouseListener(new BattleActionListener());  //전투이벤트
 				btn2.addMouseListener(new BattleActionListener());  
@@ -112,8 +110,7 @@ public class SelectMapView extends JPanel{
 				btn4.addMouseListener(new BattleActionListener());  
 				btn5.addMouseListener(new BattleActionListener());  
 				btn6.addMouseListener(new BattleActionListener());  
-			} if(number > 0) {
-//			} if(number > 1) {
+			} if(number > 1) {
 
 				btn1.addMouseListener(new SceActionListener());  //일반이벤트
 				btn2.addMouseListener(new SceActionListener());  
@@ -131,7 +128,13 @@ public class SelectMapView extends JPanel{
 	private class BossActionListener extends  MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-		 ViewUtil.changePanel(mf, view, new MapResultView(mf,chNum));
+			
+			if(boss >= 6 ) {
+				ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,7));
+			} else {
+				ViewUtil.changePanel(mf, view, new MapResultView(mf,chNum));
+			}
+			
 	}
 		
 	}
@@ -167,22 +170,24 @@ public class SelectMapView extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		if(e.getSource() == btn1) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,1));}
+			ViewUtil.changePanel(mf, view, new BattleView(1));}
 		if(e.getSource() == btn2) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,2));}
+			ViewUtil.changePanel(mf, view, new BattleView(2));}
 		if(e.getSource() == btn3) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,3));}
+			ViewUtil.changePanel(mf, view, new BattleView(3));}
 		if(e.getSource() == btn4) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,4));}
+			ViewUtil.changePanel(mf, view, new BattleView(4));}
 		if(e.getSource() == btn5) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,5));}
+			ViewUtil.changePanel(mf, view, new BattleView(5));}
 		if(e.getSource() == btn6) {
-			ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,6));}
+			ViewUtil.changePanel(mf, view, new BattleView(6));}
 	}
+
+}
 }
 	
 
 
 
-}
+
 

@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +16,7 @@ import com.npng.onepiece.inventory.controller.InventoryController;
 import com.npng.onepiece.inventory.model.dto.EquipDTO;
 import com.npng.onepiece.inventory.model.dto.InventoryDTO;
 import com.npng.onepiece.inventory.model.dto.WeaponDTO;
+import com.npng.onepiece.mainMenu.MainMenu;
 import com.npng.onepiece.user.view.MainFrame;
 
 
@@ -28,11 +28,17 @@ public class InventoryView extends JPanel {
 	private Image img;
 	private Image img2;
 	private EquipDTO equip;
+	private InventoryDTO inven;
 
-	public InventoryView (MainFrame mf, InventoryDTO inven, EquipDTO equip) {
+	public InventoryView (MainFrame mf, int cn) {
+		
 
-		InventoryController equipInfo = new InventoryController();
-		equip = equipInfo.getEquipInfo();
+		InventoryController invenControl = new InventoryController();
+		inven = invenControl.getInventoryInfo(cn);
+		equip = invenControl.getEquipInfo(cn);
+		
+		
+		System.out.println(inven);
 
 		int [] invenNum = new int[10];
 		invenNum[0] = inven.getInven1();
@@ -173,13 +179,14 @@ public class InventoryView extends JPanel {
 		labelE10.setForeground(Color.GREEN);
 		labelE10.setBounds(245, 708, 100, 30);
 		
-
+		
+//		n은 몇번째 인벤칸인지, i는 해당 칸에 들어있는 아이템의 번호
 		buttonMyItem1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int n = 1;
 				int i = inven.getInven1();
-				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
+				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven, equip, invenE[0], cn));
 			}
 
 		});
@@ -188,7 +195,7 @@ public class InventoryView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int n = 2;
 				int i = inven.getInven2();
-				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
+					ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven, equip, invenE[1], cn));
 			}
 
 		});
@@ -197,7 +204,7 @@ public class InventoryView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int n = 3;
 				int i = inven.getInven3();
-				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
+					ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven, equip, invenE[2], cn));
 			}
 
 		});
@@ -206,7 +213,7 @@ public class InventoryView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int n = 4;
 				int i = inven.getInven4();
-				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
+					ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven, equip, invenE[3], cn));
 			}
 
 		});
@@ -215,7 +222,7 @@ public class InventoryView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int n = 5;
 				int i = inven.getInven5();
-				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
+					ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven, equip, invenE[4], cn));
 			}
 
 		});
@@ -224,7 +231,7 @@ public class InventoryView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int n = 6;
 				int i = inven.getInven6();
-				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
+					ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven, equip, invenE[5], cn));
 			}
 
 		});
@@ -233,7 +240,7 @@ public class InventoryView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int n = 7;
 				int i = inven.getInven7();
-				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
+					ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven, equip, invenE[6], cn));			
 			}
 
 		});
@@ -242,7 +249,7 @@ public class InventoryView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int n = 8;
 				int i = inven.getInven8();
-				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
+					ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven, equip,  invenE[7], cn));
 			}
 
 		});
@@ -251,7 +258,7 @@ public class InventoryView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int n = 9;
 				int i = inven.getInven9();
-				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
+					ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven, equip,  invenE[8], cn));			
 			}
 
 		});
@@ -260,7 +267,15 @@ public class InventoryView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int n = 10;
 				int i = inven.getInven10();
-				ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven));
+					ViewUtil.changePanel(mf, mainPage, new InvenrtoryInfoView(mf,i, n, inven, equip,  invenE[9], cn));
+			}
+
+		});
+		
+		buttonExit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					ViewUtil.changePanel(mf, mainPage, new MainMenu(mf, cn));
 			}
 
 		});
@@ -284,7 +299,7 @@ public class InventoryView extends JPanel {
 		}
 		if(inven.getInven3() != 0) {
 			label.add(buttonMyItem3);
-			if(invenE[3] == 1) {
+			if(invenE[2] == 1) {
 			label.add(labelE3);
 		}
 		}

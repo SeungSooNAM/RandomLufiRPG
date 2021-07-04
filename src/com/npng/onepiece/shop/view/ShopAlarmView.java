@@ -26,18 +26,13 @@ public class ShopAlarmView extends JPanel {
 	private List<ItemDTO> shopList;
 
 //	i는 상점의 몇번쨰 칸인지
-	public ShopAlarmView (MainFrame mf, JLabel alarm, InventoryDTO inven) {
-		
+	public ShopAlarmView (MainFrame mf, JLabel alarm, InventoryDTO inven, int cn, int s) {
 
-		
-		
 		this.setBounds(0, 0, 1200, 800);
 		this.mf = mf;
 		this.mainPageI = this;
 		
-		
 
-		
 		JLabel MoneyLabel = new JLabel("소지금 : " + inven.getGold() + "G");
 		
 		JLabel label = new JLabel(new ImageIcon());
@@ -53,23 +48,36 @@ public class ShopAlarmView extends JPanel {
 		JLabel labelIcon = new JLabel(new ImageIcon());
 
 
-
-
-
-
-
 		JButton buttonExit = new JButton(new ImageIcon("image/shop/buttonExit.PNG"));
 
 		JButton buttonCancle = new JButton(new ImageIcon("image/shop/buttonCancle.PNG"));
 
 		JButton buttonItem1 = new JButton(new ImageIcon("image/shop/item/2.PNG"));
 		JButton buttonItem2 = new JButton(new ImageIcon("image/shop/item/3.PNG"));
-		JButton buttonItem3 = new JButton(new ImageIcon("image/shop/item/8.PNG"));
-		JButton buttonItem4 = new JButton(new ImageIcon("image/shop/item/9.PNG"));
-		JButton buttonItem5 = new JButton(new ImageIcon("image/shop/item/14.PNG"));
-		JButton buttonItem6 = new JButton(new ImageIcon("image/shop/item/15.PNG"));
-		JButton buttonItem7 = new JButton(new ImageIcon("image/shop/item/19.PNG"));
-
+		JButton buttonItem3 = new JButton(new ImageIcon("image/shop/item/4.PNG"));
+		JButton buttonItem4 = new JButton(new ImageIcon("image/shop/item/8.PNG"));
+		JButton buttonItem5 = new JButton(new ImageIcon("image/shop/item/9.PNG"));
+		JButton buttonItem6 = new JButton(new ImageIcon("image/shop/item/10.PNG"));
+		JButton buttonItem7 = new JButton(new ImageIcon("image/shop/item/14.PNG"));
+		JButton buttonItem8 = new JButton(new ImageIcon("image/shop/item/15.PNG"));
+		JButton buttonItem9 = new JButton(new ImageIcon("image/shop/item/16.PNG"));
+		JButton buttonItem10 = new JButton(new ImageIcon("image/shop/item/19.PNG"));
+		
+		if(s == 1) {
+			buttonItem1 = new JButton(new ImageIcon("image/shop/item/5.PNG"));
+			buttonItem2 = new JButton(new ImageIcon("image/shop/item/6.PNG"));
+			
+		}
+		if(s == 2) {
+			buttonItem1 = new JButton(new ImageIcon("image/shop/item/11.PNG"));
+			buttonItem2 = new JButton(new ImageIcon("image/shop/item/12.PNG"));
+		}
+		if(s == 3) {
+			buttonItem1 = new JButton(new ImageIcon("image/shop/item/17.PNG"));
+			buttonItem2 = new JButton(new ImageIcon("image/shop/item/18.PNG"));
+			
+		}
+		
 		JButton buttonMyItem1 = new JButton(new ImageIcon("image/shop/item/" + inven.getInven1() +".PNG"));
 		JButton buttonMyItem2 = new JButton(new ImageIcon("image/shop/item/" + inven.getInven2() +".PNG"));
 		JButton buttonMyItem3 = new JButton(new ImageIcon("image/shop/item/" + inven.getInven3() +".PNG"));
@@ -92,6 +100,9 @@ public class ShopAlarmView extends JPanel {
 		buttonItem5.setBounds(490, 100, 90, 90);
 		buttonItem6.setBounds(50, 220, 90, 90);
 		buttonItem7.setBounds(160, 220, 90, 90);
+		buttonItem8.setBounds(270, 220, 90, 90);
+		buttonItem9.setBounds(380, 220, 90, 90);
+		buttonItem10.setBounds(490, 220, 90, 90);
 
 
 		buttonMyItem1.setBounds(50, 480, 90, 90);
@@ -131,7 +142,7 @@ public class ShopAlarmView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
+				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, cn, s));
 
 			}
 
@@ -156,12 +167,19 @@ public class ShopAlarmView extends JPanel {
 
 		label.add(buttonItem1);
 		label.add(buttonItem2);
-		label.add(buttonItem3);
-		label.add(buttonItem4);
-		label.add(buttonItem5);
-		label.add(buttonItem6);
-		label.add(buttonItem7);
-
+		if(s==0) {
+			label.add(buttonItem3);
+			label.add(buttonItem4);	
+			label.add(buttonItem5);		
+			label.add(buttonItem6);		
+			label.add(buttonItem7);		
+			label.add(buttonItem8);		
+			label.add(buttonItem9);
+			label.add(buttonItem10);
+		}
+		
+		
+		
 		if(inven.getInven1() != 0) {
 			label.add(buttonMyItem1);
 		}

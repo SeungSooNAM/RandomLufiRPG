@@ -1,7 +1,7 @@
 
 package com.npng.onepiece.event.model.dao;
 
-import static com.npng.onepiece.common.JDBCTemplate.close;
+import static com.npng.onepiece.common.JDBCTemplate.close; 
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,8 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Properties;
 
+import com.npng.onepiece.battle.model.dto.BattleDTO;
 import com.npng.onepiece.event.model.dto.SceDTO;
 
 public  class SceDAO {
@@ -212,7 +214,6 @@ public  class SceDAO {
 			
 			while(rset.next()) {
 				
-//				reward = new SceDTO();
 				reward = new SceDTO();
 				
 				reward.setSceexp(rset.getInt("SCE_EXP"));
@@ -235,33 +236,30 @@ public  class SceDAO {
 
 	public int chUpdate(Connection con, SceDTO reward,int chNum) {
 		
+		
+		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = prop.getProperty("chupdate");
-		
 		try {
 			pstmt = con.prepareStatement(query);
-
-
-
 			pstmt.setInt(1, reward.getSceexp());
 			pstmt.setInt(2, reward.getScescore());
 			pstmt.setInt(3, chNum); 
-	
-			
+			System.out.println("++++++++++");
 			result = pstmt.executeUpdate();
-
+			System.out.println("==========");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt); 
 		}
-		
+		System.out.println("==========");
+
 		return result;
 	}
 
 	public int invenUpdate(Connection con, SceDTO reward, int chNum) {
-		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = prop.getProperty("invenupdate");
@@ -308,5 +306,213 @@ public  class SceDAO {
 
 
 
+
 	}
+
+	public int friendcheck(Connection con ,int chNum) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("searchfriend");
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, chNum); 
+			pstmt.setInt(2, 2); 
+
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				result = rset.getInt("FR_NUM");
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+
+
+		}
+
+
+		return result;
+}
+
+	public int searchlife(Connection con,int chNum) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("searchlife");
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, chNum); 
+
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				result = rset.getInt("CHAR_LIFE");
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+
+		}
+
+		return result;
+	}
+	
+	
+	public SceDTO levelUp(Connection con, int cNum) {
+			//레벨업
+	      PreparedStatement pstmt = null;
+
+	      ResultSet rset = null;
+	      
+	      SceDTO ch = null;
+	      
+	      String query = prop.getProperty("selectExp");
+
+	      try {
+	         pstmt = con.prepareStatement(query);
+	         pstmt.setInt(1, cNum);
+	         
+	         rset = pstmt.executeQuery();
+
+	         while(rset.next()) {
+	        	 ch = new SceDTO();
+	        	 ch.setCharexp(rset.getInt("CHAR_EXP"));
+	        	 ch.setCharlv(rset.getInt("CHAR_LV"));
+	            
+	         }
+
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	         close(rset);
+	      }
+
+	      return ch;
+	   }
+
+	public int pointUp(Connection con, int cNum, int lv, int exp) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("pointdate");
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setInt(1, cNum);
+		
+
+	
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result;
+	}
+
+	public int chReward(Connection con , BattleDTO battle) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("chReward");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, battle.getmExp());
+			pstmt.setInt(2, battle.getmScore());
+			pstmt.setInt(3, battle.getcNumber());
+			System.out.println("ddd");
+			result = pstmt.executeUpdate();
+			System.out.println("ddd");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+	
+		
+		return result;
+	}
+
+	public int invenReward(Connection con, BattleDTO battle) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("invenupdate");
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setInt(1, battle.getmGold());
+			pstmt.setInt(2, battle.getcNumber()); 
+	
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result;
+		
+	}
+
+	public int minusLife(Connection con, BattleDTO battle) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("minuslife");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, battle.getcNumber());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+	
+		
+		return result;
+	}
+
+	
+
+
+	}
+
 }

@@ -38,7 +38,7 @@
             )
    </entry>   
    <entry key="createNewInventory">
-          INSERT INTO INVENTORY (            
+         INSERT INTO INVENTORY (
                CHAR_NUMBER
              , INVEN_GOLD
              , INVEN1
@@ -55,9 +55,9 @@
              VALUES
              (
                ?
-             , 0
-             , 0
-             , 0
+             , 10000
+             , 1
+             , 7
              , 0
              , 0
              , 0
@@ -92,5 +92,55 @@
              AND U.USER_NUM = ?
            GROUP BY U.USER_NUM
    </entry>
-   
+   <entry key="lookChInfo">
+          SELECT
+               CHAR_NAME
+            , CHAR_LV
+            , CHAR_ATK
+            , CHAR_HP
+            , CHAR_LIFE
+            , CHAR_EXP
+            , CHAR_STR
+            , CHAR_DEX
+            , CHAR_CHARISMA
+            , CHAR_POINT
+            , CHAR_MP            
+            , CHAR_SCORE
+         FROM CHARACTER
+        WHERE CHAR_NUMBER = ?   
+   </entry>  
+   <entry key="CharacterStrUp">
+          UPDATE CHARACTER
+             SET CHAR_STR = ?
+               , CHAR_POINT = ?
+           WHERE CHAR_NUMBER = ?          
+   </entry>
+   <entry key="CharacterDexUp">
+          UPDATE CHARACTER
+             SET CHAR_DEX = ?
+               , CHAR_POINT = ?
+           WHERE CHAR_NUMBER = ?          
+   </entry>
+   <entry key="CharacterChaUp">
+          UPDATE CHARACTER
+             SET CHAR_CHARISMA = ?
+               , CHAR_POINT = ?
+           WHERE CHAR_NUMBER = ?          
+   </entry>
+   <entry key="createFriend">
+          INSERT
+            INTO CH_FRIEND
+          (
+            CHAR_NUM
+          , FR_NUM
+          ) 
+          VALUES
+          (
+            ?
+          , 0
+          ) 
+   </entry>
 </properties>
+
+
+

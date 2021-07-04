@@ -1,6 +1,8 @@
 package com.npng.onepiece.inventory.model.dto;
 
-public class EquipDTO {
+import java.io.Serializable;
+
+public class EquipDTO implements Serializable{
 	
 	private int eWeaponNum;
 	private int eArmorNum;

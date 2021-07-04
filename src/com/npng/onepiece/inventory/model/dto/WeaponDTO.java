@@ -1,6 +1,8 @@
 package com.npng.onepiece.inventory.model.dto;
 
-public class WeaponDTO extends ItemDTO{
+import java.io.Serializable;
+
+public class WeaponDTO extends ItemDTO implements Serializable{
 	private int atk;
 	private int str;
 	public WeaponDTO() {}

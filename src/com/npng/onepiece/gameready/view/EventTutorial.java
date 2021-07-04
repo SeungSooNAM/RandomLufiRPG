@@ -17,7 +17,7 @@ public class EventTutorial extends JPanel {
 	private MainFrame mf;
 	private EventTutorial et;
 
-	public EventTutorial(MainFrame mf) {
+	public EventTutorial(MainFrame mf, int chNum) {
 		this.et = this;
 		this.mf = mf;
 
@@ -32,14 +32,15 @@ public class EventTutorial extends JPanel {
 
 		// 중간아래 next버튼
 		JButton nextBtn = new JButton(new ImageIcon("image/tutorial/next123.png"));
-
+		nextBtn.setContentAreaFilled(false);
+		nextBtn.setFocusPainted(false);
 		nextBtn.setBounds(730, 657, 125, 40);
 		label.add(nextBtn);
 		nextBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mf, et, new EventTutorial1(mf));
+				ViewUtil.changePanel(mf, et, new EventTutorial1(mf, chNum));
 			}
 		});
 
@@ -47,6 +48,8 @@ public class EventTutorial extends JPanel {
 
 		// 우측상단 스킵버튼 =========================================================
 		JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
+		skipBtn.setContentAreaFilled(false);
+		skipBtn.setFocusPainted(false);
 		skipBtn.setBounds(999, 30, 130, 50);
 		label.add(skipBtn);
 
@@ -54,7 +57,7 @@ public class EventTutorial extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mf, et, new TutorialMenu(mf));
+				ViewUtil.changePanel(mf, et, new TutorialMenu(mf, chNum));
 			}
 		});
 	}
@@ -64,7 +67,7 @@ public class EventTutorial extends JPanel {
 		private MainFrame mf;
 		private EventTutorial1 et;
 
-		public EventTutorial1(MainFrame mf) {
+		public EventTutorial1(MainFrame mf, int chNum) {
 			this.et = this;
 			this.mf = mf;
 
@@ -79,14 +82,15 @@ public class EventTutorial extends JPanel {
 
 			// 좌측하단 나미선택 버튼 ============================================================
 			JButton nextBtn = new JButton(new ImageIcon("image/tutorial/yellow.png"));
-
+			nextBtn.setContentAreaFilled(false);
+			nextBtn.setFocusPainted(false);
 			nextBtn.setBounds(128, 610, 55, 41);
 			label.add(nextBtn);
 			nextBtn.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					ViewUtil.changePanel(mf, et, new EventTutorial2(mf));
+					ViewUtil.changePanel(mf, et, new EventTutorial2(mf, chNum));
 				}
 			});
 
@@ -94,14 +98,16 @@ public class EventTutorial extends JPanel {
 
 			// 우측상단 스킵버튼 =========================================================
 			JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
-			skipBtn.setBounds(999, 30, 130, 50);
+			skipBtn.setContentAreaFilled(false);
+			skipBtn.setFocusPainted(false);
+			skipBtn.setBounds(1030, 30, 130, 50);
 			label.add(skipBtn);
 
 			skipBtn.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					ViewUtil.changePanel(mf, et, new TutorialMenu(mf));
+					ViewUtil.changePanel(mf, et, new TutorialMenu(mf, chNum));
 				}
 			});
 		}
@@ -112,7 +118,7 @@ public class EventTutorial extends JPanel {
 			private MainFrame mf;
 			private EventTutorial2 et;
 
-			public EventTutorial2(MainFrame mf) {
+			public EventTutorial2(MainFrame mf, int chNum) {
 				this.et = this;
 				this.mf = mf;
 
@@ -127,14 +133,15 @@ public class EventTutorial extends JPanel {
 
 				// 우측하단 next 버튼 ============================================================
 				JButton nextBtn = new JButton(new ImageIcon("image/tutorial/next123.png"));
-
-				nextBtn.setBounds(960, 670, 125, 41);
+				nextBtn.setContentAreaFilled(false);
+				nextBtn.setFocusPainted(false);
+				nextBtn.setBounds(960, 690, 125, 55);
 				label.add(nextBtn);
 				nextBtn.addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						ViewUtil.changePanel(mf, et, new EventTutorial3(mf));
+						ViewUtil.changePanel(mf, et, new EventTutorial3(mf, chNum));
 					}
 				});
 
@@ -142,14 +149,16 @@ public class EventTutorial extends JPanel {
 
 				// 우측상단 스킵버튼 =========================================================
 				JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
-				skipBtn.setBounds(999, 30, 130, 50);
-//				label.add(skipBtn);
+				skipBtn.setContentAreaFilled(false);
+				skipBtn.setFocusPainted(false);
+				skipBtn.setBounds(1030, 30, 130, 50);
+				label.add(skipBtn);
 
 				skipBtn.addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						ViewUtil.changePanel(mf, et, new TutorialMenu(mf));
+						ViewUtil.changePanel(mf, et, new TutorialMenu(mf, chNum));
 					}
 				});
 			}
@@ -161,7 +170,7 @@ public class EventTutorial extends JPanel {
 					private MainFrame mf;
 					private EventTutorial3 et;
 
-					public EventTutorial3(MainFrame mf) {
+					public EventTutorial3(MainFrame mf, int chNum) {
 						this.et = this;
 						this.mf = mf;
 
@@ -175,16 +184,17 @@ public class EventTutorial extends JPanel {
 						this.add(label);
 
 						// 선택지 선택 버튼 ============================================================
-						JButton nextBtn = new JButton(new ImageIcon("image/tutorial/3443.png"));
+						JButton nextBtn = new JButton();
 
-						nextBtn.setBounds(74, 625, 550, 63);
-						nextBtn.setOpaque(false);
+						nextBtn.setBounds(79, 651, 820, 43);
+						nextBtn.setContentAreaFilled(false);
+						nextBtn.setFocusPainted(false);
 						label.add(nextBtn);
 						nextBtn.addActionListener(new ActionListener() {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								ViewUtil.changePanel(mf, et, new EventTutorial4(mf));
+								ViewUtil.changePanel(mf, et, new EventTutorial4(mf, chNum));
 							}
 						});
 
@@ -192,14 +202,17 @@ public class EventTutorial extends JPanel {
 
 						// 우측상단 스킵버튼 =========================================================
 						JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
-						skipBtn.setBounds(999, 30, 130, 50);
-//						label.add(skipBtn);
+						
+						skipBtn.setContentAreaFilled(false);
+						skipBtn.setFocusPainted(false);
+						skipBtn.setBounds(1030, 30, 130, 50);
+						label.add(skipBtn);
 
 						skipBtn.addActionListener(new ActionListener() {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								ViewUtil.changePanel(mf, et, new TutorialMenu(mf));
+								ViewUtil.changePanel(mf, et, new TutorialMenu(mf, chNum));
 							}
 						});
 					}
@@ -210,7 +223,7 @@ public class EventTutorial extends JPanel {
 		private MainFrame mf;
 		private EventTutorial4 et;
 
-		public EventTutorial4(MainFrame mf) {
+		public EventTutorial4(MainFrame mf, int chNum) {
 			this.et = this;
 			this.mf = mf;
 
@@ -226,13 +239,15 @@ public class EventTutorial extends JPanel {
 			// 우측하단 next 버튼 ============================================================
 			JButton nextBtn = new JButton(new ImageIcon("image/tutorial/next123.png"));
 
-			nextBtn.setBounds(910, 298, 125, 41);
+			nextBtn.setContentAreaFilled(false);
+			nextBtn.setFocusPainted(false);
+			nextBtn.setBounds(970, 298, 125, 41);
 			label.add(nextBtn);
 			nextBtn.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					ViewUtil.changePanel(mf, et, new TutorialMenu(mf));
+					ViewUtil.changePanel(mf, et, new TutorialMenu(mf, chNum));
 				}
 			});
 
@@ -240,14 +255,16 @@ public class EventTutorial extends JPanel {
 
 			// 우측상단 스킵버튼 =========================================================
 			JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
-			skipBtn.setBounds(950, 30, 130, 50);
-//			label.add(skipBtn);
+			skipBtn.setContentAreaFilled(false);
+			skipBtn.setFocusPainted(false);
+			skipBtn.setBounds(1030, 30, 130, 50);
+			label.add(skipBtn);
 
 			skipBtn.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					ViewUtil.changePanel(mf, et, new TutorialMenu(mf));
+					ViewUtil.changePanel(mf, et, new TutorialMenu(mf, chNum));
 				}
 			});
 		}

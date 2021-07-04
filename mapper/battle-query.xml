@@ -1,29 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-   <comment />
-      <entry key="selectCharacterInfo">
-         SELECT
-               *
-           FROM CHARACTER C
-              , USER_LOGIN UL
-          WHERE C.CHAR_NUMBER = UL.CHAR_NUMBER
-            AND UL.CHAR_NUMBER = ?
-      </entry>
-      <entry key="selectMonsterInfo">
-         SELECT
-               *
-           FROM MONSTER
-          WHERE MON_NUM = ?
-      </entry>
-      <entry key="checkBossClear">
-         SELECT
-               BOSS_CLEAR
-           FROM MAP
-          WHERE MAP_NUM = ?
-      </entry>
-      <entry key="friendInfo">
-      
-
-      </entry>
+	<comment />
+		<entry key="selectCharacterInfo">
+			SELECT
+				   *
+			  FROM CHARACTER C
+			 WHERE C.CHAR_NUMBER = ?
+		</entry>
+		<entry key="selectMonsterInfo">
+			SELECT
+				   *
+			  FROM MONSTER
+			 WHERE MON_NUM = ?
+		</entry>
+		<entry key="checkBossClear">
+			SELECT
+				   BOSS_CLEAR
+			  FROM CHMAP
+			 WHERE MAP_NUM = ?
+			   AND CHAR_NUMBER = ?
+		</entry>
+		<entry key="friendInfo">
+			SELECT
+			       *
+			  FROM FRIEND F
+			     , CH_FRIEND CF
+			 WHERE F.FR_NUM = CF.FR_NUM
+			   AND CF.CHAR_NUM = ?
+		</entry>
+		<entry key="updateCharacter">
+			UPDATE CHARACTER
+			   SET CHAR_EXP = ?
+			 WHERE CHAR_NUMBER = ?
+		</entry>
+		<entry key="updateBossClear">
+			INSERT
+			  INTO CH_MAP
+			(
+			  CHAR_NUMBER
+			, MAP_NUM
+			, BOSS_CLEAR
+			)   
+			VALUES
+			(
+			  ?
+			, ?
+			, 'Y'
+			)
+		</entry>
+		<entry key="updateFriend">
+			INSERT
+			  INTO CH_FRIEND
+			(
+			  FR_NUM
+			, CHAR_NUM
+			, GRADE
+			)
+			VALUES
+			(
+			  ?
+			, ?
+			, 'normal'
+			)			   
+		</entry>
 </properties>

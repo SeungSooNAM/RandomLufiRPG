@@ -4,11 +4,39 @@
 	<comment />
 		<entry key="friendInfo">
 			SELECT
-			       *
+			       F.FR_NUM
+			     , F.FR_NAME
+			     , F.FR_SKIL
+			     , F.FR_MP
+			     , CF.GRADE
 			  FROM FRIEND F
 			     , CH_FRIEND CF
-			 WHERE F.FR_NUM = CF.FR_NUM
-			   AND FR_HAVE_YN = 'Y'
-			   AND CF.CHAR_NUM = ?
+			 WHERE CF.FR_NUM = F.FR_NUM
+			   AND CHAR_NUM = ?
+
+		</entry>
+		<entry key="checkMoney">
+			SELECT
+			       INVEN_GOLD
+			  FROM INVENTORY
+			 WHERE CHAR_NUMBER = ?
+		</entry>
+		<entry key="upgrade">
+			UPDATE 
+			  (
+            	SELECT
+           		       CF.GRADE
+           		  FROM CH_FRIEND CF
+           		     , FRIEND F
+          		 WHERE CF.FR_NUM = F.FR_NUM
+                   AND CF.CHAR_NUM = ?
+                   AND FR_NAME = ?
+           	  )
+			   SET GRADE = 'rare'
+		</entry>
+		<entry key="decreaseGold">
+			UPDATE INVENTORY
+			   SET INVEN_GOLD = ?
+			 WHERE CHAR_NUMBER = ?
 		</entry>
 </properties>

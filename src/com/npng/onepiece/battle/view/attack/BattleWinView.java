@@ -10,30 +10,45 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
+import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.event.views.BattleResultView;
 import com.npng.onepiece.user.view.MainFrame;
+
 
 public class BattleWinView extends JPanel{
 	
-	private MainFrame mf;
 	private BattleWinView battleWinView;
 	private BattleController battleController = new BattleController();
 	private JLabel bl;
 	private BattleDTO battleInfo;
+	private int result;
+	private int updateResult;
+	private int getFriend;
 
-	public BattleWinView(MainFrame mf, BattleDTO battleInfo) {
+	public BattleWinView(BattleDTO battleInfo, int result) {
 		this.setSize(1200, 800);
-		this.mf = mf;
 		this.battleWinView = this;
 		this.battleInfo = battleInfo;
+		this.result = result;
 		this.setLayout(null);
 		
 		
-		Image img = new ImageIcon("image/battle/battleWin.png").getImage().getScaledInstance(1200, 800, 0);
+		Image img = new ImageIcon("image/battle/전투승리.png").getImage().getScaledInstance(1200, 800, 0);
 		bl = new JLabel(new ImageIcon(img));
 		bl.setLocation(0, 0);
 		bl.setSize(1200, 800);
 		this.add(bl);
-		bl.addMouseListener(new MyMouseAdapter());;
+		bl.addMouseListener(new MyMouseAdapter());
+		int clearMonsterNum = battleInfo.getmNum();
+		if(clearMonsterNum <= 7) {
+			updateResult = battleController.updateBossClear(clearMonsterNum); //보스클리어 등록후 성공시 1반환
+			if(clearMonsterNum == 7 ) {
+				// 엔딩 이동
+			} else if(clearMonsterNum <= 4) {
+				
+				getFriend = battleController.updateFriend(clearMonsterNum); // 동료 획득 등록 후 성공시 1반환
+			}
+		}
 	}
 	
 
@@ -44,7 +59,7 @@ public class BattleWinView extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == bl) {
-//				ViewUtil.changePanel(mf, battleWinView, new BattleContinueView(mf, battleInfo));
+				ViewUtil.changePanel(MainFrame.mf, battleWinView, new BattleResultView(MainFrame.mf, battleInfo, 1, getFriend));
 			}
 		}
 	}

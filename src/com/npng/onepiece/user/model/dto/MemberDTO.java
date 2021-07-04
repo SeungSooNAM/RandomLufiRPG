@@ -1,4 +1,3 @@
-
 package com.npng.onepiece.user.model.dto;
 
 public class MemberDTO implements java.io.Serializable {
@@ -69,6 +68,7 @@ public class MemberDTO implements java.io.Serializable {
 	
 
 }
+
 
 package com.npng.onepiece.user.model.dto;
 

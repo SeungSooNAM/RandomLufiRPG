@@ -1,6 +1,8 @@
 package com.npng.onepiece.inventory.model.dto;
 
-public class InventoryDTO {
+import java.io.Serializable;
+
+public class InventoryDTO implements Serializable{
 	private int gold;
 	private int charNum;
 	private int inven1;
