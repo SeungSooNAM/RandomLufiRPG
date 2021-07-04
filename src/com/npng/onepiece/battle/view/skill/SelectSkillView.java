@@ -19,12 +19,14 @@ import com.npng.onepiece.battle.view.main.BattleContinueView;
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.user.view.MainFrame;
 
+
 public class SelectSkillView extends JPanel{
 
-	private MainFrame mf;
 	private BattleController battleController = new BattleController();
 	private SelectSkillView selectSkillView;
 	private BattleDTO battleInfo;
+	private FriendDTO friend[] =  new FriendDTO[6];
+	private List<FriendDTO> friendList;
 
 	private JLabel cLevel;
 	private JLabel cName;
@@ -67,16 +69,15 @@ public class SelectSkillView extends JPanel{
 	private int mAtkLabel;
 	
 
-	public SelectSkillView(MainFrame mf, BattleDTO battleInfo) {
+	public SelectSkillView(BattleDTO battleInfo) {
 
 		int map = 1; // 맵정보 받기
 		System.out.println(battleInfo);
 		this.setSize(1200, 800);
-		this.mf = mf;
 		this.selectSkillView = this;
 		
 		this.battleInfo = battleInfo;
-		mf.add(this);
+		MainFrame.mf.add(this);
 
 		this.setLayout(null);
 		Font font1 = new Font("Dialog",Font.BOLD, 50);
@@ -99,7 +100,7 @@ public class SelectSkillView extends JPanel{
 		mAtkLabel = battleInfo.getmAtk();
 		mDefLabel = battleInfo.getmDef();
 		System.out.println(battleInfo.getmNum());
-		Image img2 = new ImageIcon("image/battle/Monster" + battleInfo.getmNum() + ".png").getImage().getScaledInstance(400, 400, 0);
+		Image img2 = new ImageIcon("image/battle/monster/몬스터" + battleInfo.getmNum() + ".png").getImage().getScaledInstance(400, 400, 0);
 		JLabel bl2 = new JLabel(new ImageIcon(img2));
 		bl2.setLocation(800, 120);
 		bl2.setSize(300, 400);
@@ -223,95 +224,115 @@ public class SelectSkillView extends JPanel{
 		bl.add(mDef);
 		bl.add(mHp);
 		bl.add(cMp);
+		
+		friendList = battleInfo.getFriendList();
+		for(int i = 0; i < friendList.size(); i++) {
+			friend[i] = friendList.get(i);
+			System.out.println(friend[i].getFrName());
+		}
+
 	}
 	
+//	if(e.getSource() == zoroPanel) {
+//		System.out.println(friendList);
+//		FriendDTO zoro = friendList.get(1);
+//		int num = zoro.getFrNum();
+//		String grade = zoro.getFrGrade();
+//		if(zoro.getFrHave().equals("Y")) { 
+//			if(battleInfo.getcMp() >= zoro.getFrMp()) {
+//				battleController.zoroSkill(mf, selectSkillView, battleInfo, num, grade);						
+//			} else {
+//				System.out.println("마나가 없습니다.");
+//			}
+//		} else {
+//			System.out.println("동료가 없습니다.");
+//		}
 	private class MyMouseAdapter extends MouseAdapter{
 		@Override
 		public void mouseClicked(MouseEvent e) {
-
-			List<FriendDTO> friendList = battleInfo.getFriendList();
-
 			if(e.getSource() == zoroPanel) {
-				System.out.println(friendList);
-				FriendDTO zoro = friendList.get(0);
-				int num = zoro.getFrNum();
-				String grade = zoro.getFrGrade();
-				if(zoro.getFrHave().equals("Y")) { 
-					if(battleInfo.getcMp() >= zoro.getFrMp()) {
-						battleController.zoroSkill(mf, selectSkillView, battleInfo, num, grade);						
-					} else {
-						System.out.println("마나가 없습니다.");
-					}
-				} else {
-					System.out.println("동료가 없습니다.");
+				for(int i = 0; i < friend.length; i++) {
+					if(friend[i].getFrName().equals("조로")) {
+						int num = friend[i].getFrNum();
+						String grade = friend[i].getFrGrade();
+						int mp = friend[i].getFrMp();						
+						if(battleInfo.getcMp() >= mp) {
+							battleController.zoroSkill(selectSkillView, battleInfo, num, grade);
+						} else {
+							System.out.println("마나가 부족합니다.");
+						}
+					} 
 				}
+				
 			} else if(e.getSource() == sandiPanel){
-				FriendDTO sandi = friendList.get(1);
-				int num = sandi.getFrNum();
-				String grade = sandi.getFrGrade();
-				if(sandi.getFrHave().equals("Y")) { 
-					if(battleInfo.getcMp() >= sandi.getFrMp()) {
-						battleController.sandiSkill(mf, selectSkillView, battleInfo, num, grade);						
-					} else {
-						System.out.println("마나가 없습니다.");
-					}
-				} else {
-					System.out.println("동료가 없습니다.");
+				for(int i = 0; i < friend.length; i++) {
+					if(friend[i].getFrName().equals("상디")) {
+						int num = friend[i].getFrNum();
+						String grade = friend[i].getFrGrade();
+						int mp = friend[i].getFrMp();						
+						if(battleInfo.getcMp() >= mp) {
+							battleController.sandiSkill(selectSkillView, battleInfo, num, grade);
+						} else {
+							System.out.println("마나가 부족합니다.");
+						}
+					} 
 				}
 			} else if(e.getSource() == oosopPanel){
-				FriendDTO oosop = friendList.get(2);
-				int num = oosop.getFrNum();
-				String grade = oosop.getFrGrade();
-				if(oosop.getFrHave().equals("Y")) { 
-					if(battleInfo.getcMp() >= oosop.getFrMp()) {
-						battleController.oosopSkill(mf, selectSkillView, battleInfo, num, grade);						
-					} else {
-						System.out.println("마나가 없습니다.");
-					}
-				} else {
-					System.out.println("동료가 없습니다.");
+				for(int i = 0; i < friend.length; i++) {
+					if(friend[i].getFrName().equals("우솝")) {
+						int num = friend[i].getFrNum();
+						String grade = friend[i].getFrGrade();
+						int mp = friend[i].getFrMp();						
+						if(battleInfo.getcMp() >= mp) {
+							battleController.oosopSkill(selectSkillView, battleInfo, num, grade);
+						} else {
+							System.out.println("마나가 부족합니다.");
+						}
+					} 
 				}
 			} else if(e.getSource() == namiPanel){
-				FriendDTO nami = friendList.get(3);
-				int num = nami.getFrNum();
-				String grade = nami.getFrGrade();
-				if(nami.getFrHave().equals("Y")) { 
-					if(battleInfo.getcMp() >= nami.getFrMp()) {
-						battleController.namiSkill(mf, selectSkillView, battleInfo, num, grade);						
+				for(int i = 0; i < friend.length; i++) {
+					if(friend[i].getFrName().equals("나미")) {
+						int num = friend[i].getFrNum();
+						String grade = friend[i].getFrGrade();
+						int mp = friend[i].getFrMp();						
+						if(battleInfo.getcMp() >= mp) {
+							battleController.namiSkill(selectSkillView, battleInfo, num, grade);
+						} else {
+							System.out.println("마나가 부족합니다.");
+						}
 					} else {
-						System.out.println("마나가 없습니다.");
+						
 					}
-				} else {
-					System.out.println("동료가 없습니다.");
 				}
 			} else if(e.getSource() == hankokPanel){
-				FriendDTO hankok = friendList.get(4);
-				int num = hankok.getFrNum();
-				String grade = hankok.getFrGrade();
-				if(hankok.getFrHave().equals("Y")) { 
-					if(battleInfo.getcMp() >= hankok.getFrMp()) {
-						battleController.hankokSkill(mf, selectSkillView, battleInfo, num, grade);						
-					} else {
-						System.out.println("마나가 없습니다.");
-					}
-				} else {
-					System.out.println("동료가 없습니다.");
+				for(int i = 0; i < friend.length; i++) {
+					if(friend[i].getFrName().equals("핸콕")) {
+						int num = friend[i].getFrNum();
+						String grade = friend[i].getFrGrade();
+						int mp = friend[i].getFrMp();						
+						if(battleInfo.getcMp() >= mp) {
+							battleController.hankokSkill(selectSkillView, battleInfo, num, grade);
+						} else {
+							System.out.println("마나가 부족합니다.");
+						}
+					} 
 				}
 			} else if(e.getSource() == reilighPanel){
-				FriendDTO reiligh = friendList.get(5);
-				int num = reiligh.getFrNum();
-				String grade = reiligh.getFrGrade();
-				if(reiligh.getFrHave().equals("Y")) { 
-					if(battleInfo.getcMp() >= reiligh.getFrMp()) {
-						battleController.reilighSkill(mf, selectSkillView, battleInfo, num, grade);						
-					} else {
-						System.out.println("마나가 없습니다.");
-					}
-				} else {
-					System.out.println("동료가 없습니다.");
+				for(int i = 0; i < friend.length; i++) {
+					if(friend[i].getFrName().equals("레일리")) {
+						int num = friend[i].getFrNum();
+						String grade = friend[i].getFrGrade();
+						int mp = friend[i].getFrMp();						
+						if(battleInfo.getcMp() >= mp) {
+							battleController.reilighSkill(selectSkillView, battleInfo, num, grade);
+						} else {
+							System.out.println("마나가 부족합니다.");
+						}
+					} 
 				}
 			} else if(e.getSource() == cancelPanel) {
-				ViewUtil.changePanel(mf, selectSkillView, new BattleContinueView(mf, battleInfo));
+				ViewUtil.changePanel(selectSkillView, new BattleContinueView(battleInfo));
 			}
 		}
 	}

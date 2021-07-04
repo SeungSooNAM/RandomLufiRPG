@@ -17,6 +17,8 @@ import com.npng.onepiece.gameready.model.dto.NewCharacterDTO;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class CreateCharacterView extends JPanel {
+	
+	public static int chNum;
 
 	GameReadyController gc = new GameReadyController();
 
@@ -44,12 +46,29 @@ public class CreateCharacterView extends JPanel {
 		this.setLayout(null);
 
 		JButton stBtn = new JButton(new ImageIcon("image/cre_character/up_btn.png"));
-		JButton backBtn = new JButton(new ImageIcon("image/cre_character/back_btn.png"));
-		JButton createBtn = new JButton(new ImageIcon("image/cre_character/cre_btn.png"));
-
-		stBtn.setBounds(500, 355, 30, 30);
+		stBtn.setContentAreaFilled(false);
+		stBtn.setFocusPainted(false);
+		stBtn.setBounds(500, 355, 30, 30);		
+		
+		JButton backBtn = new JButton();
+		backBtn.setContentAreaFilled(false);
+		backBtn.setFocusPainted(false);
 		backBtn.setBounds(1085, 25, 75, 39);
+		
+		backBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ViewUtil.changePanel(mainFrame, createCharacterView, new CharacterTutorial(mainFrame, uNum));				
+			}
+		});		
+		
+		
+		JButton createBtn = new JButton(new ImageIcon("image/cre_character/cre_btn.png"));
+		createBtn.setContentAreaFilled(false);
+		createBtn.setFocusPainted(false);
 		createBtn.setBounds(700, 300, 300, 100);
+
 
 		JLabel str = new JLabel();
 		str.setForeground(Color.white);
@@ -120,6 +139,7 @@ public class CreateCharacterView extends JPanel {
 				newDto.setExp(exp);
 				newDto.setStr(cstr);
 				newDto.setDex(cdex);
+				newDto.setCharisma(ccha);
 				newDto.setPoint(point);
 				newDto.setMp(cmp);
 				newDto.setScore(score);
@@ -136,7 +156,7 @@ public class CreateCharacterView extends JPanel {
 				GameReadyController gr = new GameReadyController();
 				int result = new GameReadyController().insertNewCharacter(newDto);
 				if (result  == 3) {
-					int chNum = gr.searchChNum(uNum); //캐릭터번호 불러오기
+					chNum = gr.searchChNum(uNum); //캐릭터번호 불러오기
 					System.out.println("cNum : " + chNum);
 					ViewUtil.changePanel(mainFrame, createCharacterView, new OkCreateCharacter(mainFrame, chNum));
 				}

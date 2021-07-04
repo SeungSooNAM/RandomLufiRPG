@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.npng.onepiece.friend.model.dto.FriendDTO;
+import com.npng.onepiece.gameready.view.CreateCharacterView;
+
 import static com.npng.onepiece.common.JDBCTemplate.close;
 
 public class FriendDAO {
@@ -39,6 +41,8 @@ private Properties prop;
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, CreateCharacterView.chNum);
+			
 			rset = pstmt.executeQuery();
 			
 			friendList = new ArrayList<>();
@@ -47,10 +51,9 @@ private Properties prop;
 				friend = new FriendDTO();
 				friend.setFrName(rset.getString("FR_NAME"));
 				friend.setFrSkill(rset.getInt("FR_SKIL"));
-				friend.setFrGrade(rset.getString("FR_GRADE"));
-				friend.setFrHave(rset.getString("FR_HAVE_YN"));
 				friend.setFrNum(rset.getInt("FR_NUM"));
 				friend.setFrMp(rset.getInt("FR_MP"));
+				friend.setFrGrade(rset.getString("GRADE"));
 				friendList.add(friend);
 			}
 			
@@ -72,6 +75,7 @@ private Properties prop;
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, CreateCharacterView.chNum);
 			
 			rset = pstmt.executeQuery();
 			
@@ -87,5 +91,55 @@ private Properties prop;
 		}
 		return gold;
 	}
+	
+	public int decreaseGold(Connection con, int gold) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		String query = prop.getProperty("decreaseGold");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, gold);
+			System.out.println("돈: " + CreateCharacterView.chNum);
+			pstmt.setInt(2, CreateCharacterView.chNum);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+	
+	public int upgrade(Connection con, String name) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("upgrade");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, CreateCharacterView.chNum);
+			pstmt.setString(2, name);
+			System.out.println(name);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 
 }

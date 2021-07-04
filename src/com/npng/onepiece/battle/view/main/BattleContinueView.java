@@ -16,6 +16,7 @@ import com.npng.onepiece.battle.view.skill.SelectSkillView;
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.user.view.MainFrame;
 
+
 public class BattleContinueView extends JPanel{
 
 	private MainFrame mf;
@@ -57,12 +58,11 @@ public class BattleContinueView extends JPanel{
 	private int mDefLabel;
 	private int mAtkLabel;
 	
-	public BattleContinueView(MainFrame mf, BattleDTO battleInfo) {
+	public BattleContinueView(BattleDTO battleInfo) {
 
 		this.setSize(1200, 800);
-		this.mf = mf;
 		this.battleContinueView = this;
-		mf.add(this);
+		MainFrame.mf.add(this);
 		
 		this.setLayout(null);
 		Font font1 = new Font("Dialog",Font.BOLD, 50);
@@ -73,7 +73,7 @@ public class BattleContinueView extends JPanel{
 		bl.setSize(1200, 800);
 		this.add(bl);
 		
-		Image img2 = new ImageIcon("image/battle/Monster" + battleInfo.getmNum() + ".png").getImage().getScaledInstance(400, 400, 0);
+		Image img2 = new ImageIcon("image/battle/monster/몬스터" + battleInfo.getmNum() + ".png").getImage().getScaledInstance(400, 400, 0);
 		JLabel bl2 = new JLabel(new ImageIcon(img2));
 		bl2.setLocation(800, 120);
 		bl2.setSize(300, 400);
@@ -183,9 +183,9 @@ public class BattleContinueView extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == atkPanel) {
-				battleController.attack(mf, battleContinueView, battleInfo);
+				battleController.attack(battleContinueView, battleInfo);
 			} else if(e.getSource() == skilPanel){
-				ViewUtil.changePanel(mf, battleContinueView, new SelectSkillView(mf, battleInfo));
+				ViewUtil.changePanel(battleContinueView, new SelectSkillView(battleInfo));
 			} 
 		}
 	}

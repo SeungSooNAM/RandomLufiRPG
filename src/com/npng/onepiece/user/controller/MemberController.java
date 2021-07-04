@@ -71,6 +71,11 @@ public class MemberController {
 		return uNum;
 	}
 
-	
+	public int newManagerPwd(String userId, String userName, String newPwd) {
+
+		int result = memberService.newManagerPwd(userId, userName, newPwd);
+		
+		return result;
+	}
 
 }

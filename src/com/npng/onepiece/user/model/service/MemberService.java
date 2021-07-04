@@ -7,6 +7,7 @@ import static com.npng.onepiece.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import com.npng.onepiece.user.model.dao.MemberDAO;
 import com.npng.onepiece.user.model.dto.MemberDTO;
@@ -95,6 +96,15 @@ public class MemberService {
 		int uNum = memberDAO.userNum(con, loginId);
 		
 		return uNum;
+	}
+
+	public int newManagerPwd(String userId, String userName, String newPwd) {
+		
+		Connection con = getConnection();
+		int result = memberDAO.newManagerPwd(con, userId, userName, newPwd);
+		close(con);
+		
+		return result;
 	}
 
 }

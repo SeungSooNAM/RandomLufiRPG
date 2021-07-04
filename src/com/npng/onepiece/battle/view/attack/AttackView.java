@@ -10,25 +10,23 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
-import com.npng.onepiece.user.view.MainFrame;
+
 
 public class AttackView extends JPanel{
 	
-	private MainFrame mf;
 	private AttackView attackView;
 	private BattleController battleController = new BattleController();
 	private JLabel bl;
 	private BattleDTO battleInfo;
 
-	public AttackView(MainFrame mf, BattleDTO battleInfo) {
+	public AttackView(BattleDTO battleInfo) {
 		this.setSize(1200, 800);
-		this.mf = mf;
 		this.attackView = this;
 		this.battleInfo = battleInfo;
 		this.setLayout(null);
 		
-		
-		Image img = new ImageIcon("image/battle/attackSuccess.png").getImage().getScaledInstance(1200, 800, 0);
+		int num = (int) (Math.random() * 3) + 1;
+		Image img = new ImageIcon("image/battle/attack/루피공격" + num + ".png").getImage().getScaledInstance(1200, 800, 0);
 		bl = new JLabel(new ImageIcon(img));
 		bl.setLocation(0, 0);
 		bl.setSize(1200, 800);
@@ -45,7 +43,7 @@ public class AttackView extends JPanel{
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == bl) {
 				System.out.println("공격성공");
-				battleController.Monsterattack(mf, attackView, battleInfo);
+				battleController.Monsterattack(attackView, battleInfo);
 			}
 		}
 	}

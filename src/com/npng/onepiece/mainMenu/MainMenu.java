@@ -122,20 +122,11 @@ public class MainMenu extends JPanel{
 			if(e.getSource() == chPanel) {
 				ViewUtil.changePanel(mf, mainMenu, new ChInfo(mf, chNum));
 			} else if(e.getSource() == invenPanel){
-				InventoryDTO inven = new InventoryDTO();
-	            inven.setGold(10000);
-	            inven.setInven1(7);
-	            ViewUtil.changePanel(mf, mainMenu, new ShopView(mf, inven));
-
-			} else if(e.getSource() == shopPanel) {
-				InventoryController equipInfo = new InventoryController();
-	            EquipDTO equip = equipInfo.getEquipInfo();
-	            InventoryDTO inven = new InventoryDTO();
-	            inven.setGold(10000);
-	            inven.setInven1(7);
-	            ViewUtil.changePanel(mf, mainMenu, new InventoryView(mf, inven, equip));
+				 ViewUtil.changePanel(mf, mainMenu, new InventoryView(mf, chNum));
+			} else if(e.getSource() == shopPanel) {		
+				ViewUtil.changePanel(mf, mainMenu, new ShopView(mf, chNum, 0));
 			} else if(e.getSource() == friendPanel) {
-				ViewUtil.changePanel(mf, mainMenu, new FriendInfoView(mf, chNum));
+				ViewUtil.changePanel(mf, mainMenu, new FriendInfoView());
 			} else if(e.getSource() == achPanel) {
 //				ViewUtil.changePanel(mf, mainMenu, new AchivementView(mf, chNum));
 			} else if(e.getSource() == playPanel) {

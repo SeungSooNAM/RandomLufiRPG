@@ -30,7 +30,8 @@ public class GameReadyService {
 		
 		 result += gameReadyDAO.createNewInventory(con, charNum);
 		 result += gameReadyDAO.createNewItemEquip(con, charNum);
-		 
+//		 result += gameReadyDAO.createFriend(con,charNum);
+		 System.out.println("result : " + result);
 		
 		if (result == 3) {
 			commit(con);

@@ -13,4 +13,11 @@ public class ViewUtil {
         mf.repaint();
         mf.revalidate();
     }
+	
+	public static void changePanel(JPanel op, JPanel np) {
+        MainFrame.mf.remove(op);
+        MainFrame.mf.add(np);
+        MainFrame.mf.repaint();
+        MainFrame.mf.revalidate();
+    }
 }

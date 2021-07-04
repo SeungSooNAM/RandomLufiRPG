@@ -10,29 +10,27 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
-import com.npng.onepiece.user.view.MainFrame;
+
 
 public class AttackFailedView extends JPanel{
 	
-	private MainFrame mf;
 	private AttackFailedView attackFailedView;
 	private BattleController battleController = new BattleController();
 	private JLabel bl;
 	private BattleDTO battleInfo;
 
-	public AttackFailedView(MainFrame mf, BattleDTO battleInfo) {
+	public AttackFailedView(BattleDTO battleInfo) {
 		this.setSize(1200, 800);
-		this.mf = mf;
 		this.attackFailedView = this;
 		this.battleInfo = battleInfo;
 		this.setLayout(null);
 		
-		Image img = new ImageIcon("image/battle/attackFailed.png").getImage().getScaledInstance(800, 600, 0);
+		Image img = new ImageIcon("image/battle/attack/공격실패.png").getImage().getScaledInstance(1200, 800, 0);
 		bl = new JLabel(new ImageIcon(img));
 		bl.setLocation(0, 0);
 		bl.setSize(1200, 800);
 		this.add(bl);
-		bl.addMouseListener(new MyMouseAdapter());;
+		bl.addMouseListener(new MyMouseAdapter());
 	}
 	
 
@@ -44,7 +42,7 @@ public class AttackFailedView extends JPanel{
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == bl) {
 				System.out.println("공격실패");
-				battleController.Monsterattack(mf, attackFailedView, battleInfo);
+				battleController.Monsterattack(attackFailedView, battleInfo);
 				
 			}
 		}

@@ -15,11 +15,13 @@ import javax.swing.JPanel;
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.friend.controller.FriendController;
 import com.npng.onepiece.friend.model.dto.FriendDTO;
+import com.npng.onepiece.gameready.view.CreateCharacterView;
+import com.npng.onepiece.mainMenu.MainMenu;
 import com.npng.onepiece.user.view.MainFrame;
+
 
 public class SelectInfo extends JPanel{
 	
-	private MainFrame mf;
 	private SelectInfo selectInfo;
 	private FriendController friendController = new FriendController();
 	private List<FriendDTO> friendList;
@@ -45,12 +47,13 @@ public class SelectInfo extends JPanel{
 	private JLabel goldLabel;
 
 	private int gold;
+	private String name;
 
-	public SelectInfo(MainFrame mf, String name) {
+	public SelectInfo(String name) {
 		this.setSize(1200, 800);
-		this.mf = mf;
 		this.selectInfo = this;
-		mf.add(this);
+		MainFrame.mf.add(this);
+		this.name = name;
 		
 		this.setLayout(null);
 		
@@ -162,19 +165,19 @@ public class SelectInfo extends JPanel{
 		friendList = new ArrayList<>();
 		friendList = friendController.friendInfo();
 		gold  = friendController.checkMoney();
-		System.out.println(friendList);
 		
 		
 		
-		for(int i = 0; i < friendListLabel.length; i++) {
-			friendListLabel[i] = friendList.get(i);
-			friendName[i] = friendListLabel[i].getFrName();
-			friendGrade[i] = friendListLabel[i].getFrGrade();
-		}
+		if(friendList.size() != 0) {
+			for(int i = 0; i < friendList.size(); i++) {
+				friendListLabel[i] = friendList.get(i);
+				friendName[i] = friendListLabel[i].getFrName();
+				friendGrade[i] = friendListLabel[i].getFrGrade();
+			}
+
+		} 
 		
-		for(int i = 0; i < 6; i++) {
-			System.out.println(friendListLabel[i]);
-		}
+
 		
 		goldLabel = new JLabel(gold + "$");
 		goldLabel.setLocation(1040, 450);
@@ -188,27 +191,27 @@ public class SelectInfo extends JPanel{
 		firstLabel.setLocation(712, 65);
 		firstLabel.setSize(1200, 800);
 		firstPanel.add(firstLabel);
-		Image second = new ImageIcon("image/friend/" + friendName[1] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
+		Image second = new ImageIcon("image/friend/" + friendName[1] + "_" + friendGrade[1] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel secondLabel = new JLabel(new ImageIcon(second));
 		secondLabel.setLocation(128, 66);
 		secondLabel.setSize(1200, 800);
 		secondPanel.add(secondLabel);
-		Image third = new ImageIcon("image/friend/" + friendName[2] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
+		Image third = new ImageIcon("image/friend/" + friendName[2] + "_" + friendGrade[2] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel thirdLabel = new JLabel(new ImageIcon(third));
 		thirdLabel.setLocation(128, 66);
 		thirdLabel.setSize(1200, 800);
 		thirdPanel.add(thirdLabel);
-		Image fourth = new ImageIcon("image/friend/" + friendName[3] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
+		Image fourth = new ImageIcon("image/friend/" + friendName[3] + "_" + friendGrade[3] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel fourthLabel = new JLabel(new ImageIcon(fourth));
 		fourthLabel.setLocation(712, 150);
 		fourthLabel.setSize(128, 66);
 		fourthPanel.add(fourthLabel);
-		Image fifth = new ImageIcon("image/friend/" + friendName[4] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
+		Image fifth = new ImageIcon("image/friend/" + friendName[4] + "_" + friendGrade[4] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel fifthLabel = new JLabel(new ImageIcon(fifth));
 		fifthLabel.setLocation(866, 150);
 		fifthLabel.setSize(128, 66);
 		fifthPanel.add(fifthLabel);
-		Image sixth = new ImageIcon("image/friend/" + friendName[5] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
+		Image sixth = new ImageIcon("image/friend/" + friendName[5] + "_" + friendGrade[5] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel sixthLabel = new JLabel(new ImageIcon(sixth));
 		sixthLabel.setLocation(1016, 150);
 		sixthLabel.setSize(128, 66);
@@ -223,28 +226,37 @@ public class SelectInfo extends JPanel{
 		fifthPanel.addMouseListener(new MyMouseAdapter());
 		sixthPanel.addMouseListener(new MyMouseAdapter());
 		backPanel.addMouseListener(new MyMouseAdapter());
-		
+		upgradePanel.addMouseListener(new MyMouseAdapter());
 		
 	}
 	
 	public class MyMouseAdapter extends MouseAdapter{
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if(e.getSource() == firstPanel) {
-				ViewUtil.changePanel(mf, selectInfo, new SelectInfo(mf, friendName[0]));
-			} else if(e.getSource() == secondPanel){
-				ViewUtil.changePanel(mf, selectInfo, new SelectInfo(mf, friendName[1]));
-			} else if(e.getSource() == thirdPanel) {
-				ViewUtil.changePanel(mf, selectInfo, new SelectInfo(mf, friendName[2]));
-			} else if(e.getSource() == fourthPanel) {
-				ViewUtil.changePanel(mf, selectInfo, new SelectInfo(mf, friendName[3]));
-			} else if(e.getSource() == fifthPanel) {
-				ViewUtil.changePanel(mf, selectInfo, new SelectInfo(mf, friendName[4]));
-			} else if(e.getSource() == sixthPanel) {
-				ViewUtil.changePanel(mf, selectInfo, new SelectInfo(mf, friendName[5]));
+			if(friendList.size() != 0 ) {				
+				if(e.getSource() == firstPanel) {
+					ViewUtil.changePanel(selectInfo, new SelectInfo(friendName[0]));
+				} else if(e.getSource() == secondPanel){
+					ViewUtil.changePanel(selectInfo, new SelectInfo(friendName[1]));
+				} else if(e.getSource() == thirdPanel) {
+					ViewUtil.changePanel(selectInfo, new SelectInfo(friendName[2]));
+				} else if(e.getSource() == fourthPanel) {
+					ViewUtil.changePanel(selectInfo, new SelectInfo(friendName[3]));
+				} else if(e.getSource() == fifthPanel) {
+					ViewUtil.changePanel(selectInfo, new SelectInfo(friendName[4]));
+				} else if(e.getSource() == sixthPanel) {
+					ViewUtil.changePanel(selectInfo, new SelectInfo(friendName[5]));
+				} else if(e.getSource() == backPanel) {
+					ViewUtil.changePanel(selectInfo, new MainMenu(MainFrame.mf, CreateCharacterView.chNum));
+					System.out.println("메인메뉴 이동");
+				} else if(e.getSource() == upgradePanel) {
+					System.out.println("강화 선택");
+					ViewUtil.changePanel(selectInfo, new UpgradeSelect(name));
+				}	
 			} else if(e.getSource() == backPanel) {
-//				ViewUtil.changePanel(mf, selectInfo, new SelectInfo(mf, friendName[5]));
-			}	
+				ViewUtil.changePanel(selectInfo, new MainMenu(MainFrame.mf, CreateCharacterView.chNum));
+				System.out.println("메인메뉴 이동");
+			}
 		}
 	}
 }

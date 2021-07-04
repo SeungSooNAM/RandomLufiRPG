@@ -39,13 +39,17 @@ public class CharacterTutorial extends JPanel {
 	this.add(label);
 	
 	JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
-	skipBtn.setBounds(940, 630, 150, 60);
+	skipBtn.setContentAreaFilled(false);
+	skipBtn.setFocusPainted(false);
+	skipBtn.setBounds(1000, 10, 150, 60);
+	label.add(skipBtn);
 
 	JButton nextBtn = new JButton(new ImageIcon("image/cre_character/next123.png"));
+	nextBtn.setContentAreaFilled(false);
+	nextBtn.setFocusPainted(false);
 	nextBtn.setBounds(440, 300, 120, 45);
 	label.add(nextBtn);
 
-	label.add(skipBtn);
 	
 	
 	
@@ -86,10 +90,14 @@ public class CharacterTutorial extends JPanel {
 			this.setLayout(null);
 			this.add(label1);
 			JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
-			skipBtn.setBounds(940, 650, 130, 50);
+			skipBtn.setContentAreaFilled(false);
+			skipBtn.setFocusPainted(false);
+			skipBtn.setBounds(1000, 10, 150, 60);
 
 			label1.add(skipBtn);
 			JButton nextBtn = new JButton(new ImageIcon("image/cre_character/next123.png"));
+			nextBtn.setContentAreaFilled(false);
+			nextBtn.setFocusPainted(false);
 			nextBtn.setBounds(430, 400, 120, 45);
 
 			label1.add(nextBtn);
@@ -129,10 +137,14 @@ public class CharacterTutorial extends JPanel {
 			this.setLayout(null);
 			this.add(label1);
 			JButton skipBtn = new JButton(new ImageIcon("image/cre_character/skip_btn.png"));
-			skipBtn.setBounds(940, 650, 130, 50);
+			skipBtn.setContentAreaFilled(false);
+			skipBtn.setFocusPainted(false);
+			skipBtn.setBounds(1000, 10, 150, 60);
 
 			label1.add(skipBtn);
 			JButton nextBtn = new JButton(new ImageIcon("image/cre_character/next123.png"));
+			nextBtn.setContentAreaFilled(false);
+			nextBtn.setFocusPainted(false);
 			nextBtn.setBounds(520, 280, 140, 65);
 
 			label1.add(nextBtn);

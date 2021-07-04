@@ -10,13 +10,12 @@ public class FriendDTO implements Serializable{
 	private String frGrade;
 	private String frHave;
 	private int frMp;
-	
-	private int cGold;
+
 	
 	public FriendDTO() {}
 	
 
-	public FriendDTO(int frNum, String frName, int frSkill, String frGrade, String frHave, int frMp, int cGold) {
+	public FriendDTO(int frNum, String frName, int frSkill, String frGrade, String frHave, int frMp) {
 		super();
 		this.frNum = frNum;
 		this.frName = frName;
@@ -24,7 +23,6 @@ public class FriendDTO implements Serializable{
 		this.frGrade = frGrade;
 		this.frHave = frHave;
 		this.frMp = frMp;
-		this.cGold = cGold;
 	}
 
 	public int getFrNum() {
@@ -76,20 +74,13 @@ public class FriendDTO implements Serializable{
 	}
 
 	
-	public int getcGold() {
-		return cGold;
-	}
-
-
-	public void setcGold(int cGold) {
-		this.cGold = cGold;
-	}
+	
 
 
 	@Override
 	public String toString() {
 		return "FriendDTO [frNum=" + frNum + ", frName=" + frName + ", frSkill=" + frSkill + ", frGrade=" + frGrade
-				+ ", frHave=" + frHave + ", frMp=" + frMp + ", cGold=" + cGold + "]";
+				+ ", frHave=" + frHave + ", frMp=" + frMp + "]";
 	}
 
 

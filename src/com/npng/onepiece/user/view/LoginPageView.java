@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.gameready.view.CharacterTutorial;
+import com.npng.onepiece.gameready.view.CreateCharacterView;
 import com.npng.onepiece.user.controller.MemberController;
 
 public class LoginPageView extends JPanel {
@@ -135,12 +136,27 @@ public class LoginPageView extends JPanel {
 			}
 		});
 		
+		Font font9 = new Font("",0,15);
+		
+		JButton btn5 = new JButton("종료");
+		btn5.setLocation(1, 1);
+		btn5.setSize(70, 50);
+		btn5.setFont(font9);
+		btn5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.dispose();
+			}
+		});
+		
 		label.add(tf1);
 		label.add(tf2);
 		label.add(btn1);
 		label.add(btn2);
 		label.add(btn3);
 		label.add(btn4);
+		label.add(btn5);
 		this.add(label, BorderLayout.CENTER);
 		mainFrame.add(this);
 	}

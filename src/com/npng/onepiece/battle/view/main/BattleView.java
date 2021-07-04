@@ -15,11 +15,12 @@ import com.npng.onepiece.battle.controller.BattleController;
 import com.npng.onepiece.battle.model.dto.BattleDTO;
 import com.npng.onepiece.battle.view.skill.SelectSkillView;
 import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.gameready.view.CreateCharacterView;
 import com.npng.onepiece.user.view.MainFrame;
+
 
 public class BattleView extends JPanel{
 
-	private MainFrame mf;
 	private BattleView battleView;
 	private BattleController battleController = new BattleController();
 	private SelectSkillView selectSkillView;
@@ -64,15 +65,14 @@ public class BattleView extends JPanel{
 
 	
 
-	public BattleView(MainFrame mf, int cNum) {
+	public BattleView(int map) {
 
-		int map = 1; // 맵정보 받기
+//		int map = 1; // 맵정보 받기
 		
 		this.setSize(1200, 800);
-		this.mf = mf;
 		this.battleView = this;
-		mf.add(this);
-		this.cNum = cNum;
+		MainFrame.mf.add(this);
+		this.cNum = CreateCharacterView.chNum;
 		
 		this.setLayout(null);
 		Font font1 = new Font("Dialog",Font.BOLD, 50);
@@ -101,10 +101,10 @@ public class BattleView extends JPanel{
 		mAtkLabel = battleInfo.getmAtk();
 		mDefLabel = battleInfo.getmDef();
 
-		Image img2 = new ImageIcon("image/battle/Monster" + battleInfo.getmNum() + ".png").getImage().getScaledInstance(400, 400, 0);
+		Image img2 = new ImageIcon("image/battle/monster/몬스터" + battleInfo.getmNum() + ".png").getImage().getScaledInstance(400, 450, 0);
 		JLabel bl2 = new JLabel(new ImageIcon(img2));
-		bl2.setLocation(800, 120);
-		bl2.setSize(300, 400);
+		bl2.setLocation(700, 80);
+		bl2.setSize(400, 450);
 		bl.add(bl2);
 		
 		
@@ -203,11 +203,11 @@ public class BattleView extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == atkPanel) {
-				battleController.attack(mf, battleView, battleInfo);
+				battleController.attack(battleView, battleInfo);
 			} else if(e.getSource() == skilPanel){
-				ViewUtil.changePanel(mf, battleView, new SelectSkillView(mf, battleInfo));
+				ViewUtil.changePanel(battleView, new SelectSkillView(battleInfo));
 			} else if(e.getSource() == escapePanel) {
-				battleController.escape(mf, battleView, battleInfo);
+				battleController.escape(battleView, battleInfo);
 			}
 		}
 	}

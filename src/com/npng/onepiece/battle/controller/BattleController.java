@@ -14,7 +14,7 @@ import com.npng.onepiece.battle.view.main.BattleView;
 import com.npng.onepiece.battle.view.skill.SelectSkillView;
 import com.npng.onepiece.battle.view.skill.SkillAttackView;
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.user.view.MainFrame;
+
 
 public class BattleController {
 	
@@ -28,155 +28,172 @@ public class BattleController {
 		return battleInfo;
 	}
 
-	public void attack(MainFrame mf, BattleView battleView, BattleDTO battleInfo) {
+	public void attack(BattleView battleView, BattleDTO battleInfo) {
 
 		int result = battleService.attack(battleInfo);
 
 		if(result == 1) {
-			ViewUtil.changePanel(mf, battleView, new AttackView(mf, battleInfo)); //공격 성공
+			ViewUtil.changePanel(battleView, new AttackView(battleInfo)); //공격 성공
 		} else if(result == 2){
-			ViewUtil.changePanel(mf, battleView, new BattleWinView(mf, battleInfo));// 전투 승리
+			ViewUtil.changePanel(battleView, new BattleWinView(battleInfo, result));// 전투 승리
 		} else {
-			ViewUtil.changePanel(mf, battleView, new AttackFailedView(mf, battleInfo)); // 공격 실패
+			ViewUtil.changePanel(battleView, new AttackFailedView(battleInfo)); // 공격 실패
 		}
 		
 	}
 	
-	public void attack(MainFrame mf, BattleContinueView battleContinueView, BattleDTO battleInfo) {
+	public void attack(BattleContinueView battleContinueView, BattleDTO battleInfo) {
 			
 		int result = battleService.attack(battleInfo);
 		
 		if(result == 1) {
-			ViewUtil.changePanel(mf, battleContinueView, new AttackView(mf, battleInfo)); //공격 성공
+			ViewUtil.changePanel(battleContinueView, new AttackView(battleInfo)); //공격 성공
 		} else if(result == 2){
-			ViewUtil.changePanel(mf, battleContinueView, new BattleWinView(mf, battleInfo));// 전투 승리
+			ViewUtil.changePanel(battleContinueView, new BattleWinView(battleInfo, result));// 전투 승리
 		} else {
-			ViewUtil.changePanel(mf, battleContinueView, new AttackFailedView(mf, battleInfo)); 
+			ViewUtil.changePanel(battleContinueView, new AttackFailedView(battleInfo)); 
 			// 공격 실패
 		}
 	
 	}	
 
-	public void Monsterattack(MainFrame mf, AttackView attackView, BattleDTO battleInfo) {
+	public void Monsterattack(AttackView attackView, BattleDTO battleInfo) {
 		
 		int result = battleService.monsterAttack(battleInfo);
 		if(result == 1) {
-			ViewUtil.changePanel(mf, attackView, new AvoidSuccessView(mf, battleInfo)); //회피 성공
-		} else if(result == 2){
-			ViewUtil.changePanel(mf, attackView, new BattleLoseView(mf, battleInfo));// 캐릭터 죽음
+			ViewUtil.changePanel(attackView, new AvoidSuccessView(battleInfo)); //회피 성공
+		} else if(result == 3){
+			ViewUtil.changePanel(attackView, new BattleLoseView(battleInfo, result));// 캐릭터 죽음
 		} else {
 			System.out.println("controller dto : " + battleInfo);
-			ViewUtil.changePanel(mf, attackView, new AvoidFailedView(mf, battleInfo)); //회피 실패
+			ViewUtil.changePanel(attackView, new AvoidFailedView(battleInfo)); //회피 실패
 		}
 	}
 	
-	public void Monsterattack(MainFrame mf, AttackFailedView attackFailedView, BattleDTO battleInfo) {
+	public void Monsterattack(AttackFailedView attackFailedView, BattleDTO battleInfo) {
 		
 		int result = battleService.monsterAttack(battleInfo);
 		if(result == 1) {
-			ViewUtil.changePanel(mf, attackFailedView, new AvoidSuccessView(mf, battleInfo)); //회피 성공
-		} else if(result == 2){
-			ViewUtil.changePanel(mf, attackFailedView, new BattleLoseView(mf, battleInfo));// 캐릭터 죽음
+			ViewUtil.changePanel(attackFailedView, new AvoidSuccessView(battleInfo)); //회피 성공
+		} else if(result == 3){
+			ViewUtil.changePanel(attackFailedView, new BattleLoseView(battleInfo, result));// 캐릭터 죽음
 		} else {
 			System.out.println("controller dto : " + battleInfo);
-			ViewUtil.changePanel(mf, attackFailedView, new AvoidFailedView(mf, battleInfo)); //회피 실패
+			ViewUtil.changePanel(attackFailedView, new AvoidFailedView(battleInfo)); //회피 실패
 		}
 		
 	}
 	
-	public void Monsterattack(MainFrame mf, SkillAttackView skillAttackView, BattleDTO battleInfo) {
+	public void Monsterattack(SkillAttackView skillAttackView, BattleDTO battleInfo) {
 		
 		int result = battleService.monsterAttack(battleInfo);
 		if(result == 1) {
-			ViewUtil.changePanel(mf, skillAttackView, new AvoidSuccessView(mf, battleInfo)); //회피 성공
-		} else if(result == 2){
-			ViewUtil.changePanel(mf, skillAttackView, new BattleLoseView(mf, battleInfo));// 캐릭터 죽음
+			ViewUtil.changePanel(skillAttackView, new AvoidSuccessView(battleInfo)); //회피 성공
+		} else if(result == 3){
+			ViewUtil.changePanel(skillAttackView, new BattleLoseView(battleInfo, result));// 캐릭터 죽음
 		} else {
 			System.out.println("controller dto : " + battleInfo);
-			ViewUtil.changePanel(mf, skillAttackView, new AvoidFailedView(mf, battleInfo)); //회피 실패
+			ViewUtil.changePanel(skillAttackView, new AvoidFailedView(battleInfo)); //회피 실패
 		}
 		
 	}
 
 
 
-	public void battleInfo(MainFrame mf, AvoidSuccessView avoidSuccessView, BattleDTO battleInfo) {
+	public void battleInfo(AvoidSuccessView avoidSuccessView, BattleDTO battleInfo) {
 	
-		ViewUtil.changePanel(mf, avoidSuccessView, new BattleContinueView(mf, battleInfo));
+		ViewUtil.changePanel(avoidSuccessView, new BattleContinueView(battleInfo));
 	}
 
 
-	public void zoroSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void zoroSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
 		
 		System.out.println("조로 선택");
 		
 		int result = 0;
 		result = battleService.zoroSkill(battleInfo);
 		if(result > 0) {
-			ViewUtil.changePanel(mf, selectSkillView, new BattleWinView(mf, battleInfo));
+			ViewUtil.changePanel(selectSkillView, new BattleWinView(battleInfo, result));
 		}else {
-			ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
 		}
 	}
 
-	public void sandiSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void sandiSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
 		System.out.println("상디 선택");
 		int result = 0;
 		result = battleService.sandiSkill(battleInfo);
 		if(result > 0) {
-			ViewUtil.changePanel(mf, selectSkillView, new BattleWinView(mf, battleInfo));
+			ViewUtil.changePanel(selectSkillView, new BattleWinView(battleInfo, result));
 		}else {
-			ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
 		}
 	}
 
-	public void oosopSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void oosopSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
 		System.out.println("우습 선택");
 		int result = 0;
 		result = battleService.oosopSkill(battleInfo);
 		
 		if(result > 0) {
-			ViewUtil.changePanel(mf, selectSkillView, new BattleWinView(mf, battleInfo));
+			ViewUtil.changePanel(selectSkillView, new BattleWinView(battleInfo, result));
 		}else {
-			ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
 		}
 	}
 
-	public void namiSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void namiSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
 		System.out.println("나미 선택");
-		battleService.namiSkill(battleInfo);
+		int result = battleService.namiSkill(battleInfo);
 		
-		ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
-		
+		if(result > 0) {
+			ViewUtil.changePanel(selectSkillView, new BattleWinView(battleInfo, result));
+		}else {
+			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
+		}
 	}
 
-	public void hankokSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void hankokSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
 		System.out.println("핸콕 선택");
 		battleService.hankokSkill(battleInfo);
 		
-		ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+		ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
 		
 	}
 
-	public void reilighSkill(MainFrame mf, SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void reilighSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
 		System.out.println("레일리선택");
 		int result = 0;
 		result = battleService.reilighSkill(battleInfo);
 		if(result > 0) {
-			ViewUtil.changePanel(mf, selectSkillView, new BattleWinView(mf, battleInfo));
+			ViewUtil.changePanel(selectSkillView, new BattleWinView(battleInfo, result));
 		}else {
-			ViewUtil.changePanel(mf, selectSkillView, new SkillAttackView(mf, battleInfo, num, grade));
+			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
 		}
 	}
 
-	public void escape(MainFrame mf, BattleView battleView, BattleDTO battleInfo) {
+	public void escape(BattleView battleView, BattleDTO battleInfo) {
 
 		int result = battleService.escape(battleInfo);
 		
 		if(result > 0) {
-			ViewUtil.changePanel(mf, battleView, new Escape(mf, battleInfo));
+			ViewUtil.changePanel(battleView, new Escape(battleInfo));
 		}
 		
+	}
+
+	public int updateBossClear(int bossNum) {
+		
+		int result = battleService.updateBossClear(bossNum);
+		
+		return result;
+	}
+
+	public int updateFriend(int clearMonsterNum) {
+		
+		int result = battleService.updateFriend(clearMonsterNum);
+		
+		return result;
 	}
 
 	

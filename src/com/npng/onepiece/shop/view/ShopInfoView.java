@@ -12,7 +12,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.npng.onepiece.character.controller.CharacterController;
+import com.npng.onepiece.character.model.dto.CharacterDTO;
 import com.npng.onepiece.common.ViewUtil;
+import com.npng.onepiece.inventory.controller.InventoryController;
 import com.npng.onepiece.inventory.model.dto.InventoryDTO;
 import com.npng.onepiece.inventory.model.dto.ItemDTO;
 import com.npng.onepiece.shop.controller.ShopController;
@@ -24,29 +27,40 @@ public class ShopInfoView extends JPanel {
 	private ShopInfoView mainPageI;
 	private Image img;
 	private List<ItemDTO> shopList;
+	private ShopController shopControl;
 
-//	i는 상점의 몇번쨰 칸인지
-	public ShopInfoView (MainFrame mf, int i, InventoryDTO inven) {
-		
+	//	i는 상점의 몇번쨰 칸인지
+	public ShopInfoView (MainFrame mf, int i, InventoryDTO inven, int cn, int s) {
 
-		ShopController shopInfo = new ShopController();
-		shopList = shopInfo.getShopInfo();
+
+		shopControl = new ShopController();
+		shopList = shopControl.getShopInfo();
 		
-				System.out.println(shopList.size());
+		if(s == 1) {
+			shopList = shopControl.getSpecialShopInfo1();
+		}
+		if(s == 2) {
+			shopList = shopControl.getSpecialShopInfo2();
+		}
+		if(s == 3) {
+			shopList = shopControl.getSpecialShopInfo3();
+		}
+
+		System.out.println(shopList.size());
 		System.out.println(shopList.get(i));
-		
+
 		this.setBounds(0, 0, 1200, 800);
 		this.mf = mf;
 		this.mainPageI = this;
-		
-		
+
+
 		JLabel labelName = new JLabel("이름 : " + shopList.get(i).getName());
 		JLabel labelCate = new JLabel("종류 : "+ shopList.get(i).getCate());
 		JLabel labelGrade = new JLabel("등급 : "+ shopList.get(i).getGrade());
 		JLabel labelPrice = new JLabel("가격 : " + shopList.get(i).getPrice());
-		
+
 		JLabel MoneyLabel = new JLabel("소지금 : " + inven.getGold() + "G");
-		
+
 		JLabel label = new JLabel(new ImageIcon());
 		this.img = new ImageIcon("image/shop/store_bg.PNG").getImage().getScaledInstance(1200, 800, 0);
 		label.setIcon(new ImageIcon(img));
@@ -73,12 +87,30 @@ public class ShopInfoView extends JPanel {
 
 		JButton buttonItem1 = new JButton(new ImageIcon("image/shop/item/2.PNG"));
 		JButton buttonItem2 = new JButton(new ImageIcon("image/shop/item/3.PNG"));
-		JButton buttonItem3 = new JButton(new ImageIcon("image/shop/item/8.PNG"));
-		JButton buttonItem4 = new JButton(new ImageIcon("image/shop/item/9.PNG"));
-		JButton buttonItem5 = new JButton(new ImageIcon("image/shop/item/14.PNG"));
-		JButton buttonItem6 = new JButton(new ImageIcon("image/shop/item/15.PNG"));
-		JButton buttonItem7 = new JButton(new ImageIcon("image/shop/item/19.PNG"));
+		JButton buttonItem3 = new JButton(new ImageIcon("image/shop/item/4.PNG"));
+		JButton buttonItem4 = new JButton(new ImageIcon("image/shop/item/8.PNG"));
+		JButton buttonItem5 = new JButton(new ImageIcon("image/shop/item/9.PNG"));
+		JButton buttonItem6 = new JButton(new ImageIcon("image/shop/item/10.PNG"));
+		JButton buttonItem7 = new JButton(new ImageIcon("image/shop/item/14.PNG"));
+		JButton buttonItem8 = new JButton(new ImageIcon("image/shop/item/15.PNG"));
+		JButton buttonItem9 = new JButton(new ImageIcon("image/shop/item/16.PNG"));
+		JButton buttonItem10 = new JButton(new ImageIcon("image/shop/item/19.PNG"));
 
+		if(s == 1) {
+			buttonItem1 = new JButton(new ImageIcon("image/shop/item/5.PNG"));
+			buttonItem2 = new JButton(new ImageIcon("image/shop/item/6.PNG"));
+			
+		}
+		if(s == 2) {
+			buttonItem1 = new JButton(new ImageIcon("image/shop/item/11.PNG"));
+			buttonItem2 = new JButton(new ImageIcon("image/shop/item/12.PNG"));
+		}
+		if(s == 3) {
+			buttonItem1 = new JButton(new ImageIcon("image/shop/item/17.PNG"));
+			buttonItem2 = new JButton(new ImageIcon("image/shop/item/18.PNG"));
+			
+		}
+		
 		JButton buttonMyItem1 = new JButton(new ImageIcon("image/shop/item/" + inven.getInven1() +".PNG"));
 		JButton buttonMyItem2 = new JButton(new ImageIcon("image/shop/item/" + inven.getInven2() +".PNG"));
 		JButton buttonMyItem3 = new JButton(new ImageIcon("image/shop/item/" + inven.getInven3() +".PNG"));
@@ -101,6 +133,9 @@ public class ShopInfoView extends JPanel {
 		buttonItem5.setBounds(490, 100, 90, 90);
 		buttonItem6.setBounds(50, 220, 90, 90);
 		buttonItem7.setBounds(160, 220, 90, 90);
+		buttonItem8.setBounds(270, 220, 90, 90);
+		buttonItem9.setBounds(380, 220, 90, 90);
+		buttonItem10.setBounds(490, 220, 90, 90);
 
 
 		buttonMyItem1.setBounds(50, 480, 90, 90);
@@ -115,10 +150,10 @@ public class ShopInfoView extends JPanel {
 		buttonMyItem10.setBounds(490, 600, 90, 90);
 
 
-		
-		
 
-		
+
+
+
 		Font fontM = new Font("맑은 고딕", Font.PLAIN, 30);
 		MoneyLabel.setFont(fontM); 
 		MoneyLabel.setBounds(950, 5, 300, 100);
@@ -132,7 +167,7 @@ public class ShopInfoView extends JPanel {
 		labelCate.setFont(font); 
 		labelCate.setBounds(820, 300, 200, 100);
 		labelCate.setForeground(Color.WHITE);
-		
+
 		labelGrade.setFont(font); 
 		labelGrade.setBounds(820, 350, 200, 100);
 		labelGrade.setForeground(Color.WHITE);
@@ -144,55 +179,69 @@ public class ShopInfoView extends JPanel {
 		labelIcon.setBounds(850, 150 , 90, 90);
 
 		labelBoard.setBounds(750, 50, 310, 620);
-		
-		
-		
-		
+
+
+
+
 		buttonBuy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if((inven.getGold() - shopList.get(i).getPrice()) < 0) {
 					JLabel alarm = new JLabel("돈이 부족합니다.");
-					ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven));
+					ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven, cn, s));
 					return;
 				}
-				
-				int cal = inven.getGold() - shopList.get(i).getPrice();
-				
-				if(i == 6) {
-					inven.setGold(cal);
-					System.out.println("목숨1회복");
-					System.out.println(inven);
-					ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
-					return;
-					
-				}
-				
+
 				if((inven.getInven1() != 0) && (inven.getInven2() != 0) && (inven.getInven3() != 0) && (inven.getInven4() != 0) && (inven.getInven5() != 0)
 						&& (inven.getInven6() != 0) && (inven.getInven7() != 0) && (inven.getInven8() != 0) && (inven.getInven9() != 0) && (inven.getInven10() != 0) ) {
 					JLabel alarm = new JLabel("인벤토리 자리없음");
-					ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven));
-					
+					ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven, cn, s));
+
 					return;
 				}
-				
-				
-				
+
 				if(inven.getInven1() == shopList.get(i).getNum() || inven.getInven2() == shopList.get(i).getNum() || inven.getInven3() == shopList.get(i).getNum()
 						|| inven.getInven4() == shopList.get(i).getNum() || inven.getInven5() == shopList.get(i).getNum() || inven.getInven6() == shopList.get(i).getNum()
 						|| inven.getInven7() == shopList.get(i).getNum() || inven.getInven8() == shopList.get(i).getNum() || inven.getInven9() == shopList.get(i).getNum()
 						|| inven.getInven10() == shopList.get(i).getNum()) {
-					
-					JLabel alarm = new JLabel("이미 보유중 ");
-						
 
-						ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven));
+					JLabel alarm = new JLabel("이미 보유중 ");
+
+
+					ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven, cn, s));
 					return;
 				}
+				int cal = inven.getGold() - shopList.get(i).getPrice();
 
+				if(i == 9) {
+					inven.setGold(cal);
+					System.out.println("목숨1회복");
+					
+//					캐릭터dto db에서 받아오기
+//					int life = 캐릭터DTO.getLife 에서 받아오기
+					CharacterDTO charDTO = new CharacterDTO();
+					CharacterController charControl = new CharacterController();
+					InventoryController itemInfo = new InventoryController();
+					
+					charDTO = charControl.lookChInfo(cn);
+					int life = charDTO.getLife();
+					life += 1;
+					
+//					캐릭터DTO.setLife(life)
+//					db에 캐릭터DTO덮어쓰기
+					charDTO.setLife(life);
+					itemInfo.applyStatus(cn, charDTO);
+
+					
+					shopControl.tradeExecute(cn, inven);
+					ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, cn ,s));
+					return;
+
+				}
 				
 				
+				//순서대로 인벤 빈칸 찾아서 번호 넣기
 				if(inven.getInven1() == 0) {
 					inven.setInven1(shopList.get(i).getNum());
 				} else if (inven.getInven2() == 0) {
@@ -214,10 +263,13 @@ public class ShopInfoView extends JPanel {
 				} else if (inven.getInven10() == 0) {
 					inven.setInven10(shopList.get(i).getNum());
 				}
-				
+
 				inven.setGold(cal);
 				System.out.println(inven);
-				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
+
+				shopControl.tradeExecute(cn, inven);
+
+				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, cn, s));
 
 
 			}
@@ -226,8 +278,8 @@ public class ShopInfoView extends JPanel {
 		buttonCancle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
+
+				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, cn, s));
 
 			}
 
@@ -237,15 +289,15 @@ public class ShopInfoView extends JPanel {
 		label.add(labelIcon);
 
 
-		
+
 		label.add(labelName);
 		label.add(labelCate);
-		
+
 		if(shopList.get(i).getGrade() == null) {
-		labelGrade = new JLabel("효과 : 목숨 1회복");
-		labelGrade.setFont(font); 
-		labelGrade.setBounds(820, 350, 200, 100);
-		labelGrade.setForeground(Color.WHITE);
+			labelGrade = new JLabel("효과 : 목숨 1회복");
+			labelGrade.setFont(font); 
+			labelGrade.setBounds(820, 350, 200, 100);
+			labelGrade.setForeground(Color.WHITE);
 		}
 		label.add(labelGrade);
 		label.add(labelPrice);
@@ -260,11 +312,17 @@ public class ShopInfoView extends JPanel {
 
 		label.add(buttonItem1);
 		label.add(buttonItem2);
-		label.add(buttonItem3);
-		label.add(buttonItem4);
-		label.add(buttonItem5);
-		label.add(buttonItem6);
-		label.add(buttonItem7);
+		if(s==0) {
+			label.add(buttonItem3);
+			label.add(buttonItem4);	
+			label.add(buttonItem5);		
+			label.add(buttonItem6);		
+			label.add(buttonItem7);		
+			label.add(buttonItem8);		
+			label.add(buttonItem9);
+			label.add(buttonItem10);
+		}
+		
 
 		if(inven.getInven1() != 0) {
 			label.add(buttonMyItem1);
@@ -296,7 +354,7 @@ public class ShopInfoView extends JPanel {
 		if(inven.getInven10() != 0) {
 			label.add(buttonMyItem10);
 		}
-		
+
 
 
 		this.add(label);

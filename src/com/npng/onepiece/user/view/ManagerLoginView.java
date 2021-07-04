@@ -57,6 +57,17 @@ public class ManagerLoginView extends JPanel {
 			}
 		});
 		
+		JButton btn3 = new JButton("비밀번호 찾기");
+		btn3.setLocation(500, 600);
+		btn3.setSize(220, 100);
+		btn3.setFont(font4);
+		btn3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ViewUtil.changePanel(mainFrame, managerLoginView, new FindManagerPasswordView(mainFrame));	
+			}
+		});
 		Font font5= new Font("",0,25);
 		JButton btn2 = new JButton("로그인");
 		btn2.setLocation(850, 600);
@@ -111,6 +122,7 @@ public class ManagerLoginView extends JPanel {
 		label.add(tf2);
 		label.add(btn1);
 		label.add(btn2);
+		label.add(btn3);
 		this.add(label, BorderLayout.CENTER);
 	}
 

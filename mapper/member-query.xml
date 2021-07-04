@@ -66,4 +66,11 @@
 	         , ABLE_YN
           FROM USER_INFO
 	</entry>
+	<entry key="updateManagerPassword">
+	    UPDATE 
+               USER_INFO
+           SET USER_PASSWORD = ?
+         WHERE USER_ID = ?
+           AND USER_NAME = ?
+	</entry>
 </properties>

@@ -17,6 +17,7 @@ import com.npng.onepiece.inventory.controller.InventoryController;
 import com.npng.onepiece.inventory.model.dto.EquipDTO;
 import com.npng.onepiece.inventory.model.dto.InventoryDTO;
 import com.npng.onepiece.inventory.model.dto.ItemDTO;
+import com.npng.onepiece.shop.controller.ShopController;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class MineInfoView extends JPanel {
@@ -26,8 +27,9 @@ public class MineInfoView extends JPanel {
 	private Image img;
 	private Image img2;
 	private List<ItemDTO> itemList;
+	private ShopController shopControl = new ShopController ();
 
-	public MineInfoView (MainFrame mf, int i, int n, InventoryDTO inven) {
+	public MineInfoView (MainFrame mf, int i, int n, InventoryDTO inven, int cn, int s) {
 //		n은 몇번째 인벤칸인지, i는 해당 칸에 들어있는 아이템의 번호
 
 		InventoryController itemInfo = new InventoryController();
@@ -79,12 +81,30 @@ public class MineInfoView extends JPanel {
 
 		JButton buttonItem1 = new JButton(new ImageIcon("image/shop/item/2.PNG"));
 		JButton buttonItem2 = new JButton(new ImageIcon("image/shop/item/3.PNG"));
-		JButton buttonItem3 = new JButton(new ImageIcon("image/shop/item/8.PNG"));
-		JButton buttonItem4 = new JButton(new ImageIcon("image/shop/item/9.PNG"));
-		JButton buttonItem5 = new JButton(new ImageIcon("image/shop/item/14.PNG"));
-		JButton buttonItem6 = new JButton(new ImageIcon("image/shop/item/15.PNG"));
-		JButton buttonItem7 = new JButton(new ImageIcon("image/shop/item/19.PNG"));
-
+		JButton buttonItem3 = new JButton(new ImageIcon("image/shop/item/4.PNG"));
+		JButton buttonItem4 = new JButton(new ImageIcon("image/shop/item/8.PNG"));
+		JButton buttonItem5 = new JButton(new ImageIcon("image/shop/item/9.PNG"));
+		JButton buttonItem6 = new JButton(new ImageIcon("image/shop/item/10.PNG"));
+		JButton buttonItem7 = new JButton(new ImageIcon("image/shop/item/14.PNG"));
+		JButton buttonItem8 = new JButton(new ImageIcon("image/shop/item/15.PNG"));
+		JButton buttonItem9 = new JButton(new ImageIcon("image/shop/item/16.PNG"));
+		JButton buttonItem10 = new JButton(new ImageIcon("image/shop/item/19.PNG"));
+		
+		if(s == 1) {
+			buttonItem1 = new JButton(new ImageIcon("image/shop/item/5.PNG"));
+			buttonItem2 = new JButton(new ImageIcon("image/shop/item/6.PNG"));
+			
+		}
+		if(s == 2) {
+			buttonItem1 = new JButton(new ImageIcon("image/shop/item/11.PNG"));
+			buttonItem2 = new JButton(new ImageIcon("image/shop/item/12.PNG"));
+		}
+		if(s == 3) {
+			buttonItem1 = new JButton(new ImageIcon("image/shop/item/17.PNG"));
+			buttonItem2 = new JButton(new ImageIcon("image/shop/item/18.PNG"));
+			
+		}
+		
 		JButton buttonMyItem1 = new JButton(new ImageIcon("image/shop/item/" + inven.getInven1() +".PNG"));
 		JButton buttonMyItem2 = new JButton(new ImageIcon("image/shop/item/" + inven.getInven2() +".PNG"));
 		JButton buttonMyItem3 = new JButton(new ImageIcon("image/shop/item/" + inven.getInven3() +".PNG"));
@@ -107,6 +127,9 @@ public class MineInfoView extends JPanel {
 		buttonItem5.setBounds(490, 100, 90, 90);
 		buttonItem6.setBounds(50, 220, 90, 90);
 		buttonItem7.setBounds(160, 220, 90, 90);
+		buttonItem8.setBounds(270, 220, 90, 90);
+		buttonItem9.setBounds(380, 220, 90, 90);
+		buttonItem10.setBounds(490, 220, 90, 90);
 
 		buttonMyItem1.setBounds(50, 480, 90, 90);
 		buttonMyItem2.setBounds(160, 480, 90, 90);
@@ -118,12 +141,6 @@ public class MineInfoView extends JPanel {
 		buttonMyItem8.setBounds(270, 600, 90, 90);
 		buttonMyItem9.setBounds(380, 600, 90, 90);
 		buttonMyItem10.setBounds(490, 600, 90, 90);
-
-
-
-
-
-
 
 
 
@@ -159,12 +176,12 @@ public class MineInfoView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				InventoryController equipInfo = new InventoryController();
-				EquipDTO equip = equipInfo.getEquipInfo();
+				EquipDTO equip = equipInfo.getEquipInfo(cn);
 				
 				if (i == equip.geteWeaponNum() || i == equip.geteArmorNum() || i == equip.geteASCNum()) {
 					JLabel alarm = new JLabel("장비중 입니다.");
 					
-					ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven));
+					ViewUtil.changePanel(mf, mainPageI, new ShopAlarmView(mf, alarm, inven, cn, s));
 					return;
 				}
 
@@ -198,7 +215,9 @@ public class MineInfoView extends JPanel {
 				}  else if(n == 10) {
 					inven.setInven10(0);
 				}
-				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
+				
+				shopControl.tradeExecute(cn, inven);
+				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, cn, s));
 
 			}
 
@@ -209,7 +228,7 @@ public class MineInfoView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 
-				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, inven));
+				ViewUtil.changePanel(mf, mainPageI, new ShopView(mf, cn, s));
 
 			}
 
@@ -237,11 +256,18 @@ public class MineInfoView extends JPanel {
 
 		label.add(buttonItem1);
 		label.add(buttonItem2);
-		label.add(buttonItem3);
-		label.add(buttonItem4);
-		label.add(buttonItem5);
-		label.add(buttonItem6);
-		label.add(buttonItem7);
+		if(s==0) {
+			label.add(buttonItem3);
+			label.add(buttonItem4);	
+			label.add(buttonItem5);		
+			label.add(buttonItem6);		
+			label.add(buttonItem7);		
+			label.add(buttonItem8);		
+			label.add(buttonItem9);
+			label.add(buttonItem10);
+		}
+		
+		
 		if(inven.getInven1() != 0) {
 			label.add(buttonMyItem1);
 		}

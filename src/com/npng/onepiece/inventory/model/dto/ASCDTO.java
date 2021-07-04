@@ -1,6 +1,8 @@
 package com.npng.onepiece.inventory.model.dto;
 
-public class ASCDTO extends ItemDTO{
+import java.io.Serializable;
+
+public class ASCDTO extends ItemDTO implements Serializable{
 	
 	private int cha;
 	private int mp;

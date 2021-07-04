@@ -1,5 +1,7 @@
 package com.npng.onepiece.battle.model.dao;
 
+import static com.npng.onepiece.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,10 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import static com.npng.onepiece.common.JDBCTemplate.close;
 
 import com.npng.onepiece.battle.model.dto.BattleDTO;
 import com.npng.onepiece.battle.model.dto.FriendDTO;
+import com.npng.onepiece.gameready.view.CreateCharacterView;
 
 public class BattleDAO {
 	
@@ -39,8 +41,7 @@ public class BattleDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, cNum);
-			
+			pstmt.setInt(1,	cNum);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -86,6 +87,7 @@ public class BattleDAO {
 			
 			if(rset.next()) {
 				battleInfo = new BattleDTO();
+				battleInfo.setcNumber(num);
 				battleInfo.setmName(rset.getString("MON_NAME"));
 				battleInfo.setmLv(rset.getInt("MON_LV"));
 				battleInfo.setmAtk(rset.getInt("MON_ATK"));
@@ -107,6 +109,8 @@ public class BattleDAO {
 			close(rset);
 			close(pstmt);
 		}
+		System.out.println(battleInfo);
+		System.out.println(num);
 		return battleInfo;
 	}
 
@@ -126,8 +130,9 @@ public class BattleDAO {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
+				
 				String bossClear = rset.getString("BOSS_CLEAR");
-				if(bossClear == "Y") {
+				if(bossClear.equals("Y")) {
 					result = 1;
 				}
 			}
@@ -141,30 +146,29 @@ public class BattleDAO {
 		return result;
 	}
 
-	public List<FriendDTO> friendInfo(Connection con, int cNum) {
+	public List<FriendDTO> friendInfo(Connection con) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<FriendDTO> friendList = null;
 		FriendDTO friend = null;
-		
+
 		String query = prop.getProperty("friendInfo");
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, cNum);
+			pstmt.setInt(1, CreateCharacterView.chNum);
 			
 			rset = pstmt.executeQuery();
 			
 			friendList = new ArrayList<>();
 			
 			while(rset.next()) {
-				friend = new FriendDTO();
-				friend.setFrName(rset.getString("FR_NAME"));
+				friend = new FriendDTO();	
 				friend.setFrSkill(rset.getInt("FR_SKIL"));
-				friend.setFrGrade(rset.getString("FR_GRADE"));
-				friend.setFrHave(rset.getString("FR_HAVE_YN"));
-				friend.setFrNum(rset.getInt("FR_NUM"));
 				friend.setFrMp(rset.getInt("FR_MP"));
+				friend.setFrName(rset.getString("FR_NAME"));
+				friend.setFrGrade(rset.getString("GRADE"));
+				friend.setFrNum(rset.getInt("FR_NUM"));
 				friendList.add(friend);
 			}
 		} catch (SQLException e) {
@@ -199,6 +203,58 @@ public class BattleDAO {
 		} finally {
 			close(pstmt);
 		}
+		return result;
+	}
+
+
+	public int updateBossClear(Connection con, int bossNum) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		int cNum = 1; // 수정 필요
+		
+		String query = prop.getProperty("updateBossClear");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, bossNum);
+			pstmt.setInt(2, cNum);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+
+	public int updateFriend(Connection con, int clearMonsterNum) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		
+		String query = prop.getProperty("updateFriend");
+		
+		try {
+			pstmt = con.prepareStatement(query);			
+			pstmt.setInt(1, clearMonsterNum);
+			pstmt.setInt(2, CreateCharacterView.chNum);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
 		return result;
 	}
 

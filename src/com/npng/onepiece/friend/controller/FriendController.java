@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.swing.JLabel;
 
+import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.friend.model.dto.FriendDTO;
 import com.npng.onepiece.friend.model.service.FriendService;
+import com.npng.onepiece.friend.view.SelectInfo;
 
 public class FriendController {
 	
@@ -29,6 +31,18 @@ public class FriendController {
 		int gold = friendService.checkMoney();
 		
 		return gold;
+	}
+
+
+
+	public int upgrade(String name, int gold) {
+
+		int result = 0;
+		
+		result = friendService.upgrade(name, gold);
+		
+		return result;
+		
 	}
 
 }

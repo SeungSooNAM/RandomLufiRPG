@@ -14,7 +14,10 @@ import javax.swing.JPanel;
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.friend.controller.FriendController;
 import com.npng.onepiece.friend.model.dto.FriendDTO;
+import com.npng.onepiece.gameready.view.CreateCharacterView;
+import com.npng.onepiece.mainMenu.MainMenu;
 import com.npng.onepiece.user.view.MainFrame;
+
 
 public class FriendInfoView extends JPanel{
 	
@@ -39,11 +42,10 @@ public class FriendInfoView extends JPanel{
 	private JLabel goldLabel;
 	private int gold;
 
-	public FriendInfoView(MainFrame mf, int cNum) {
+	public FriendInfoView() {
 		this.setSize(1200, 800);
-		this.mf = mf;
 		this.friendInfoView = this;
-		mf.add(this);
+		MainFrame.mf.add(this);
 		
 		this.setLayout(null);
 		Font font1 = new Font("Dialog",Font.BOLD, 20);
@@ -105,42 +107,42 @@ public class FriendInfoView extends JPanel{
 		friendList = new ArrayList<>();
 		friendList = friendController.friendInfo();
 		gold  = friendController.checkMoney();
-		System.out.println(friendList);
 		
-		for(int i = 0; i < friendListLabel.length; i++) {
-			friendListLabel[i] = friendList.get(i);
-			friendName[i] = friendListLabel[i].getFrName();
-			friendGrade[i] = friendListLabel[i].getFrGrade();
-		}
-		for(int i = 0; i < 6; i++) {
-			System.out.println(friendListLabel[i]);
-		}
+		
+		if(friendList.size() != 0) {
+			for(int i = 0; i < friendList.size(); i++) {
+				friendListLabel[i] = friendList.get(i);
+				friendName[i] = friendListLabel[i].getFrName();
+				friendGrade[i] = friendListLabel[i].getFrGrade();
+			}
+
+		} 
+		
+		
 		
 		goldLabel = new JLabel(gold + "$");
 		goldLabel.setLocation(1040, 450);
 		goldLabel.setSize(150, 55);
 		goldLabel.setFont(font1);
 		fi.add(goldLabel);
-		
-		System.out.println(friendName[0]);
-		System.out.println(friendGrade[0]);
+
 
 		Image first = new ImageIcon("image/friend/" + friendName[0] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel firstLabel = new JLabel(new ImageIcon(first));
 		firstPanel.add(firstLabel);
-		Image second = new ImageIcon("image/friend/" + friendName[1] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
+		Image second = new ImageIcon("image/friend/" + friendName[1] + "_" + friendGrade[1] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel secondLabel = new JLabel(new ImageIcon(second));
 		secondPanel.add(secondLabel);
-		Image third = new ImageIcon("image/friend/" + friendName[2] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
+		Image third = new ImageIcon("image/friend/" + friendName[2] + "_" + friendGrade[2] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel thirdLabel = new JLabel(new ImageIcon(third));
 		thirdPanel.add(thirdLabel);
-		Image fourth = new ImageIcon("image/friend/" + friendName[3] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
+		Image fourth = new ImageIcon("image/friend/" + friendName[3] + "_" + friendGrade[3] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel fourthLabel = new JLabel(new ImageIcon(fourth));
 		fourthPanel.add(fourthLabel);
-		Image fifth = new ImageIcon("image/friend/" + friendName[4] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
+		Image fifth = new ImageIcon("image/friend/" + friendName[4] + "_" + friendGrade[4] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel fifthLabel = new JLabel(new ImageIcon(fifth));
 		fifthPanel.add(fifthLabel);
-		Image sixth = new ImageIcon("image/friend/" + friendName[5] + "_" + friendGrade[0] + ".png").getImage().getScaledInstance(128, 66, 0);
+		Image sixth = new ImageIcon("image/friend/" + friendName[5] + "_" + friendGrade[5] + ".png").getImage().getScaledInstance(128, 66, 0);
 		JLabel sixthLabel = new JLabel(new ImageIcon(sixth));
 		sixthPanel.add(sixthLabel);
 
@@ -150,26 +152,36 @@ public class FriendInfoView extends JPanel{
 		fourthPanel.addMouseListener(new MyMouseAdapter());
 		fifthPanel.addMouseListener(new MyMouseAdapter());
 		sixthPanel.addMouseListener(new MyMouseAdapter());
-		
+		backPanel.addMouseListener(new MyMouseAdapter());
 		
 	}
 	
 	public class MyMouseAdapter extends MouseAdapter{
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if(e.getSource() == firstPanel) {
-				ViewUtil.changePanel(mf, friendInfoView, new SelectInfo(mf, friendName[0]));
-			} else if(e.getSource() == secondPanel){
-				ViewUtil.changePanel(mf, friendInfoView, new SelectInfo(mf, friendName[1]));
-			} else if(e.getSource() == thirdPanel) {
-				ViewUtil.changePanel(mf, friendInfoView, new SelectInfo(mf, friendName[2]));
-			} else if(e.getSource() == fourthPanel) {
-				ViewUtil.changePanel(mf, friendInfoView, new SelectInfo(mf, friendName[3]));
-			} else if(e.getSource() == fifthPanel) {
-				ViewUtil.changePanel(mf, friendInfoView, new SelectInfo(mf, friendName[4]));
-			} else if(e.getSource() == sixthPanel) {
-				ViewUtil.changePanel(mf, friendInfoView, new SelectInfo(mf, friendName[5]));
-			}		
+			
+			if(friendList.size() != 0) {
+				if(e.getSource() == firstPanel) {
+					ViewUtil.changePanel(friendInfoView, new SelectInfo(friendName[0]));
+				} else if(e.getSource() == secondPanel){
+					ViewUtil.changePanel(friendInfoView, new SelectInfo(friendName[1]));
+				} else if(e.getSource() == thirdPanel) {
+					ViewUtil.changePanel(friendInfoView, new SelectInfo(friendName[2]));
+				} else if(e.getSource() == fourthPanel) {
+					ViewUtil.changePanel(friendInfoView, new SelectInfo(friendName[3]));
+				} else if(e.getSource() == fifthPanel) {
+					ViewUtil.changePanel(friendInfoView, new SelectInfo(friendName[4]));
+				} else if(e.getSource() == sixthPanel) {
+					ViewUtil.changePanel(friendInfoView, new SelectInfo(friendName[5]));
+				} else if(e.getSource() == backPanel) {
+					ViewUtil.changePanel(friendInfoView, new MainMenu(MainFrame.mf, CreateCharacterView.chNum));
+					System.out.println("메인메뉴 이동");
+				}
+			} else if(e.getSource() == backPanel) {
+				ViewUtil.changePanel(friendInfoView, new MainMenu(MainFrame.mf, CreateCharacterView.chNum));
+				System.out.println("메인메뉴 이동");
+			}
+			
 		}
 	}
 }
