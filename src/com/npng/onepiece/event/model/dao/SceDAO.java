@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.npng.onepiece.battle.model.dto.BattleDTO;
 import com.npng.onepiece.event.model.dto.SceDTO;
+import com.npng.onepiece.gameready.view.CreateCharacterView;
 
 public  class SceDAO {
 	
@@ -306,10 +307,9 @@ public  class SceDAO {
 
 
 
-
 	}
 
-	public int friendcheck(Connection con ,int chNum) {
+	public int friendcheck(Connection con ,int chNum,int map) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -323,7 +323,7 @@ public  class SceDAO {
 			pstmt = con.prepareStatement(query);
 			
 			pstmt.setInt(1, chNum); 
-			pstmt.setInt(2, 2); 
+			pstmt.setInt(2, map); 
 
 			rset = pstmt.executeQuery();
 			
@@ -340,9 +340,7 @@ public  class SceDAO {
 			close(pstmt);
 			close(rset);
 
-
 		}
-
 
 		return result;
 }
@@ -405,7 +403,7 @@ public  class SceDAO {
 	        	 ch.setCharlv(rset.getInt("CHAR_LV"));
 	            
 	         }
-
+	         System.out.println(ch);
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      } finally {
@@ -510,9 +508,29 @@ public  class SceDAO {
 		return result;
 	}
 
-	
-
-
+	public int updateHankok(Connection con) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("updateHankok");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, CreateCharacterView.chNum);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
 	}
 
+	
 }

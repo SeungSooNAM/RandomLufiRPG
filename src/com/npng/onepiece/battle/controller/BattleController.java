@@ -1,6 +1,7 @@
 package com.npng.onepiece.battle.controller;
 
 import com.npng.onepiece.battle.model.dto.BattleDTO;
+import com.npng.onepiece.battle.model.dto.FriendDTO;
 import com.npng.onepiece.battle.model.service.BattleService;
 import com.npng.onepiece.battle.view.attack.AttackFailedView;
 import com.npng.onepiece.battle.view.attack.AttackView;
@@ -106,69 +107,69 @@ public class BattleController {
 	}
 
 
-	public void zoroSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void zoroSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, FriendDTO friend) {
 		
 		System.out.println("조로 선택");
 		
 		int result = 0;
-		result = battleService.zoroSkill(battleInfo);
+		result = battleService.zoroSkill(battleInfo, friend);
 		if(result > 0) {
 			ViewUtil.changePanel(selectSkillView, new BattleWinView(battleInfo, result));
 		}else {
-			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
+			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, friend));
 		}
 	}
 
-	public void sandiSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void sandiSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, FriendDTO friend) {
 		System.out.println("상디 선택");
 		int result = 0;
-		result = battleService.sandiSkill(battleInfo);
+		result = battleService.sandiSkill(battleInfo, friend);
 		if(result > 0) {
 			ViewUtil.changePanel(selectSkillView, new BattleWinView(battleInfo, result));
 		}else {
-			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
+			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, friend));
 		}
 	}
 
-	public void oosopSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void oosopSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, FriendDTO friend) {
 		System.out.println("우습 선택");
 		int result = 0;
-		result = battleService.oosopSkill(battleInfo);
+		result = battleService.oosopSkill(battleInfo, friend);
 		
 		if(result > 0) {
 			ViewUtil.changePanel(selectSkillView, new BattleWinView(battleInfo, result));
 		}else {
-			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
+			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, friend));
 		}
 	}
 
-	public void namiSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void namiSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, FriendDTO friend) {
 		System.out.println("나미 선택");
-		int result = battleService.namiSkill(battleInfo);
+		int result = battleService.namiSkill(battleInfo, friend);
 		
 		if(result > 0) {
 			ViewUtil.changePanel(selectSkillView, new BattleWinView(battleInfo, result));
 		}else {
-			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
+			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, friend));
 		}
 	}
 
-	public void hankokSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void hankokSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, FriendDTO friend) {
 		System.out.println("핸콕 선택");
-		battleService.hankokSkill(battleInfo);
+		battleService.hankokSkill(battleInfo, friend);
 		
-		ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
+		ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, friend));
 		
 	}
 
-	public void reilighSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, int num, String grade) {
+	public void reilighSkill(SelectSkillView selectSkillView, BattleDTO battleInfo, FriendDTO friend) {
 		System.out.println("레일리선택");
 		int result = 0;
-		result = battleService.reilighSkill(battleInfo);
+		result = battleService.reilighSkill(battleInfo, friend);
 		if(result > 0) {
 			ViewUtil.changePanel(selectSkillView, new BattleWinView(battleInfo, result));
 		}else {
-			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, num, grade));
+			ViewUtil.changePanel(selectSkillView, new SkillAttackView(battleInfo, friend));
 		}
 	}
 

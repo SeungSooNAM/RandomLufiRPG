@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import com.npng.onepiece.character.controller.CharacterController;
 import com.npng.onepiece.character.model.dto.CharacterDTO;
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.gameready.view.BattleTutorial.BattleTutorial1;
+import com.npng.onepiece.gameready.view.CreateCharacterView;
 import com.npng.onepiece.mainMenu.MainMenu;
 import com.npng.onepiece.user.view.MainFrame;
 
@@ -25,24 +25,27 @@ public class ChInfo extends JPanel {
 	private CharacterDTO charDTO;
 	private CharacterController cc;
 	private int chNum;
-	
+
 	private int strPoint;
 	private int dexPoint;
 	private int chaPoint;
 	private int haveStPoint;
 	private String message;
-	
 
-	public ChInfo(MainFrame mf, int chNum) {		
-		
+	public ChInfo() {
+		this.chNum = CreateCharacterView.chNum;
+	}
+
+	public ChInfo(MainFrame mf, int chNum) {
+		this.chNum = CreateCharacterView.chNum;
+		System.out.println("this.chNum : " + this.chNum);
 		this.charDTO = new CharacterDTO();
 		this.cc = new CharacterController();
-		this.chNum = chNum;
-		
+//		this.chNum = chNum;
+
 		charDTO = cc.lookChInfo(chNum);
 		System.out.println(charDTO);
-		
-		
+
 		this.charInfo = this;
 		this.mf = mf;
 
@@ -60,7 +63,7 @@ public class ChInfo extends JPanel {
 		dexPoint = new Integer(charDTO.getDex());
 		chaPoint = new Integer(charDTO.getCharisma());
 		haveStPoint = new Integer(charDTO.getPoint());
-		
+
 		JLabel str = new JLabel(Integer.toString(strPoint));
 		str.setForeground(Color.white);
 		str.setFont(str.getFont().deriveFont(40.0f));
@@ -156,12 +159,12 @@ public class ChInfo extends JPanel {
 		EXP.setBounds(49, 648, 600, 130);
 		EXP.setHorizontalAlignment(JLabel.CENTER);
 		JLabel reqEXP = new JLabel(Integer.toString((charDTO.getLevel() * 100)));
-	    reqEXP.setForeground(Color.GRAY);
-	    reqEXP.setFont(str.getFont().deriveFont(42.0f));
-	    reqEXP.setBounds(220, 648, 600, 130);
-	    reqEXP.setHorizontalAlignment(JLabel.CENTER);
-	      
-	    label.add(reqEXP);
+		reqEXP.setForeground(Color.GRAY);
+		reqEXP.setFont(str.getFont().deriveFont(42.0f));
+		reqEXP.setBounds(220, 648, 600, 130);
+		reqEXP.setHorizontalAlignment(JLabel.CENTER);
+
+		label.add(reqEXP);
 
 		// 캐릭터 소지금 라벨
 //		JLabel GOLD = new JLabel(Integer.toString(charDTO.get));
@@ -183,7 +186,7 @@ public class ChInfo extends JPanel {
 //		infoMessage.setHorizontalAlignment(JLabel.CENTER);
 //		
 //		label.add(infoMessage);
-		
+
 		label.add(backBtn);
 //		label.add(GOLD);
 		label.add(EXP);
@@ -198,14 +201,44 @@ public class ChInfo extends JPanel {
 		label.add(str);
 		label.add(dex);
 		label.add(cha);
-		
-		
+
 		label.add(upStrBtn);
 		label.add(upDexBtn);
 		label.add(upChaBtn);
+
+// ============================================================================		
+		// 보유스탯포인트 부족 메세지 프레임
+		JFrame messageFrame = new JFrame();
+		messageFrame.setLocation(750, 500);
+		messageFrame.setSize(300, 200);
+
+		JPanel panel2 = new JPanel();
+		panel2.setSize(300, 200);
+
+		Image background1 = new ImageIcon("image/character/ms1.png").getImage().getScaledInstance(300, 110, 0);
+
+		JLabel label2 = new JLabel(new ImageIcon(background1));
+
+		JButton btn6 = new JButton("확인");
+		btn6.setContentAreaFilled(false);
+		btn6.setFocusPainted(false);
+		btn6.setBounds(100, 50, 20, 30);
 		
-		
-		//뒤로가기 버튼
+		panel2.add(label2);
+		panel2.add(btn6);
+		messageFrame.add(panel2);
+
+		btn6.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				messageFrame.setVisible(false);
+
+			}
+		});
+//===================================================================
+
+		// 뒤로가기 버튼
 		backBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -214,73 +247,73 @@ public class ChInfo extends JPanel {
 			}
 		});
 
-		//str + 버튼
-		upStrBtn.addActionListener(new ActionListener() {			
+		// str + 버튼
+		upStrBtn.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {				
+			public void actionPerformed(ActionEvent e) {
 
-				if(haveStPoint > 0) {
+				if (haveStPoint > 0) {
 					charDTO.setStr(strPoint + 1);
 					charDTO.setPoint(haveStPoint - 1);
-					
+
 					int result = new CharacterController().CharacterStrUp(charDTO, chNum);
 					if (result > 0) {
 						ViewUtil.changePanel(mf, charInfo, new ChInfo(mf, chNum));
-						
-					} else {
-					}					
-				} else {					
-//					message = "보유 스탯포인트가 부족합니다.";
-//					
-//					ViewUtil.changePanel(mf, charInfo, new ChInfo(mf, chNum));
+					}
+
+				} else {
+					// 보유스탯포인트가 부족합니다
+					System.out.println("안내 메세지 출력");
+					messageFrame.setVisible(true);
 				}
 			}
 		});
-		
-		//Dex + 버튼
-		upDexBtn.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {				
 
-				if(haveStPoint > 0) {
+		// Dex + 버튼
+		upDexBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if (haveStPoint > 0) {
 					charDTO.setDex(dexPoint + 1);
 					charDTO.setPoint(haveStPoint - 1);
-					
+
 					int result = new CharacterController().CharacterDexUp(charDTO, chNum);
 					if (result > 0) {
 						ViewUtil.changePanel(mf, charInfo, new ChInfo(mf, chNum));
-						
-					} else {
-//						message = "보유 스탯포인트가 부족합니다.";
-//						ViewUtil.changePanel(mf, charInfo, new ChInfo(mf, chNum));
-					}					
-				} 
+					}
+
+				} else {
+					// 보유스탯포인트가 부족합니다
+					System.out.println("안내 메세지 출력");
+					messageFrame.setVisible(true);
+				}
 			}
 		});
-		
-		//Cha + 버튼
-		upChaBtn.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {				
 
-				if(haveStPoint > 0) {
+		// Cha + 버튼
+		upChaBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if (haveStPoint > 0) {
 					charDTO.setCharisma(chaPoint + 1);
 					charDTO.setPoint(haveStPoint - 1);
-					
+
 					int result = new CharacterController().CharacterChaUp(charDTO, chNum);
 					if (result > 0) {
 						ViewUtil.changePanel(mf, charInfo, new ChInfo(mf, chNum));
-						
-					} else {
-//						message = "보유 스탯포인트가 부족합니다.";
-//						infoMessage.setText(message);
-//						ViewUtil.changePanel(mf, charInfo, new ChInfo(mf, chNum));
-					}					
-				} 
+					}
+
+				} else {
+					// 보유스탯포인트가 부족합니다
+					System.out.println("안내 메세지 출력");
+					messageFrame.setVisible(true);
+
+				}
+
 			}
 		});
-		
-
 
 //		if (point > 0) {
 //			label.add(upStrBtn);

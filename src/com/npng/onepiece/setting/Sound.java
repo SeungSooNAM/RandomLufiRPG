@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.mainMenu.MainMenu;
+import com.npng.onepiece.sound.Playsound;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class Sound extends JPanel {
@@ -36,10 +37,27 @@ public class Sound extends JPanel {
 	     JButton btnOn = new JButton("ON");
 	     btnOn.setFont(new Font("두꺼운",Font.BOLD,50));
 	     btnOn.setBounds(150, 250, 150, 150);
+	     btnOn.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Playsound.clip.start();
+					
+				}
+			});
+	    
 	     
 	     JButton btnOff = new JButton("OFF");
 	     btnOff.setFont(new Font("두꺼운", Font.BOLD,50));
 	     btnOff.setBounds(900, 250, 150, 150);
+	     btnOff.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Playsound.clip.stop();
+					
+				}
+			});
 	     
 	     JButton btnBack = new JButton(new ImageIcon("image/btn/back.PNG"));
 	      btnBack.setBounds(740, 652, 350, 80);

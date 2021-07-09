@@ -14,9 +14,12 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.inventory.controller.InventoryController;
+import com.npng.onepiece.inventory.model.dto.ASCDTO;
+import com.npng.onepiece.inventory.model.dto.ArmorDTO;
 import com.npng.onepiece.inventory.model.dto.EquipDTO;
 import com.npng.onepiece.inventory.model.dto.InventoryDTO;
 import com.npng.onepiece.inventory.model.dto.ItemDTO;
+import com.npng.onepiece.inventory.model.dto.WeaponDTO;
 import com.npng.onepiece.shop.controller.ShopController;
 import com.npng.onepiece.user.view.MainFrame;
 
@@ -27,7 +30,13 @@ public class MineInfoView extends JPanel {
 	private Image img;
 	private Image img2;
 	private List<ItemDTO> itemList;
+	private List<WeaponDTO> weaponList;
+	private List<ArmorDTO> armorList;
+	private List<ASCDTO> ascList;
 	private ShopController shopControl = new ShopController ();
+	
+	private int status1;
+	private int status2;
 
 	public MineInfoView (MainFrame mf, int i, int n, InventoryDTO inven, int cn, int s) {
 //		n은 몇번째 인벤칸인지, i는 해당 칸에 들어있는 아이템의 번호
@@ -43,9 +52,34 @@ public class MineInfoView extends JPanel {
 			}
 		}
 		System.out.println(itemList);
+		
 
+		
+		weaponList = itemInfo.getWeaponInfo();
+		armorList = itemInfo.getArmorInfo();
+		ascList = itemInfo.getASCInfo();
+		
+		status1 = 0;
+		status2 = 0;
+		
+		for(int k = 0; k < 6; k++) {
+			if(weaponList.get(k).getNum() == selectedItem.getNum()) {
+				status1 = weaponList.get(k).getAtk();
+				status2 = weaponList.get(k).getStr();
 
+				break;
+			} else if (armorList.get(k).getNum() == selectedItem.getNum()) {
+				status1 = armorList.get(k).getHp();
+				status2 = armorList.get(k).getDex();
 
+				break;
+			}else if (ascList.get(k).getNum() == selectedItem.getNum()) {
+				status1 = ascList.get(k).getCha();
+				status2 = ascList.get(k).getMp();
+
+				break;
+			}
+		}
 
 
 		this.setBounds(0, 0, 1200, 800);
@@ -56,7 +90,21 @@ public class MineInfoView extends JPanel {
 		JLabel labelCate = new JLabel("종류 : "+ selectedItem.getCate());
 		JLabel labelGrade = new JLabel("등급 : "+ selectedItem.getGrade());
 		JLabel labelPrice = new JLabel("가격 : " + selectedItem.getPrice());
+		
+		JLabel labelSpec1 = new JLabel();
+		JLabel labelSpec2 = new JLabel();
 
+		if(selectedItem.getNum() >= 1 && selectedItem.getNum() < 7) {
+			labelSpec1 = new JLabel("공격력 : " + status1);
+			labelSpec2 = new JLabel("힘 : " + status2);
+		} else if(selectedItem.getNum() >= 7 && selectedItem.getNum() < 13) {
+			labelSpec1 = new JLabel("hp : " + status1);
+			labelSpec2 = new JLabel("민첩 : " + status2);
+		} else if(selectedItem.getNum() >= 13 && selectedItem.getNum() < 19) {
+			labelSpec1 = new JLabel("카리스마 : " + status1);
+			labelSpec2 = new JLabel("mp : " + status2);
+		}
+		
 		JLabel MoneyLabel = new JLabel("소지금 : " + inven.getGold() + "G");
 
 		JLabel label = new JLabel(new ImageIcon());
@@ -149,22 +197,30 @@ public class MineInfoView extends JPanel {
 		MoneyLabel.setBounds(950, 5, 300, 100);
 
 
-		Font font = new Font("맑은 고딕", Font.PLAIN, 20);
+		Font font = new Font("맑은 고딕", Font.PLAIN, 15);
 		labelName.setFont(font); 
-		labelName.setBounds(820, 250, 200, 100);
+		labelName.setBounds(800, 250, 200, 100);
 		labelName.setForeground(Color.WHITE);
 
 		labelCate.setFont(font); 
-		labelCate.setBounds(820, 300, 200, 100);
+		labelCate.setBounds(800, 300, 200, 100);
 		labelCate.setForeground(Color.WHITE);
 
 		labelGrade.setFont(font); 
-		labelGrade.setBounds(820, 350, 200, 100);
+		labelGrade.setBounds(800, 350, 200, 100);
 		labelGrade.setForeground(Color.WHITE);
 
 		labelPrice.setFont(font); 
-		labelPrice.setBounds(820, 400, 200, 100);
+		labelPrice.setBounds(800, 400, 200, 100);
 		labelPrice.setForeground(Color.WHITE);
+		
+		labelSpec1.setFont(font); 
+		labelSpec1.setBounds(900, 300, 200, 100);
+		labelSpec1.setForeground(Color.WHITE);
+		
+		labelSpec2.setFont(font); 
+		labelSpec2.setBounds(900, 350, 200, 100);
+		labelSpec2.setForeground(Color.WHITE);
 
 		labelIcon.setBounds(850, 150 , 90, 90);
 		labelBoard.setBounds(750, 50, 310, 620);
@@ -243,6 +299,8 @@ public class MineInfoView extends JPanel {
 		label.add(labelCate);
 		label.add(labelGrade);
 		label.add(labelPrice);
+		label.add(labelSpec1);
+		label.add(labelSpec2);
 
 
 		label.add(buttonSell);

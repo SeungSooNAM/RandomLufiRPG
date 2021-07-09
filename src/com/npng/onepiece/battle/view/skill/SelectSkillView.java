@@ -2,6 +2,7 @@ package com.npng.onepiece.battle.view.skill;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -38,7 +39,7 @@ public class SelectSkillView extends JPanel{
 	private JLabel mDef;
 	private JLabel mHp;
 	private JLabel cMp;
-	
+	private JLabel mType;
 	
 	private JPanel zoroPanel;
 	private JPanel sandiPanel;
@@ -47,6 +48,7 @@ public class SelectSkillView extends JPanel{
 	private JPanel hankokPanel;
 	private JPanel reilighPanel;
 	private JPanel cancelPanel;
+	private JPanel battleInfoPanel;
 	
 	private JLabel zoroLabel;
 	private JLabel sandiLabel;
@@ -67,7 +69,7 @@ public class SelectSkillView extends JPanel{
 	private int mLvLabel;
 	private int mDefLabel;
 	private int mAtkLabel;
-	
+	private String mTypeLabel;
 
 	public SelectSkillView(BattleDTO battleInfo) {
 
@@ -81,6 +83,7 @@ public class SelectSkillView extends JPanel{
 
 		this.setLayout(null);
 		Font font1 = new Font("Dialog",Font.BOLD, 50);
+		Font font2 = new Font("Dialog", Font.BOLD, 25);
 		
 		Image img = new ImageIcon("image/battle/battleMain.png").getImage().getScaledInstance(1200, 800, 0);
 		JLabel bl = new JLabel(new ImageIcon(img));
@@ -99,7 +102,9 @@ public class SelectSkillView extends JPanel{
 		mLvLabel = battleInfo.getmLv();
 		mAtkLabel = battleInfo.getmAtk();
 		mDefLabel = battleInfo.getmDef();
-		System.out.println(battleInfo.getmNum());
+		mTypeLabel = battleInfo.getmCate();
+		
+
 		Image img2 = new ImageIcon("image/battle/monster/몬스터" + battleInfo.getmNum() + ".png").getImage().getScaledInstance(400, 400, 0);
 		JLabel bl2 = new JLabel(new ImageIcon(img2));
 		bl2.setLocation(800, 120);
@@ -171,47 +176,74 @@ public class SelectSkillView extends JPanel{
 		cancelPanel.add(cancelLabel, BorderLayout.CENTER);
 		cancelPanel.addMouseListener(new MyMouseAdapter());
 		
+//		battleInfoPanel = new JPanel();
+//		battleInfoPanel.setLocation(100, 550);
+//		battleInfoPanel.setSize(300, 160);
+//		battleInfoPanel.setOpaque(false);
+//		bl.add(battleInfoPanel);
+//		JLabel attackInfo = new JLabel("동료가 없습니다.");
+//		attackInfo.setBounds(10, 20, 160, 100);
+//		battleInfoPanel.add(attackInfo, BorderLayout.CENTER);
 		
 
 		cLevel = new JLabel("레벨 : " + cLvLabel);
 		cLevel.setLocation(50, 20);
-		cLevel.setSize(50, 50);
+		cLevel.setFont(font2);
+		cLevel.setSize(180, 50);
 		
 		cName = new JLabel("이름 : " + cNameLabel);
-		cName.setLocation(150, 20);
-		cName.setSize(100, 50);
+		cName.setLocation(230, 20);
+		cName.setFont(font2);
+		cName.setSize(350, 50);
 		
 		cAtk = new JLabel("공격력 : " + cAtkLabel);
-		cAtk.setLocation(50, 50);
-		cAtk.setSize(100, 50);
+		cAtk.setLocation(50, 80);
+		cAtk.setFont(font2);
+		cAtk.setForeground(Color.MAGENTA);
+		cAtk.setSize(180, 50);
 		
 		cHp = new JLabel("체력 : " + cHpLabel);
-		cHp.setLocation(150, 50);
-		cHp.setSize(100, 50);
+		cHp.setLocation(230, 80);
+		cHp.setFont(font2);
+		cHp.setForeground(Color.GREEN);
+		cHp.setSize(180, 50);
 		
 		cMp = new JLabel("마나 : " + cMpLabel);
-		cMp.setLocation(250, 50);
-		cMp.setSize(100, 50);
+		cMp.setLocation(410, 80);
+		cMp.setFont(font2);
+		cMp.setForeground(Color.BLUE);
+		cMp.setSize(180, 50);
 		
 		mLevel = new JLabel("레벨 : " + mLvLabel);
-		mLevel.setLocation(900, 20);
-		mLevel.setSize(100, 50);
+		mLevel.setLocation(650, 20);
+		mLevel.setFont(font2);
+		mLevel.setSize(180, 50);
 		
 		mName = new JLabel("이름 : " + mNameLabel);
-		mName.setLocation(1000, 20);
-		mName.setSize(100, 50);
+		mName.setLocation(830, 20);
+		mName.setFont(font2);
+		mName.setSize(200, 50);
+		
+		mType = new JLabel("타입 : " + mTypeLabel);
+		mType.setLocation(1030, 20);
+		mType.setFont(font2);
+		mType.setForeground(Color.red);
+		mType.setSize(200, 50);
 		
 		mAtk = new JLabel("공격력 : " + mAtkLabel);
-		mAtk.setLocation(900, 50);
-		mAtk.setSize(100, 50);
+		mAtk.setLocation(650, 80);
+		mAtk.setFont(font2);
+		mAtk.setSize(180, 50);
 		
 		mDef = new JLabel("방어력 : " + mDefLabel);
-		mDef.setLocation(1000, 50);
-		mDef.setSize(100, 50);
+		mDef.setLocation(830, 80);
+		mDef.setFont(font2);
+		mDef.setSize(180, 50);
 
 		mHp = new JLabel("체력 : " + mHpLabel);
-		mHp.setLocation(1100, 50);
-		mHp.setSize(100, 50);
+		mHp.setLocation(1010, 80);
+		mHp.setFont(font2);
+		mHp.setSize(180, 50);
 		
 		
 		bl.add(cLevel);
@@ -224,12 +256,10 @@ public class SelectSkillView extends JPanel{
 		bl.add(mDef);
 		bl.add(mHp);
 		bl.add(cMp);
+		bl.add(mType);
 		
 		friendList = battleInfo.getFriendList();
-		for(int i = 0; i < friendList.size(); i++) {
-			friend[i] = friendList.get(i);
-			System.out.println(friend[i].getFrName());
-		}
+		
 
 	}
 	
@@ -251,85 +281,158 @@ public class SelectSkillView extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == zoroPanel) {
-				for(int i = 0; i < friend.length; i++) {
-					if(friend[i].getFrName().equals("조로")) {
-						int num = friend[i].getFrNum();
-						String grade = friend[i].getFrGrade();
-						int mp = friend[i].getFrMp();						
-						if(battleInfo.getcMp() >= mp) {
-							battleController.zoroSkill(selectSkillView, battleInfo, num, grade);
-						} else {
-							System.out.println("마나가 부족합니다.");
+				int cnt = 0;
+				if(friendList.size() == 0) {
+					ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+				} else {
+					for(int i = 0; i < friendList.size(); i++) {
+						if(friendList.get(i).getFrName().equals("조로")) {
+							cnt++;
+							int mp = friendList.get(i).getFrMp();						
+							if(battleInfo.getcMp() >= mp) {
+								battleController.zoroSkill(selectSkillView, battleInfo, friendList.get(i));
+							} else {
+								System.out.println("마나가 부족합니다.");
+								ViewUtil.changePanel(selectSkillView, new EnoughMPView(battleInfo));
+							}
+						}
+						if(i == friendList.size() - 1) {
+							System.out.println(i);
+							System.out.println("cnt : " + cnt);
+							if(cnt == 0) {
+								System.out.println("cnt : " + cnt);
+								ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+							}
 						}
 					} 
 				}
 				
+				
+				
 			} else if(e.getSource() == sandiPanel){
-				for(int i = 0; i < friend.length; i++) {
-					if(friend[i].getFrName().equals("상디")) {
-						int num = friend[i].getFrNum();
-						String grade = friend[i].getFrGrade();
-						int mp = friend[i].getFrMp();						
-						if(battleInfo.getcMp() >= mp) {
-							battleController.sandiSkill(selectSkillView, battleInfo, num, grade);
-						} else {
-							System.out.println("마나가 부족합니다.");
+				int cnt = 0;
+				if(friendList.size() == 0) {
+					ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+				}else {
+					for(int i = 0; i < friendList.size(); i++) {
+						if(friendList.get(i).getFrName().equals("상디")) {
+							cnt++;
+							int mp = friendList.get(i).getFrMp();						
+							if(battleInfo.getcMp() >= mp) {
+								battleController.sandiSkill(selectSkillView, battleInfo,  friendList.get(i));
+							} else {
+								System.out.println("마나가 부족합니다.");
+								ViewUtil.changePanel(selectSkillView, new EnoughMPView(battleInfo));
+							}
 						}
-					} 
+						if(i == friendList.size() - 1) {
+							if(cnt == 0) {
+								ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+							}
+						}
+					}
 				}
+				
+				
 			} else if(e.getSource() == oosopPanel){
-				for(int i = 0; i < friend.length; i++) {
-					if(friend[i].getFrName().equals("우솝")) {
-						int num = friend[i].getFrNum();
-						String grade = friend[i].getFrGrade();
-						int mp = friend[i].getFrMp();						
-						if(battleInfo.getcMp() >= mp) {
-							battleController.oosopSkill(selectSkillView, battleInfo, num, grade);
-						} else {
-							System.out.println("마나가 부족합니다.");
+				int cnt = 0;
+				if(friendList.size() == 0) {
+					ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+				} else {
+					for(int i = 0; i < friendList.size(); i++) {						
+						if(friendList.get(i).getFrName().equals("우솝")) {
+							cnt++;
+							int mp = friendList.get(i).getFrMp();					
+							if(battleInfo.getcMp() >= mp) {
+								battleController.oosopSkill(selectSkillView, battleInfo,  friendList.get(i));
+							} else {
+								System.out.println("마나가 부족합니다.");
+								ViewUtil.changePanel(selectSkillView, new EnoughMPView(battleInfo));
+							}
+						} 
+						if(i == friendList.size() - 1) {
+							if(cnt == 0) {
+								ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+							}
 						}
-					} 
+					}
 				}
+				
+				
 			} else if(e.getSource() == namiPanel){
-				for(int i = 0; i < friend.length; i++) {
-					if(friend[i].getFrName().equals("나미")) {
-						int num = friend[i].getFrNum();
-						String grade = friend[i].getFrGrade();
-						int mp = friend[i].getFrMp();						
-						if(battleInfo.getcMp() >= mp) {
-							battleController.namiSkill(selectSkillView, battleInfo, num, grade);
-						} else {
-							System.out.println("마나가 부족합니다.");
+				int cnt = 0;
+				if(friendList.size() == 0) {
+					ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+				} else {
+					for(int i = 0; i < friendList.size(); i++) {
+						if(friendList.get(i).getFrName().equals("나미")) {
+							cnt++;
+							int mp = friendList.get(i).getFrMp();				
+							if(battleInfo.getcMp() >= mp) {
+								battleController.namiSkill(selectSkillView, battleInfo,  friendList.get(i));
+							} else {							
+								System.out.println("마나가 부족합니다.");
+								ViewUtil.changePanel(selectSkillView, new EnoughMPView(battleInfo));
+							}
+						} 
+						if(i == friendList.size() - 1) {
+							if(cnt == 0) {
+								ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+							}
 						}
-					} else {
 						
 					}
 				}
+				
+				
 			} else if(e.getSource() == hankokPanel){
-				for(int i = 0; i < friend.length; i++) {
-					if(friend[i].getFrName().equals("핸콕")) {
-						int num = friend[i].getFrNum();
-						String grade = friend[i].getFrGrade();
-						int mp = friend[i].getFrMp();						
-						if(battleInfo.getcMp() >= mp) {
-							battleController.hankokSkill(selectSkillView, battleInfo, num, grade);
-						} else {
-							System.out.println("마나가 부족합니다.");
+				int cnt = 0;
+				if(friendList.size() == 0) {
+					ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+				} else {
+					for(int i = 0; i < friendList.size(); i++) {
+						if(friendList.get(i).getFrName().equals("핸콕")) {
+							cnt++;
+							int mp = friendList.get(i).getFrMp();					
+							if(battleInfo.getcMp() >= mp) {
+								battleController.hankokSkill(selectSkillView, battleInfo,  friendList.get(i));
+							} else {							
+								System.out.println("마나가 부족합니다.");
+								ViewUtil.changePanel(selectSkillView, new EnoughMPView(battleInfo));
+							}
+						} 
+						if(i == friendList.size() - 1) {
+							if(cnt == 0) {
+								ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+							}
 						}
-					} 
+						
+					}
 				}
+			
+				
 			} else if(e.getSource() == reilighPanel){
-				for(int i = 0; i < friend.length; i++) {
-					if(friend[i].getFrName().equals("레일리")) {
-						int num = friend[i].getFrNum();
-						String grade = friend[i].getFrGrade();
-						int mp = friend[i].getFrMp();						
-						if(battleInfo.getcMp() >= mp) {
-							battleController.reilighSkill(selectSkillView, battleInfo, num, grade);
-						} else {
-							System.out.println("마나가 부족합니다.");
+				int cnt = 0;
+				if(friendList.size() == 0) {
+					ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+				} else {
+					for(int i = 0; i < friendList.size(); i++) {
+						if(friendList.get(i).getFrName().equals("레일리")) {
+							cnt++;
+							int mp = friendList.get(i).getFrMp();						
+							if(battleInfo.getcMp() >= mp) {
+								battleController.reilighSkill(selectSkillView, battleInfo,  friendList.get(i));
+							} else {
+								System.out.println("마나가 부족합니다.");
+								ViewUtil.changePanel(selectSkillView, new EnoughMPView(battleInfo));
+							}
+						} 
+						if(i == friendList.size() - 1) {
+							if(cnt == 0) {
+								ViewUtil.changePanel(selectSkillView, new NotFriendView(battleInfo));
+							}
 						}
-					} 
+					}
 				}
 			} else if(e.getSource() == cancelPanel) {
 				ViewUtil.changePanel(selectSkillView, new BattleContinueView(battleInfo));

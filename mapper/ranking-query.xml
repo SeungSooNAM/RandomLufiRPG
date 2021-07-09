@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="InsertRanking">
+INSERT 
+	INTO RANKING R
+	(
+	   R.CHAR_NAME
+	  ,R.CHAR_NUMBER
+	  ,R.CHAR_SCORE
+	 )
+	 VALUES
+	 (
+	 	?
+	   ,?
+	   ,?
+	 )
+</entry>
+
+<entry key="loadChInfo">
+SELECT 
+	 CHAR_NAME
+	,CHAR_SCORE
+  FROM CHARACTER
+ WHERE CHAR_NUMBER = ?
+</entry>
+
+
+
+<entry key="selectRanking">
+SELECT *
+FROM RANKING
+ORDER BY CHAR_SCORE DESC
+</entry>
+</properties>

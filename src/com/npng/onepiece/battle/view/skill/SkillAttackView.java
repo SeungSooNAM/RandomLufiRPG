@@ -1,5 +1,7 @@
 package com.npng.onepiece.battle.view.skill;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,19 +22,28 @@ public class SkillAttackView extends JPanel{
 	private JLabel bl;
 	private BattleDTO battleInfo;
 	private FriendDTO friend[] = new FriendDTO[6];
+	private JPanel skillDamage;
+	private JLabel damage;
 
-	public SkillAttackView(BattleDTO battleInfo, int num, String grade) {
+	public SkillAttackView(BattleDTO battleInfo, FriendDTO friend) {
 		this.setSize(1200, 800);
 		this.skillAttackView = this;
 		this.battleInfo = battleInfo;
 		this.setLayout(null);
 		
+		Font font = new Font("SansSerif",Font.BOLD, 35);
 		
 		int cCharisma = battleInfo.getcCharisma();
-		List<FriendDTO> friendList = battleInfo.getFriendList();
-		FriendDTO zoro = friendList.get(num - 1);
-		int Skill = zoro.getFrSkill();
-		System.out.println(Skill);
+		int Skill = friend.getFrSkill();
+		int num = friend.getFrNum();
+		String grade = friend.getFrGrade();
+		String text = "";
+		if(num != 6) {
+			text = "Damage!";
+		} else {
+			text = "MP/HP Heal!";
+		}
+		
 		if(grade.equals("normal")) {
 			Skill += cCharisma;
 		} else {
@@ -46,6 +57,17 @@ public class SkillAttackView extends JPanel{
 		bl.setLocation(0, 0);
 		bl.setSize(1200, 800);
 		this.add(bl);
+		
+		skillDamage = new JPanel();
+		skillDamage.setBounds(50, 700, 250, 100);
+		bl.add(skillDamage);
+		
+		
+		damage = new JLabel(Skill + " " + text);
+		damage.setFont(font);
+		damage.setForeground(Color.red);
+		skillDamage.add(damage);
+		
 		bl.addMouseListener(new MyMouseAdapter());;
 	}
 	

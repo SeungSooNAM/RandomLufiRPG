@@ -1,24 +1,16 @@
 package com.npng.onepiece.ending.controller;
 
-import com.npng.onepiece.ending.model.dto.EndingDTO;
 import com.npng.onepiece.ending.model.service.EndingService;
-import com.npng.onepiece.ending.view.RankingView;
 
 public class EndingController {
 
-	private EndingService endingService;
-	private RankingView rankingView;
-	
-	
-	public void saveScore(EndingDTO endingDTO) {
+	private EndingService endingService = new EndingService();
 
-		int result = endingService.saveScore(endingDTO);
+	public int updateRanking(int chNum) {
 		
-		if(result > 0) {
-			rankingView.displayRanking("updateSuccess");
-		}else {
-			rankingView.displayRanking("updateFailed");
-		}
+		int result = endingService.updateRanking(chNum);
+		
+		return result;
 	}
 
 }

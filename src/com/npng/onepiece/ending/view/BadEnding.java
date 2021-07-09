@@ -10,15 +10,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.gameready.view.Openning2;
+import com.npng.onepiece.ending.controller.EndingController;
 import com.npng.onepiece.user.view.MainFrame;
 
 public class BadEnding extends JPanel{
 
 	private BadEnding be1;
 	private MainFrame mainFrame;
+	private EndingController ec = new EndingController();
 	
-	public BadEnding(MainFrame mainFrame) {
+	public BadEnding(MainFrame mainFrame, int chNum) {
 		
 		this.be1 =this; 
 		this.mainFrame = mainFrame;
@@ -33,12 +34,17 @@ public class BadEnding extends JPanel{
 		JButton nextBtn = new JButton(new ImageIcon("image/cre_character/next123.png"));
 		nextBtn.setBounds(940, 600, 130, 50);
 		
-		label1.add(nextBtn);	
+		label1.add(nextBtn);
+		mainFrame.add(this);
+		this.add(label1);
+		
+		
+		
 		nextBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewUtil.changePanel(mainFrame,be1, new BadEnding02(mainFrame));				
+				ViewUtil.changePanel(mainFrame,be1, new RankingUpdateView(mainFrame));				
 			}
 		});
 		

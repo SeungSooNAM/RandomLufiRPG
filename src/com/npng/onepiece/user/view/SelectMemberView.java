@@ -3,6 +3,7 @@ package com.npng.onepiece.user.view;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -33,7 +34,8 @@ public class SelectMemberView extends JPanel {
 		JLabel label = new JLabel(new ImageIcon(selectMember));
 		
 		Font font1 = new Font("",0,20);
-		JTextArea ta1 = new JTextArea();
+		TextArea ta1 = new TextArea("", 50, 60,1);
+		ta1.setEditable(false);
 		ta1.setLocation(130, 190);
 		ta1.setSize(943, 253);
 		ta1.setFont(font1);
@@ -62,7 +64,9 @@ public class SelectMemberView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				List<MemberDTO> memberList = mc.selectAllMember();
-					ta1.append(memberList + "\n");
+					for(int i = 0; i < memberList.size(); i++) {
+						ta1.append(memberList.get(i) + "\n");
+					}
 				
 			}
 		});

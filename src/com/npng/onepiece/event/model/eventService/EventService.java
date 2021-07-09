@@ -27,10 +27,6 @@ public class EventService {
 	public int sceresult(int map ,int num, int chNum) { //선택지 ,시나리오번호
 		System.out.println("시나리오번호 : " + num);
 		System.out.println("캐릭터번호 = "+ chNum);
-
-	Connection con = getConnection();		
-		int commit = 0;
-
 		
 		Connection con = getConnection();		
 		int commit = 0;
@@ -65,9 +61,9 @@ public class EventService {
 			/* 이긴걸로 업데이트*/
 			/* 진걸로 업데이트*/
 		} else {
-			reward.setSceexp((int)(reward.getSceexp()*0.1));
-			reward.setScescore((int)(reward.getScescore()*0.1));
-			reward.setScemoney((int)(reward.getScemoney()*0.1));
+			reward.setSceexp((int)(reward.getSceexp()*0));
+			reward.setScescore((int)(reward.getScescore()*0));
+			reward.setScemoney((int)(reward.getScemoney()*0));
 			
 			res += sceDAO.chUpdate(con, reward ,chNum);
 			System.out.println("**z***");
@@ -75,7 +71,6 @@ public class EventService {
 			
 		}
 		if(res == 2) {
-
 			commit(con);
 			commit = 1;
 		} else {
@@ -100,9 +95,9 @@ public class EventService {
 		}
 		if(result == 0) {
 			reward = sceDAO.reward(con, num);
-			reward.setSceexp((int)(reward.getSceexp()*0.1));
-			reward.setScescore((int)(reward.getScescore()*0.1));
-			reward.setScemoney((int)(reward.getScemoney()*0.1));
+			reward.setSceexp((int)(reward.getSceexp()*0));
+			reward.setScescore((int)(reward.getScescore()*0));
+			reward.setScemoney((int)(reward.getScemoney()*0));
 		}
 		
 		close(con);
@@ -137,12 +132,10 @@ public class EventService {
 		result = sceDAO.insertfriend(con,chNum);
 		
 		if(result == 1) {
-
 			commit(con);
-			commit = 1;
+			result = 1;
 		} else {
 			rollback(con);
-
 			
 		}
 		
@@ -155,7 +148,18 @@ public class EventService {
 		
 		int result = 0;
 		
-		result = sceDAO.friendcheck(con ,chNum);
+		result = sceDAO.friendcheck(con ,chNum ,2);
+		
+		close(con);
+		return result;
+	}
+	public int hfriendcheck( int chNum) {
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = sceDAO.friendcheck(con ,chNum ,6);
 		
 		close(con);
 		return result;
@@ -240,78 +244,23 @@ public class EventService {
 			rollback(con);
 		}
 		
-
-			result = 0;
-			
-		}
-		System.out.println("커밋 : " + commit);
-		System.out.println("결과값 : " + result);
-
 		close(con);
 		return result;
 	}
 
-	public SceDTO reward(int result, int num) {
-		
-		Connection con = getConnection();
-		SceDTO reward = new SceDTO();
-		
-		
-		if(result == 1) {
-			 reward = sceDAO.reward(con, num);
-		}
-		if(result == 2) {
-			reward = sceDAO.reward(con, num);
-			reward.setSceexp((int)(reward.getSceexp()*0.1));
-			reward.setScescore((int)(reward.getScescore()*0.1));
-			reward.setScemoney((int)(reward.getScemoney()*0.1));
-		}
-		
-		close(con);
-		return reward;
-	}
-	
-	public String story(int result, int num) {
-		
-		Connection con = getConnection();
-		SceDTO reward = new SceDTO();
-		String story = null;
-		
-		if(result == 1) {
-			 reward = sceDAO.scenum(con,1, num);
-				 
-			 }
-			 
-		if(result == 2) {
-			reward = sceDAO.scenum2(con,2, num);
-			reward.setSceexp((int)(reward.getSceexp()*0.1));
-			reward.setScescore((int)(reward.getScescore()*0.1));
-			reward.setScemoney((int)(reward.getScemoney()*0.1));
-		}
-		
-		story = reward.getScestory();
-		close(con);
-		return story;
-	}
-	public int insertfriend(int chNum) {
+
+	public int updateHankok() {
 		
 		Connection con = getConnection();
 		
-		int result = 0;
-		
-		result = sceDAO.insertfriend(con,chNum);
-		
-		if(result == 1) {
-			commit(con);
-			result = 1;
-		} else {
-			rollback(con);
-			
-		}
+		int result = sceDAO.updateHankok(con);
 		
 		close(con);
+		
+		
 		return result;
 	}
+
 
 	
 

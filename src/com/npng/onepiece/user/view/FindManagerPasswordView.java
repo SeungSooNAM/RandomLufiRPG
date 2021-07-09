@@ -53,17 +53,10 @@ public class FindManagerPasswordView extends JPanel {
 		
 		JFrame MessageFrame = new JFrame();
 		MessageFrame.setLocation(750, 500);
-
 		MessageFrame.setSize(330, 150);
 		
 		JPanel panel2 = new JPanel();
 		panel2.setSize(330,150);
-
-		MessageFrame.setSize(320, 150);
-		
-		JPanel panel2 = new JPanel();
-		panel2.setSize(320,150);
-
 		
 		JLabel label2 = new JLabel("변경 성공");
 		label2.setFont(font2);
@@ -96,17 +89,14 @@ public class FindManagerPasswordView extends JPanel {
 				String userName = tf2.getText();
 				String newPwd = tf3.getText();
 				
-
 				if(newPwd.length() >= 5) {
 					int result = mc.newManagerPwd(userId,userName,newPwd);
 					if(result > 0) {
 						label2.setText("변경 성공");
 						MessageFrame.setVisible(true);						
-
 					} else {
 						label2.setText("정보를 잘못 입력하였습니다.");
 						MessageFrame.setVisible(true);
-
 					}
 				} else {
 					label2.setText("비밀번호가 5자 미만입니다.");
@@ -127,16 +117,6 @@ public class FindManagerPasswordView extends JPanel {
 		panel2.add(btn6);
 		MessageFrame.add(panel2);
 		
-
-		btn2.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				MessageFrame.setVisible(true);
-			}
-		});
-
 		label.add(tf1);
 		label.add(tf2);
 		label.add(tf3);

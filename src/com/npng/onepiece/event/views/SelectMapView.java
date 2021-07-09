@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import com.npng.onepiece.battle.view.main.BattleView;
 import com.npng.onepiece.common.ViewUtil;
-import com.npng.onepiece.event.controller.eventController;
+import com.npng.onepiece.event.controller.EventController;
 import com.npng.onepiece.event.model.dto.SceDTO;
 import com.npng.onepiece.mainMenu.MainMenu;
 import com.npng.onepiece.user.view.MainFrame;
@@ -38,9 +38,7 @@ public class SelectMapView extends JPanel{
 	private int num6= 6;
 	
 	private int chNum;
-
 	private int boss;
-
 
 
 	public SelectMapView(MainFrame mf, int chNum) {
@@ -49,7 +47,8 @@ public class SelectMapView extends JPanel{
 		this.setSize(1200, 800);
 		mf.add(this);
 		this.chNum = chNum;
-
+		
+		
 		
 		JLabel label = new JLabel(new ImageIcon());
 		this.img = new ImageIcon("image/sce/지도.PNG").getImage().getScaledInstance(1200, 800, 0);
@@ -58,6 +57,8 @@ public class SelectMapView extends JPanel{
 		
 		
 		this.add(label);
+		
+		
 		
 		
 		
@@ -93,7 +94,18 @@ public class SelectMapView extends JPanel{
 		exitbtn.setBounds(517, 631, 128, 90);
 		label.add(exitbtn);
 		
-		eventController event = new eventController();
+		
+		btn1.setBorderPainted(false);
+		btn2.setBorderPainted(false);
+		btn3.setBorderPainted(false);
+		btn4.setBorderPainted(false);
+		btn5.setBorderPainted(false);
+		btn6.setBorderPainted(false);
+		btn7.setBorderPainted(false);
+		exitbtn.setBorderPainted(false);
+		
+		
+		EventController event = new EventController();
 		
 		SceDTO sd = event.levelUp(chNum);
 		boss = sd.getCharlv();
@@ -130,7 +142,7 @@ public class SelectMapView extends JPanel{
 		public void mouseClicked(MouseEvent e) {
 			
 			if(boss >= 6 ) {
-				ViewUtil.changePanel(mf, view, new BattleView(mf,chNum,7));
+				ViewUtil.changePanel(mf, view, new BattleView(7));
 			} else {
 				ViewUtil.changePanel(mf, view, new MapResultView(mf,chNum));
 			}

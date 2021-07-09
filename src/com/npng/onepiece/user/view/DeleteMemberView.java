@@ -58,10 +58,10 @@ public class DeleteMemberView extends JPanel {
 		
 		JFrame messageFrame = new JFrame();
 		messageFrame.setLocation(750, 500);
-		messageFrame.setSize(300, 160);
+		messageFrame.setSize(330, 160);
 		
 		JPanel panel2 = new JPanel();
-		panel2.setSize(300,160);
+		panel2.setSize(330,160);
 		
 		JLabel label2 = new JLabel("삭제 성공");
 		label2.setFont(font5);

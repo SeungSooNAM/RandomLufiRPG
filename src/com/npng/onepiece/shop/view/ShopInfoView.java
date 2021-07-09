@@ -16,8 +16,11 @@ import com.npng.onepiece.character.controller.CharacterController;
 import com.npng.onepiece.character.model.dto.CharacterDTO;
 import com.npng.onepiece.common.ViewUtil;
 import com.npng.onepiece.inventory.controller.InventoryController;
+import com.npng.onepiece.inventory.model.dto.ASCDTO;
+import com.npng.onepiece.inventory.model.dto.ArmorDTO;
 import com.npng.onepiece.inventory.model.dto.InventoryDTO;
 import com.npng.onepiece.inventory.model.dto.ItemDTO;
+import com.npng.onepiece.inventory.model.dto.WeaponDTO;
 import com.npng.onepiece.shop.controller.ShopController;
 import com.npng.onepiece.user.view.MainFrame;
 
@@ -27,7 +30,13 @@ public class ShopInfoView extends JPanel {
 	private ShopInfoView mainPageI;
 	private Image img;
 	private List<ItemDTO> shopList;
+	private List<WeaponDTO> weaponList;
+	private List<ArmorDTO> armorList;
+	private List<ASCDTO> ascList;
 	private ShopController shopControl;
+	
+	private int status1;
+	private int status2;
 
 	//	i는 상점의 몇번쨰 칸인지
 	public ShopInfoView (MainFrame mf, int i, InventoryDTO inven, int cn, int s) {
@@ -45,9 +54,41 @@ public class ShopInfoView extends JPanel {
 		if(s == 3) {
 			shopList = shopControl.getSpecialShopInfo3();
 		}
+		
+		
+		InventoryController itemInfo = new InventoryController();
+		
+		weaponList = itemInfo.getWeaponInfo();
+		armorList = itemInfo.getArmorInfo();
+		ascList = itemInfo.getASCInfo();
+		
+		status1 = 0;
+		status2 = 0;
+		
+		for(int k = 0; k < 6; k++) {
+			if(weaponList.get(k).getNum() == shopList.get(i).getNum()) {
+				status1 = weaponList.get(k).getAtk();
+				status2 = weaponList.get(k).getStr();
+
+				break;
+			} else if (armorList.get(k).getNum() == shopList.get(i).getNum()) {
+				status1 = armorList.get(k).getHp();
+				status2 = armorList.get(k).getDex();
+
+				break;
+			}else if (ascList.get(k).getNum() == shopList.get(i).getNum()) {
+				status1 = ascList.get(k).getCha();
+				status2 = ascList.get(k).getMp();
+
+				break;
+			}
+		}
 
 		System.out.println(shopList.size());
 		System.out.println(shopList.get(i));
+		
+		
+
 
 		this.setBounds(0, 0, 1200, 800);
 		this.mf = mf;
@@ -58,7 +99,22 @@ public class ShopInfoView extends JPanel {
 		JLabel labelCate = new JLabel("종류 : "+ shopList.get(i).getCate());
 		JLabel labelGrade = new JLabel("등급 : "+ shopList.get(i).getGrade());
 		JLabel labelPrice = new JLabel("가격 : " + shopList.get(i).getPrice());
+		
+		JLabel labelSpec1 = new JLabel();
+		JLabel labelSpec2 = new JLabel();
 
+		if(shopList.get(i).getNum() >= 1 && shopList.get(i).getNum() < 7) {
+			labelSpec1 = new JLabel("공격력 : " + status1);
+			labelSpec2 = new JLabel("힘 : " + status2);
+		} else if(shopList.get(i).getNum() >= 7 && shopList.get(i).getNum() < 13) {
+			labelSpec1 = new JLabel("hp : " + status1);
+			labelSpec2 = new JLabel("민첩 : " + status2);
+		} else if(shopList.get(i).getNum() >= 13 && shopList.get(i).getNum() < 19) {
+			labelSpec1 = new JLabel("카리스마 : " + status1);
+			labelSpec2 = new JLabel("mp : " + status2);
+		}
+		
+		
 		JLabel MoneyLabel = new JLabel("소지금 : " + inven.getGold() + "G");
 
 		JLabel label = new JLabel(new ImageIcon());
@@ -154,27 +210,35 @@ public class ShopInfoView extends JPanel {
 
 
 
-		Font fontM = new Font("맑은 고딕", Font.PLAIN, 30);
+		Font fontM = new Font("맑은 고딕", Font.PLAIN, 15);
 		MoneyLabel.setFont(fontM); 
 		MoneyLabel.setBounds(950, 5, 300, 100);
 
 
-		Font font = new Font("맑은 고딕", Font.PLAIN, 20);
+		Font font = new Font("맑은 고딕", Font.PLAIN, 15);
 		labelName.setFont(font); 
-		labelName.setBounds(820, 250, 200, 100);
+		labelName.setBounds(800, 250, 200, 100);
 		labelName.setForeground(Color.WHITE);
 
 		labelCate.setFont(font); 
-		labelCate.setBounds(820, 300, 200, 100);
+		labelCate.setBounds(800, 300, 200, 100);
 		labelCate.setForeground(Color.WHITE);
 
 		labelGrade.setFont(font); 
-		labelGrade.setBounds(820, 350, 200, 100);
+		labelGrade.setBounds(800, 350, 200, 100);
 		labelGrade.setForeground(Color.WHITE);
 
 		labelPrice.setFont(font); 
-		labelPrice.setBounds(820, 400, 200, 100);
+		labelPrice.setBounds(800, 400, 200, 100);
 		labelPrice.setForeground(Color.WHITE);
+		
+		labelSpec1.setFont(font); 
+		labelSpec1.setBounds(900, 300, 200, 100);
+		labelSpec1.setForeground(Color.WHITE);
+		
+		labelSpec2.setFont(font); 
+		labelSpec2.setBounds(900, 350, 200, 100);
+		labelSpec2.setForeground(Color.WHITE);
 
 		labelIcon.setBounds(850, 150 , 90, 90);
 
@@ -301,6 +365,8 @@ public class ShopInfoView extends JPanel {
 		}
 		label.add(labelGrade);
 		label.add(labelPrice);
+		label.add(labelSpec1);
+		label.add(labelSpec2);
 
 
 		label.add(buttonBuy);

@@ -34,7 +34,7 @@ public class EventTutorial extends JPanel {
 		JButton nextBtn = new JButton(new ImageIcon("image/tutorial/next123.png"));
 		nextBtn.setContentAreaFilled(false);
 		nextBtn.setFocusPainted(false);
-		nextBtn.setBounds(730, 657, 125, 40);
+		nextBtn.setBounds(755, 730, 125, 40);
 		label.add(nextBtn);
 		nextBtn.addActionListener(new ActionListener() {
 

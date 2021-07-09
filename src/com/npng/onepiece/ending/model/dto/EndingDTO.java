@@ -55,7 +55,8 @@ public class EndingDTO implements Serializable{
 	public String toString() {
 		return "EndingDTO [chNum=" + chNum + ", chName=" + chName + ", chScore=" + chScore + ", rank=" + rank + "]";
 	}
-	
+
+
 	
 	
 }

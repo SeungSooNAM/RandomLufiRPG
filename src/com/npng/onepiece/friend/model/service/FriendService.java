@@ -46,11 +46,9 @@ public class FriendService {
 		
 		Connection con = getConnection();
 		
-		if(resultGold >= 50) {
-			
+		if(gold >= 50) {	
 		gold -= 50; // 강화 비용
-		resultGold = friendDao.decreaseGold(con, gold);
-		
+		resultGold = friendDao.decreaseGold(con, gold);		
 			System.out.println("강화  숫자 : " + percentageUpgrade);
 			if(percentageUpgrade > 15) {
 				System.out.println("강화 성공");

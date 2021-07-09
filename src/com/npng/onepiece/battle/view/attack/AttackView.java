@@ -25,7 +25,7 @@ public class AttackView extends JPanel{
 		this.battleInfo = battleInfo;
 		this.setLayout(null);
 		
-		int num = (int) (Math.random() * 3) + 1;
+		int num = battleInfo.getcLv();
 		Image img = new ImageIcon("image/battle/attack/루피공격" + num + ".png").getImage().getScaledInstance(1200, 800, 0);
 		bl = new JLabel(new ImageIcon(img));
 		bl.setLocation(0, 0);

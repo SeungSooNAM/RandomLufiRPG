@@ -72,6 +72,7 @@ public class InventoryDAO {
 			close(rset);
 			close(pstmt);
 		}
+		System.out.println(invenInfo);
 		return invenInfo;
 	}
 

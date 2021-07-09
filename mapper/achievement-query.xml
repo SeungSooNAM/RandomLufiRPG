@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment />
+	<entry key="findAchievement">
+		SELECT
+		*
+		FROM CH_ACHIEVEMENT
+		WHERE CHAR_NUM = ?
+		   AND ACH_NUM = ?
+	</entry>
+	<entry key="insertAchivement">
+		INSERT INTO
+		CH_ACHIEVEMENT(
+		CHAR_NUM,
+		ACH_NUM
+		)
+		VALUES(
+		  ?
+		, ?
+		)
+	</entry>
+</properties>

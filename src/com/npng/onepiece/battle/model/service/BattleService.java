@@ -79,11 +79,11 @@ public class BattleService {
 	
 		Connection con = getConnection();
 		
-	
+		System.out.println("맵 번호 : " + map);
 		int result = battleDao.checkBossClear(con, map, cNum);  //보스 클리어 여부 확인
 		int num = 0;
 		if(result == 0) {  //보스 클리어 안됨
-			num = (int) (Math.random() * 20) + 10;  // 보스 포함 선택
+			num = (int) (Math.random() * 23) + 10;  // 보스 포함 선택
 			if(num >= 28) {  //보스 전투 확률 3/20 : 10%
 				num = map;  
 			}
@@ -119,19 +119,16 @@ public class BattleService {
 		return battleInfo;
 	}
 
-	public int zoroSkill(BattleDTO battleInfo) {
+	public int zoroSkill(BattleDTO battleInfo, FriendDTO friend) {
 		
 		int cMp = battleInfo.getcMp();
 		int cCharisma = battleInfo.getcCharisma();
 		int mHp = battleInfo.getmHp();
 		int mDef = battleInfo.getmDef();
 		
-		
-		List<FriendDTO> friendList = battleInfo.getFriendList();
-		FriendDTO zoro = friendList.get(1);
-		String grade = zoro.getFrGrade();
-		int Skill = zoro.getFrSkill();
-		int FrMp = zoro.getFrMp();
+		int Skill = friend.getFrSkill();
+		int FrMp = friend.getFrMp();
+		String grade = friend.getFrGrade();
 		if(grade.equals("normal")) {
 			Skill += cCharisma;
 		} else {
@@ -150,28 +147,26 @@ public class BattleService {
 		return result;
 	}
 
-	public int sandiSkill(BattleDTO battleInfo) {
+	public int sandiSkill(BattleDTO battleInfo, FriendDTO friend) {
 		int cMp = battleInfo.getcMp();
 		int cCharisma = battleInfo.getcCharisma();
 		int mHp = battleInfo.getmHp();
 		int mDef = battleInfo.getmDef();
 		
-		List<FriendDTO> friendList = battleInfo.getFriendList();
-		FriendDTO zoro = friendList.get(0);
-		String grade = zoro.getFrGrade();
-		int Skill = zoro.getFrSkill();
-		int FrMp = zoro.getFrMp();
+		String grade = friend.getFrGrade();
+		int Skill = friend.getFrSkill();
+		int FrMp = friend.getFrMp();
 		
-		cMp -= FrMp;
-		mHp -= Skill;
-		battleInfo.setmHp(mHp);
-		battleInfo.setcMp(cMp);
 		if(grade.equals("normal")) {
 			Skill += cCharisma;
 		} else {
 			Skill += cCharisma;
 			Skill *= 1.2;
 		}
+		cMp -= FrMp;
+		mHp -= Skill;
+		battleInfo.setmHp(mHp);
+		battleInfo.setcMp(cMp);		
 		int result = 0;
 		if(mHp <= 0) {
 			result = 2; //캐릭터 승리
@@ -179,7 +174,7 @@ public class BattleService {
 		return result;
 	}
 
-	public int oosopSkill(BattleDTO battleInfo) {
+	public int oosopSkill(BattleDTO battleInfo, FriendDTO friend) {
 
 		int cMp = battleInfo.getcMp();
 		int cCharisma = battleInfo.getcCharisma();
@@ -187,11 +182,9 @@ public class BattleService {
 		int mDef = battleInfo.getmDef();
 		int mAtk = battleInfo.getmAtk();
 		
-		List<FriendDTO> friendList = battleInfo.getFriendList();
-		FriendDTO zoro = friendList.get(3);
-		String grade = zoro.getFrGrade();
-		int Skill = zoro.getFrSkill();
-		int FrMp = zoro.getFrMp();
+		String grade = friend.getFrGrade();
+		int Skill = friend.getFrSkill();
+		int FrMp = friend.getFrMp();
 		if(grade.equals("normal")) {
 			Skill += cCharisma;
 		} else {
@@ -211,7 +204,7 @@ public class BattleService {
 		return result;
 	}
 
-	public int namiSkill(BattleDTO battleInfo) {
+	public int namiSkill(BattleDTO battleInfo, FriendDTO friend) {
 
 		int cMp = battleInfo.getcMp();
 		int cCharisma = battleInfo.getcCharisma();
@@ -220,11 +213,10 @@ public class BattleService {
 
 		int result = 0;
 		
-		List<FriendDTO> friendList = battleInfo.getFriendList();
-		FriendDTO zoro = friendList.get(2);
-		String grade = zoro.getFrGrade();
-		int Skill = zoro.getFrSkill();
-		int FrMp = zoro.getFrMp();
+
+		String grade = friend.getFrGrade();
+		int Skill = friend.getFrSkill();
+		int FrMp = friend.getFrMp();
 		if(grade.equals("normal")) {
 			Skill += cCharisma;
 		} else {
@@ -242,21 +234,19 @@ public class BattleService {
 		}
 		battleInfo.setcMp(cMp);
 		battleInfo.setmHp(mHp);
-		
+		battleInfo.setmDef(mDef);
 		return result;
 	}
 
-	public void hankokSkill(BattleDTO battleInfo) {
+	public void hankokSkill(BattleDTO battleInfo, FriendDTO friend) {
 
 		int cHp = battleInfo.getcHp();
 		int cMp = battleInfo.getcMp();
 		int cCharisma = battleInfo.getcCharisma();
 		
-		List<FriendDTO> friendList = battleInfo.getFriendList();
-		FriendDTO zoro = friendList.get(5);
-		String grade = zoro.getFrGrade();
-		int Skill = zoro.getFrSkill();
-		int FrMp = zoro.getFrMp();
+		String grade = friend.getFrGrade();
+		int Skill = friend.getFrSkill();
+		int FrMp = friend.getFrMp();
 		if(grade.equals("normal")) {
 			Skill += cCharisma;
 		} else {
@@ -274,18 +264,16 @@ public class BattleService {
 		
 	}
 
-	public int reilighSkill(BattleDTO battleInfo) {
+	public int reilighSkill(BattleDTO battleInfo, FriendDTO friend) {
 		int cMp = battleInfo.getcMp();
 		int cCharisma = battleInfo.getcCharisma();
 		int mHp = battleInfo.getmHp();
 		int mDef = battleInfo.getmDef();
 		int cAtk = battleInfo.getcAtk();
 		
-		List<FriendDTO> friendList = battleInfo.getFriendList();
-		FriendDTO zoro = friendList.get(4);
-		String grade = zoro.getFrGrade();
-		int Skill = zoro.getFrSkill();
-		int FrMp = zoro.getFrMp();
+		String grade = friend.getFrGrade();
+		int Skill = friend.getFrSkill();
+		int FrMp = friend.getFrMp();
 		if(grade.equals("normal")) {
 			Skill += cCharisma;
 		} else {
@@ -309,13 +297,12 @@ public class BattleService {
 		
 		Connection con = getConnection();
 		
-		int cNum = battleInfo.getcNumber();
 		int cExp = battleInfo.getcExp();
 		cExp -= 200;
 		if(cExp < 0) {
 			cExp = 0;
 		}
-		int result = battleDao.escape(con, cNum, cExp);
+		int result = battleDao.escape(con, cExp);
 		
 		close(con);
 		

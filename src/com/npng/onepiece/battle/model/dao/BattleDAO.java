@@ -180,7 +180,7 @@ public class BattleDAO {
 		}
 		return friendList;
 	}
-	public int escape(Connection con, int cNum, int cExp) {
+	public int escape(Connection con,  int cExp) {
 		
 		PreparedStatement pstmt = null;
 
@@ -192,7 +192,7 @@ public class BattleDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, cExp);
-			pstmt.setInt(2, cNum);
+			pstmt.setInt(2, CreateCharacterView.chNum);
 			
 			result = pstmt.executeUpdate();
 			
@@ -212,14 +212,14 @@ public class BattleDAO {
 		PreparedStatement pstmt = null;
 		
 		int result = 0;
-		int cNum = 1; // 수정 필요
+
 		
 		String query = prop.getProperty("updateBossClear");
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, bossNum);
-			pstmt.setInt(2, cNum);
+			pstmt.setInt(2, bossNum);
+			pstmt.setInt(1, CreateCharacterView.chNum);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
