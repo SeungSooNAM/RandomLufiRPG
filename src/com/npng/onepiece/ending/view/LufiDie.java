@@ -62,9 +62,7 @@ public class LufiDie extends JPanel{
 		panel2.add(btn6);
 		MessageFrame.add(panel2);
 		
-		if(result > 0) {
-			MessageFrame.setVisible(true);			
-		}
+		
 		
 		
 
